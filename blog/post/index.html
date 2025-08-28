@@ -1,25 +1,24 @@
 <!--
-@file blog/index.html
-@version 0.3.0
-@description The main blog page that displays a list of all blog posts.
+@file blog/post/index.html
+@version 0.2.0
+@description A template for an individual blog post.
 
 @module Pages
 
-@summary This file serves as the hub for all blog posts. It displays a grid of cards, each
-representing a single blog post. The layout and styling are consistent with the rest of the
-portfolio website.
+@summary This file provides the structure for a single blog post page. It includes a main
+content area for the article and a sticky side panel for the table of contents, ensuring a
+user-friendly reading experience.
 
 @dependencies
 - /src/styles/main.css (for all styles)
-- /src/styles/pages/blog-list.css (for page-specific layout)
+- /src/styles/pages/blog.css (for blog-specific styles)
 
 @outputs
-- The rendered blog hub page.
+- The rendered single blog post page.
 
 @changelog
-- v0.3.0 (2025-08-28): Fixed layout, spacing, and header alignment issues.
-- v0.2.0 (2025-08-28): Restructured for clean URLs and fixed post links.
-- v0.1.0 (2025-08-28): Initial creation of the blog hub page.
+- v0.2.0 (2025-08-28): Renamed file to support clean URLs.
+- v0.1.0 (2025-08-28): Initial creation of the blog post page template.
 -->
 <!DOCTYPE html>
 <html lang="en">
@@ -27,8 +26,8 @@ portfolio website.
     <!-- Meta Tags for Character Set, Viewport, and SEO -->
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Blog | Jayson Jamora</title>
-    <meta name="description" content="A collection of thoughts, tutorials, and articles on web development, AI, and more.">
+    <title>Demystifying the Event Loop | Jayson Jamora</title>
+    <meta name="description" content="A deep dive into the JavaScript event loop and how it enables non-blocking asynchronous operations.">
 
     <!-- External Dependencies -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -39,9 +38,8 @@ portfolio website.
     <!-- Main application stylesheet -->
     <link rel="stylesheet" href="/src/styles/main.css" />
     <link rel="stylesheet" href="/src/styles/pages/blog.css" />
-    <link rel="stylesheet" href="/src/styles/pages/blog-list.css" />
 </head>
-<body class="blog-list-page">
+<body>
 
     <!-- =================================================================
     BACKGROUND EFFECTS
@@ -65,16 +63,7 @@ portfolio website.
                                 <linearGradient id="aurora-icon-gradient" x1="0%" y1="0%" x2="100%" y2="100%">
                                     <stop offset="0%" style="stop-color: oklch(65% 0.15 190)"></stop>
                                     <stop offset="100%" style="stop-color: oklch(50% 0.19 210)"></stop>
-                                    <animate attributeName="x1" values="-100%; 100%; -100%" dur="10s" repeatCount="indefinite"></animate>
-                                    <animate attributeName="x2" values="0%; 200%; 0%" dur="10s" repeatCount="indefinite"></animate>
                                 </linearGradient>
-                                <mask id="icon-mask">
-                                    <g>
-                                        <circle cx="12" cy="12" r="2" fill="white"></circle>
-                                        <circle cx="12" cy="12" r="6" stroke="white" stroke-width="1.5" stroke-linecap="round"></circle>
-                                        <circle cx="12" cy="12" r="10" stroke="white" stroke-width="1.5" stroke-linecap="round"></circle>
-                                    </g>
-                                </mask>
                             </defs>
                             <rect width="100%" height="100%" fill="url(#aurora-icon-gradient)" mask="url(#icon-mask)"></rect>
                         </svg>
@@ -112,49 +101,43 @@ portfolio website.
     MAIN CONTENT
     ================================================================== -->
     <main id="main-content" class="layout__content">
-        <div id="content-bed" class="layout__sequential-scroll-section">
-            <section id="blog-posts" class="layout__section">
-                <header class="section-header">
-                    <h2>From the Desk of Jayson</h2>
-                    <p>Thoughts on code, life, and everything in between.</p>
+        <div class="blog-post__container">
+            <article class="blog-post__content">
+                <header class="blog-post__header">
+                    <h1>Demystifying the Event Loop</h1>
+                    <p class="blog-post__meta">Published on August 28, 2025 by Jayson Jamora</p>
                 </header>
-                <div class="projects-grid" style="grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));">
-                    <!-- Blog Post Card 1 -->
-                    <article class="project-card">
-                    <div class="project-card__image"><img src="https://placehold.co/600x400/0a0e10/ffffff?text=Blog+Post+One" alt="Blog Post One Placeholder Image" loading="lazy"></div>
-                    <h3 class="project-card__title">Demystifying the Event Loop</h3>
-                    <p class="project-card__description">A deep dive into the JavaScript event loop and how it enables non-blocking asynchronous operations.</p>
-                    <div class="project-card__tech-stack"><span class="project-card__tech-item">JavaScript</span><span class="project-card__tech-item">Node.js</span><span class="project-card__tech-item">Async</span></div>
-                    <div class="project-card__links">
-                        <a href="/myPortfolio/blog/post/" class="project-card__link">Read More</a>
-                    </div>
-                </article>
 
-                <!-- Blog Post Card 2 -->
-                <article class="project-card">
-                    <div class="project-card__image"><img src="https://placehold.co/600x400/0a0e10/ffffff?text=Blog+Post+Two" alt="Blog Post Two Placeholder Image" loading="lazy"></div>
-                    <h3 class="project-card__title">AI as a Development Partner</h3>
-                    <p class="project-card__description">Exploring how to effectively use AI tools like Gemini and Copilot to augment, not replace, your development workflow.</p>
-                    <div class="project-card__tech-stack"><span class="project-card__tech-item">AI</span><span class="project-card__tech-item">Productivity</span><span class="project-card__tech-item">Development</span></div>
-                    <div class="project-card__links">
-                        <a href="/myPortfolio/blog/post/" class="project-card__link">Read More</a>
-                    </div>
-                </article>
+                <p>The JavaScript event loop is one of those concepts that every developer hears about, but many find it difficult to grasp fully. It's the secret sauce that allows Node.js to handle thousands of concurrent connections and makes user interfaces in the browser responsive. But what is it, really?</p>
 
-                <!-- Blog Post Card 3 -->
-                <article class="project-card">
-                    <div class="project-card__image"><img src="https://placehold.co/600x400/0a0e10/ffffff?text=Blog+Post+Three" alt="Blog Post Three Placeholder Image" loading="lazy"></div>
-                    <h3 class="project-card__title">The Art of Refactoring</h3>
-                    <p class="project-card__description">Strategies for cleaning up legacy code without breaking everything. A guide to technical debt management.</p>
-                    <div class="project-card__tech-stack"><span class="project-card__tech-item">Refactoring</span><span class="project-card__tech-item">Legacy Code</span><span class="project-card__tech-item">Best Practices</span></div>
-                    <div class="project-card__links">
-                        <a href="/myPortfolio/blog/post/" class="project-card__link">Read More</a>
-                    </div>
-                </article>
-                    </div>
-                </article>
-            </div>
-        </section>
+                <h2 id="what-it-is">What It Is</h2>
+                <p>At its core, the event loop is a simple mechanism: it's a constantly running process that checks if a queue, called the "callback queue," has any tasks waiting to be executed. If it does, it takes the first task in the queue and pushes it onto the call stack, which then executes it.</p>
+                <p>This might sound simple, but it's the foundation of JavaScript's non-blocking I/O model. When you execute an asynchronous operation, like reading a file or making an API request, you provide a callback function. Instead of waiting for the operation to complete, the JavaScript engine moves on to the next line of code. Once the operation is finished, the callback function is placed in the queue, ready for the event loop to pick it up.</p>
+
+                <h2 id="how-it-works">How It Works</h2>
+                <p>Let's break it down into a few key components:</p>
+                <ul>
+                    <li><strong>Call Stack:</strong> Where your code is executed. When you call a function, it's added to the top of the stack. When the function returns, it's popped off.</li>
+                    <li><strong>Web APIs / C++ APIs:</strong> These are the asynchronous functions provided by the browser (like `setTimeout` or `fetch`) or Node.js (`fs.readFile`). When you call one of these, they run outside of the main JavaScript thread.</li>
+                    <li><strong>Callback Queue:</strong> When an asynchronous operation completes, its callback function is placed in this queue.</li>
+                </ul>
+                <p>The event loop's job is to look at the call stack and the callback queue. If the call stack is empty, it takes the first item from the queue and pushes it onto the stack to be executed.</p>
+
+                <h2 id="why-it-matters">Why It Matters</h2>
+                <p>Understanding the event loop is crucial for writing efficient and bug-free asynchronous code. It helps you reason about the order in which your code will execute and avoid common pitfalls like blocking the main thread, which can lead to unresponsive user interfaces or slow server performance.</p>
+                <p>So next time you write an async function, take a moment to appreciate the elegant dance of the event loop, working tirelessly behind the scenes to keep your applications running smoothly.</p>
+            </article>
+
+            <aside class="blog-post__toc">
+                <div class="blog-post__toc-content">
+                    <h3>Table of Contents</h3>
+                    <ul>
+                        <li><a href="#what-it-is">What It Is</a></li>
+                        <li><a href="#how-it-works">How It Works</a></li>
+                        <li><a href="#why-it-matters">Why It Matters</a></li>
+                    </ul>
+                </div>
+            </aside>
         </div>
     </main>
 

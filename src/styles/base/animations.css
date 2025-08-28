@@ -1,13 +1,13 @@
 /**
  * @file src/styles/base/animations.css
- * @version 1.1.1
+ * @version 1.2.0
  * @description Defines all global keyframe animations used throughout the application.
  *
  * @module Base
  *
  * @summary This file centralizes all `@keyframes` and `@property` definitions. This includes animations
  * for spotlights, color shifts, fades, and component-specific transitions like the chat panel opening.
- * Keeping animations in a separate file improves organization and reusability.
+ * It also contains the styles for the page transition overlay.
  *
  * @dependencies
  * - None
@@ -16,6 +16,7 @@
  * - Provides a library of keyframe animations for use in other stylesheets.
  *
  * @changelog
+ * - v1.2.0 (2025-08-28): Replaced page transition animations with a simpler, more robust transition-based approach.
  * - v1.1.1 (2025-08-27): Added pulse-3d keyframe for the new animated logo.
  * - v1.1.0 (2025-08-26): Updated pulse-border animation to use new aurora theme colors.
  * - v1.0.0 (2025-08-25): Initial version, extracted from the main style.css file.
@@ -88,4 +89,22 @@
         transform: translateZ(12px) scale(1.1);
         opacity: 1;
     }
+}
+
+/* Page Transition Overlay */
+.page-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background-color: var(--bg-primary);
+    z-index: 9999;
+    opacity: 1;
+    transition: opacity 0.5s ease-in-out;
+    pointer-events: none;
+}
+
+body.is-loaded .page-overlay {
+    opacity: 0;
 }

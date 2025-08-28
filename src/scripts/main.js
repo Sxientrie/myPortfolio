@@ -1,6 +1,6 @@
 /**
  * @file src/scripts/main.js
- * @version 1.1.1
+ * @version 1.2.0
  * @description This file is the entry point that initializes all other modules and imports all styles.
  *
  * @module Root
@@ -18,6 +18,7 @@
  * - A fully initialized and styled single-page application.
  *
  * @changelog
+ * - v1.2.0 (2025-08-28): Implemented smooth page transitions.
  * - v1.1.1 (2025-08-26): Fixed critical bug where responsive.css was imported in the wrong order, breaking desktop layouts.
  * - v1.1.0 (2025-08-26): Added imports for new components and initialized testimonial carousel.
  * - v1.0.0 (2025-08-25): Initial version created during codebase refactor.
@@ -30,16 +31,43 @@ import { initScrollAnimations } from './modules/scroll-animations.js';
 import { initTestimonialCarousel } from './modules/testimonial-carousel.js';
 
 /**
+ * Handles smooth page transitions.
+ */
+function initPageTransitions() {
+    // On page load, fade out the overlay
+    document.body.classList.add('is-loaded');
+
+    // On link click, fade in overlay before navigating
+    document.body.addEventListener('click', (e) => {
+        const link = e.target.closest('a');
+
+        // Check if it's a valid, local, non-hash link
+        if (link && link.href && link.target !== '_blank' && link.href.startsWith(window.location.origin) && !link.href.includes('#')) {
+            e.preventDefault();
+            const destination = link.href;
+
+            document.body.classList.remove('is-loaded');
+
+            setTimeout(() => {
+                window.location.href = destination;
+            }, 500); // Match transition duration
+        }
+    });
+}
+
+
+/**
  * Main application initializer.
  * This function is called once the DOM is fully loaded.
  */
 function initializeApp() {
     try {
-        // Initialize core modules that are visible on page load.
+        // Initialize all modules
         initTimeline();
         initNavigation();
         initScrollAnimations();
         initTestimonialCarousel();
+        initPageTransitions();
 
         // Lazy-load the chat panel module only when the user interacts with it.
         const chatTrigger = document.getElementById('chat-trigger');
