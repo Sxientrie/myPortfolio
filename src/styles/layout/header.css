@@ -1,0 +1,95 @@
+/**
+ * @file src/styles/layout/header.css
+ * @version 1.0.1
+ * @description Contains all styles for the site's main header, including the logo, navigation, and hamburger menu.
+ *
+ * @module Layout
+ *
+ * @summary This file styles the fixed header of the website. It includes rules for the header's container,
+ * the site logo, the desktop navigation, and the mobile hamburger menu. It also handles the open state
+ * of the mobile navigation.
+ *
+ * @dependencies
+ * - src/styles/base/variables.css (for color variables)
+ *
+ * @outputs
+ * - Styles for the main site header.
+ *
+ * @changelog
+ * - v1.0.1 (2025-08-26): Adjusted border width to match new design.
+ * - v1.0.0 (2025-08-25): Initial version, extracted from style.css and converted to BEM.
+ */
+
+.site-header {
+    position: fixed;
+    top: 0.75rem;
+    left: 2.5%;
+    right: 2.5%;
+    width: auto;
+    max-width: 64rem;
+    margin-left: auto;
+    margin-right: auto;
+    z-index: 10;
+    padding: 0.5rem 1rem;
+    border-radius: 16px;
+    background-color: oklch(5% 0 0 / 0.75);
+    backdrop-filter: blur(10px);
+    border: 1px solid var(--border-primary);
+}
+.site-header__container { display: flex; justify-content: space-between; align-items: center; width: 100%; }
+.site-header__logo { display: flex; align-items: center; gap: 0.5rem; color: var(--text-primary); }
+.site-header__logo span { font-weight: 300; }
+.site-header__logo .tracking-wider { letter-spacing: 0.05em; }
+.site-header__nav--desktop { display: none; }
+.site-header__actions { display: flex; align-items: center; gap: 0.5rem; }
+
+.site-header__nav-buttons { display: flex; align-items: center; gap: 0.25rem; padding: 0.25rem; border-radius: 0.5rem; background-color: oklch(8.5% 0 0 / 0.85); border: 1px solid var(--border-secondary); }
+.site-header__nav-button {
+    padding: 0.625rem 1rem;
+    font-size: 0.8rem;
+    border-radius: 0.5rem;
+    background-color: transparent;
+    border: none;
+    color: var(--text-primary);
+    font-weight: 400;
+    cursor: pointer;
+    transition: background-color 0.2s;
+    text-decoration: none;
+}
+.site-header__nav-button:hover, .site-header__nav-button.active { background-color: oklch(100% 0 0 / 0.05); }
+
+.hamburger-button {
+    display: block;
+    background: transparent;
+    border: none;
+    color: var(--text-primary);
+    cursor: pointer;
+    padding: 0.5rem;
+    z-index: 11;
+}
+
+.mobile-nav {
+    display: none;
+    flex-direction: column;
+    background-color: oklch(5% 0 0 / 0.95);
+    backdrop-filter: blur(10px);
+    border-top: 1px solid var(--border-primary);
+    position: absolute;
+    top: 100%;
+    left: 0;
+    right: 0;
+    z-index: 9;
+}
+.mobile-nav--open { display: flex; }
+.mobile-nav__button {
+    padding: 1rem;
+    font-size: 1rem;
+    border: none;
+    background: transparent;
+    color: var(--text-primary);
+    cursor: pointer;
+    text-align: left;
+    border-bottom: 1px solid var(--border-secondary);
+    text-decoration: none;
+}
+.mobile-nav__button:last-child { border-bottom: none; }

@@ -1,0 +1,153 @@
+/**
+ * @file src/styles/components/chat-panel.css
+ * @version 1.1.0
+ * @description Contains all styles for the interactive chat panel component.
+ *
+ * @module Components
+ *
+ * @summary This file styles the chat panel, which is a major interactive component of the site.
+ * It includes styles for the panel's container, header, message area, and input footer. It also
+ * handles the animations for opening and closing the panel.
+ *
+ * @dependencies
+ * - src/styles/base/variables.css (for color variables)
+ * - src/styles/base/animations.css (for keyframe animations)
+ *
+ * @outputs
+ * - Styles for the chat panel component.
+ *
+ * @changelog
+ * - v1.1.0 (2025-08-26): Updated colors to match aurora theme and refactored state selectors.
+ * - v1.0.0 (2025-08-25): Initial version, extracted from style.css and converted to BEM.
+ */
+
+.page-overlay {
+    position: fixed;
+    inset: 0;
+    background-color: oklch(0 0 0 / 0.5);
+    backdrop-filter: blur(4px);
+    z-index: 40;
+    pointer-events: none;
+    opacity: 0;
+}
+.page-overlay.is-entering { animation: fade-in 0.5s forwards; }
+.page-overlay.is-exiting { animation: fade-out 0.5s forwards; }
+
+.chat-panel {
+    position: fixed;
+    bottom: 4px;
+    width: 95vw;
+    height: 50px;
+    border-radius: 16px;
+    box-shadow: var(--shadow-medium);
+    margin: auto;
+    left: 0; right: 0;
+    z-index: 50;
+    user-select: none;
+    padding: 1px;
+    overflow: hidden;
+    background-color: transparent;
+}
+.chat-panel::after {
+    content: ''; position: absolute; z-index: -1;
+    inset: -250%;
+    background: conic-gradient(from var(--spotlight-angle), var(--color-aurora-primary), var(--color-aurora-secondary), var(--color-aurora-tertiary), var(--color-aurora-secondary), var(--color-aurora-primary));
+    animation: spin-spotlight-angle 5s linear infinite;
+    transition: inset 0.4s ease-in-out;
+}
+.chat-panel.is-opening { animation: open-pill-mobile 1.2s forwards cubic-bezier(0.85, 0, 0.15, 1); }
+.chat-panel.is-closing { animation: close-pill-mobile 1.2s forwards cubic-bezier(0.85, 0, 0.15, 1); }
+.chat-panel.is-open { width: 95vw; height: 90vh; bottom: 30px; }
+
+.chat-panel__mask {
+    width: 100%; height: 100%;
+    background-color: var(--bg-primary);
+    border-radius: 16px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+}
+.chat-panel__wrapper {
+    width: 100%; height: 100%;
+    display: flex;
+    flex-direction: column;
+    opacity: 0;
+}
+.chat-panel.is-opening .chat-panel__wrapper { animation: fade-in 0.5s 0.6s forwards cubic-bezier(0.25, 1, 0.5, 1); }
+.chat-panel.is-open .chat-panel__wrapper { opacity: 1; }
+.chat-panel.is-closing .chat-panel__wrapper { animation: fade-out 0.3s forwards; }
+
+.chat-panel__header {
+    display: flex; justify-content: space-between; align-items: center;
+    padding: 0.5rem 1rem;
+    flex-shrink: 0;
+    position: relative; z-index: 2;
+}
+.chat-panel__title { font-size: 1rem; font-weight: 500; margin: 0; }
+.chat-panel__close-button {
+    background: transparent; border: none;
+    color: var(--text-muted);
+    cursor: pointer; padding: 0.5rem;
+    transition: all 0.2s;
+    border-radius: 0.5rem;
+}
+.chat-panel__close-button:hover { color: var(--text-primary); box-shadow: 0 0 0 1px oklch(95% 0 0 / 0.5); }
+
+.chat-panel__main {
+    flex-grow: 1;
+    overflow-y: auto;
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+    padding: 1.5rem;
+}
+.chat-message {
+    display: flex;
+    flex-direction: column;
+    gap: 0.25rem;
+    max-width: 85%;
+}
+.chat-message--user { align-items: flex-end; align-self: flex-end; }
+.chat-message--bot { align-items: flex-start; align-self: flex-start; }
+.chat-message__bubble {
+    padding: 0.75rem 1rem;
+    border-radius: 0.5rem;
+    line-height: 1.5;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.4);
+}
+.chat-message--bot .chat-message__bubble { background-color: var(--bg-tertiary); border: 1px solid var(--border-secondary); }
+.chat-message--user .chat-message__bubble { background-color: var(--color-aurora-secondary); color: var(--text-primary); }
+.chat-message__timestamp { font-size: 0.75rem; color: var(--text-muted); padding: 0 0.5rem; }
+
+.chat-panel__footer {
+    display: flex; gap: 0.75rem;
+    flex-shrink: 0;
+    padding: 1rem 1.5rem;
+    position: relative; z-index: 2;
+}
+#chat-input {
+    flex-grow: 1;
+    background-color: var(--bg-tertiary);
+    border: 1px solid var(--border-primary);
+    color: var(--text-primary);
+    padding: 0.75rem 1rem;
+    border-radius: 0.5rem;
+    font-size: 1rem;
+    transition: all 0.2s;
+}
+#chat-input:focus {
+    outline: none;
+    border-color: oklch(100% 0 0 / 0.3);
+    background-color: var(--bg-secondary);
+}
+.chat-panel__send-button {
+    padding: 0.75rem 1.25rem;
+    border-radius: 0.5rem;
+    background-color: oklch(100% 0 0 / 0.08);
+    border: 1px solid var(--border-primary);
+    color: var(--text-primary);
+    cursor: pointer;
+    transition: background-color 0.2s;
+}
+.chat-panel__send-button:hover { background-color: oklch(100% 0 0 / 0.12); }

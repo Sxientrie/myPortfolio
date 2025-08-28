@@ -1,0 +1,56 @@
+/**
+ * @file src/styles/components/aurora-button.css
+ * @version 1.1.0
+ * @description Contains styles for the aurora button component.
+ *
+ * @module Components
+ *
+ * @summary This file styles the aurora button, a special button with a conic gradient border effect.
+ * It includes styles for the button's container, mask, and text, as well as the hover animations.
+ *
+ * @dependencies
+ * - src/styles/base/variables.css (for color variables)
+ * - src/styles/base/animations.css (for keyframe animations)
+ *
+ * @outputs
+ * - Styles for the aurora button component.
+ *
+ * @changelog
+ * - v1.1.0 (2025-08-26): Updated conic-gradient to use new aurora theme colors.
+ * - v1.0.0 (2025-08-25): Initial version, extracted from style.css and converted to BEM.
+ */
+
+.aurora-button {
+    position: relative;
+    border-radius: 0.5rem;
+    border: none;
+    cursor: pointer;
+    padding: 2px;
+    overflow: hidden;
+    background-color: transparent;
+    box-shadow: var(--shadow-light);
+    transition: box-shadow 0.2s ease-in-out;
+    text-decoration: none;
+    display: inline-block;
+}
+.aurora-button::after {
+    content: ''; position: absolute; z-index: -1;
+    inset: -250%;
+    background: conic-gradient(from var(--spotlight-angle), var(--color-aurora-primary), var(--color-aurora-secondary), var(--color-aurora-tertiary), var(--color-aurora-secondary), var(--color-aurora-primary));
+    animation: spin-spotlight-angle 5s linear infinite;
+    transition: inset 0.4s ease-in-out;
+}
+.aurora-button:hover { box-shadow: var(--shadow-heavy); }
+.aurora-button:hover::after { inset: -150%; }
+.aurora-button__mask {
+    background-color: var(--bg-tertiary);
+    padding: calc(0.7rem - 2px) 1.1rem;
+    border-radius: calc(0.5rem - 2px);
+    transition: background-color 0.3s ease-in-out;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    box-shadow: inset 0 1px 1px oklch(100% 0 0 / 0.05);
+}
+.aurora-button:hover .aurora-button__mask { background-color: var(--bg-secondary); }
+.aurora-button__text { font-size: 0.8rem; font-weight: 400; color: var(--text-primary); transition: color 0.3s ease-in-out; }

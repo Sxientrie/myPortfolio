@@ -1,0 +1,83 @@
+/**
+ * @file src/styles/components/project-card.css
+ * @version 1.1.0
+ * @description Contains all styles for the project card component.
+ *
+ * @module Components
+ *
+ * @summary This file styles the project cards that display individual portfolio projects. It includes
+ * styles for the card's layout, hover effects, image, title, description, tech stack, and links.
+ *
+ * @dependencies
+ * - src/styles/base/variables.css (for color variables)
+ *
+ * @outputs
+ * - Styles for the project card component.
+ *
+ * @changelog
+ * - v1.1.0 (2025-08-26): Updated hover effects and links to use new aurora theme colors. Removed min-height on description.
+ * - v1.0.0 (2025-08-25): Initial version, extracted from style.css and converted to BEM.
+ */
+
+.projects-grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 2rem;
+}
+.project-card {
+    background-color: oklch(6% 0.02 265 / 0.6);
+    backdrop-filter: blur(12px);
+    border: 1px solid var(--border-primary);
+    border-radius: 16px;
+    padding: 1.5rem;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    position: relative;
+    overflow: hidden;
+}
+.project-card::before {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 0;
+    height: 0;
+    background: radial-gradient(circle, oklch(from var(--color-aurora-primary) l c h / 0.2) 0%, transparent 70%);
+    border-radius: 50%;
+    transition: width 0.4s ease, height 0.4s ease, opacity 0.4s ease;
+    opacity: 0;
+    z-index: 0;
+}
+.project-card:hover {
+    transform: translateY(-8px) scale(1.02);
+    box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+    border-color: oklch(100% 0 0 / 0.2);
+}
+.project-card:hover::before {
+    width: 300px;
+    height: 300px;
+    opacity: 1;
+}
+.project-card > * {
+    position: relative;
+    z-index: 1;
+}
+.project-card__image {
+    background-color: var(--bg-primary);
+    border-radius: 8px;
+    aspect-ratio: 16 / 9;
+    margin-bottom: 1.5rem;
+    overflow: hidden;
+}
+.project-card__image img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+.project-card__title { font-size: 1.25rem; font-weight: 500; margin-bottom: 0.5rem; }
+.project-card__description { font-size: 0.9rem; color: var(--text-secondary); line-height: 1.6; margin-bottom: 1rem; }
+.project-card__tech-stack { display: flex; flex-wrap: wrap; gap: 0.5rem; margin-bottom: 1.5rem; }
+.project-card__tech-item { background-color: oklch(100% 0 0 / 0.05); color: var(--text-muted); font-size: 0.75rem; padding: 0.25rem 0.6rem; border-radius: 99px; }
+.project-card__links { display: flex; gap: 1rem; }
+.project-card__link { color: var(--text-primary); text-decoration: none; display: flex; align-items: center; gap: 0.3rem; font-size: 0.9rem; transition: color 0.2s ease; }
+.project-card__link:hover { color: var(--color-aurora-primary); }

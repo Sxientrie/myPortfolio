@@ -1,0 +1,58 @@
+/**
+ * @file src/styles/base/base.css
+ * @version 1.1.0
+ * @description Contains foundational styles for the entire application, including box-sizing, scroll behavior, and body defaults.
+ *
+ * @module Base
+ *
+ * @summary This file sets up the foundational styles for the project. It includes a universal box-sizing rule,
+ * smooth scrolling behavior, and default typography and background colors for the body. It also includes
+ * custom scrollbar styling for a consistent cross-browser appearance.
+ *
+ * @dependencies
+ * - src/styles/base/variables.css (for color variables)
+ *
+ * @outputs
+ * - Applies global base styles to the application.
+ *
+ * @changelog
+ * - v1.1.0 (2025-08-26): Updated scrollbar to use new aurora theme colors.
+ * - v1.0.0 (2025-08-25): Initial version, extracted from the main style.css file.
+ */
+
+* {
+    box-sizing: border-box;
+}
+
+html {
+    scrollbar-gutter: stable;
+    scroll-behavior: smooth;
+}
+
+body {
+    background-color: var(--bg-secondary);
+    color: var(--text-primary);
+    font-family: 'Space Grotesk', sans-serif;
+    margin: 0;
+    width: 100%;
+    min-height: 100vh;
+    position: relative;
+    overflow-x: hidden;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+}
+
+body.is-chat-open {
+    overflow: hidden;
+}
+
+/* Custom Scrollbar */
+::-webkit-scrollbar { width: 12px; }
+::-webkit-scrollbar-track { background: oklch(10% 0 0); }
+::-webkit-scrollbar-thumb {
+    background-color: var(--color-aurora-secondary);
+    border-radius: 20px;
+    border: 3px solid oklch(10% 0 0);
+    transition: background-color 0.3s ease-in-out;
+}
+::-webkit-scrollbar-thumb:hover { background-color: var(--color-aurora-primary); }

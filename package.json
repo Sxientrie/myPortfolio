@@ -1,0 +1,37 @@
+{
+  "name": "my-portfolio",
+  "version": "1.0.0",
+  "description": "myPortfolio",
+  "type": "module",
+  "scripts": {
+    "dev": "npx vite",
+    "build": "npx vite build",
+    "preview": "npx vite preview"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Sentriex/myPortfolio.git"
+  },
+  "keywords": [
+    "Jayson Jamora",
+    "Full-Stack Developer",
+    "Web Developer",
+    "Portfolio",
+    "React",
+    "Python",
+    "Node.js",
+    "JavaScript",
+    "Ruby on Rails"
+  ],
+  "author": "Jayson Jamora",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Sentriex/myPortfolio/issues"
+  },
+  "homepage": "https://github.com/Sentriex/myPortfolio#readme",
+  "devDependencies": {
+    "glob": "^11.0.3",
+    "vite": "^5.3.3",
+    "vite-plugin-html-minifier": "^1.0.5"
+  }
+}

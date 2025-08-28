@@ -1,0 +1,48 @@
+/**
+ * @file src/styles/components/animated-logo.css
+ * @version 0.2.0
+ * @description Defines the styles for the animated 3D SVG logo in the site header.
+ *
+ * @module Components
+ *
+ * @summary This stylesheet contains all the necessary styles to render and animate the
+ * site header's SVG logo. It defines the component size and the 3D perspective needed
+ * for the animation to work correctly.
+ *
+ * @dependencies
+ * - src/styles/base/animations.css (for the 'pulse-3d' keyframes)
+ *
+ * @outputs
+ * - Styles for the `.site-header__animated-logo` component.
+ *
+ * @changelog
+ * - v0.2.0 (2025-08-27): Corrected logo sizing to 32px and resolved CSS conflict.
+ * - v0.1.0 (2025-08-27): File created to encapsulate all styles for the new animated header logo.
+ */
+
+.site-header__animated-logo {
+    width: 32px;
+    height: 32px;
+    flex-shrink: 0; /* Prevent the logo from shrinking inside its flex container */
+}
+
+.listening-icon {
+    transform-style: preserve-3d;
+    perspective: 500px;
+    /* Sizing is handled by the .site-header__animated-logo class. */
+}
+
+.listening-icon svg {
+    transform: rotateX(-15deg) rotateY(10deg);
+    width: 100%;
+    height: 100%;
+    overflow: visible;
+}
+
+.listening-icon svg g > circle {
+    animation: pulse-3d 2s cubic-bezier(0.34, 1.56, 0.64, 1) infinite;
+}
+
+/* Staggering the animation for each circle */
+.listening-icon svg g > circle:nth-child(2) { animation-delay: 0.25s; }
+.listening-icon svg g > circle:nth-child(3) { animation-delay: 0.5s; }

@@ -1,0 +1,11 @@
+# Block common LLM training bots from all content
+User-agent: GPTBot
+Disallow: /
+User-agent: Google-Extended
+Disallow: /
+
+# Allow traditional search engine crawlers
+User-agent: Googlebot
+Allow: /
+
+Sitemap: https://sentriex.github.io/myPortfolio/sitemap.xml

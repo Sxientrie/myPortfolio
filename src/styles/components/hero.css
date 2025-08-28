@@ -1,0 +1,82 @@
+/**
+ * @file src/styles/components/hero.css
+ * @version 1.1.0
+ * @description Contains all styles for the hero section of the website.
+ *
+ * @module Components
+ *
+ * @summary This file styles the hero section, which is the first thing users see. It includes styles
+ * for the main hero grid, the text content (greeting, title, description), and the hero image.
+ *
+ * @dependencies
+ * - src/styles/base/variables.css (for color variables)
+ *
+ * @outputs
+ * - Styles for the hero section.
+ *
+ * @changelog
+ * - v1.1.0 (2025-08-26): Updated typography, spacing, and structure to match new UI.
+ * - v1.0.0 (2025-08-25): Initial version, extracted from style.css and converted to BEM.
+ */
+
+.hero {
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    position: relative;
+}
+.hero .hero__grid {
+    flex-grow: 1;
+    display: grid;
+}
+.hero__grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 2rem;
+    align-items: center;
+    width: 100%;
+}
+.hero__text { text-align: center; }
+.hero__greeting {
+    font-size: 1.8rem;
+    font-weight: 300;
+    color: var(--text-primary);
+    margin-bottom: 0.5rem;
+    line-height: 1.2;
+}
+.hero__title-wrapper { display: inline-block; }
+.hero__title {
+    font-size: clamp(2rem, 5vw, 3.5rem);
+    letter-spacing: -0.05em;
+    margin: 0;
+    line-height: 1.1;
+    font-weight: 700;
+}
+.hero__divider {
+    width: 100%;
+    height: 2px;
+    background-color: var(--color-aurora-tertiary);
+    margin: 1.0rem 0;
+}
+.hero__description {
+    font-size: 1rem;
+    max-width: 500px;
+    margin: 0 auto 1rem;
+    color: var(--text-secondary);
+    line-height: 1.25;
+}
+
+.hero__image-container {
+    width: 100%;
+    max-width: 550px;
+    aspect-ratio: 1 / 1;
+    margin: 0 auto;
+    position: relative;
+}
+.hero__image {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+    filter: drop-shadow(0 10px 15px rgba(0, 0, 0, 0.25));
+}
