@@ -1,6 +1,6 @@
 /**
  * @file src/styles/pages/blog.css
- * @version 0.1.0
+ * @version 1.0.0
  * @description Contains all styles specific to the blog pages.
  *
  * @module Pages
@@ -15,20 +15,34 @@
  * - Styles for the blog pages.
  *
  * @changelog
+ * - v1.0.0 (2025-08-29): Finalized layout with sticky, left-aligned TOC outside the main content flow on desktop.
+ * - v0.2.0 (2025-08-29): Moved TOC to the left side of the content.
  * - v0.1.0 (2025-08-28): Initial version with styles for the blog post layout.
  */
 
+/* --- Mobile First Styles --- */
 .blog-post__container {
-    display: flex;
-    gap: 4rem;
-    align-items: flex-start;
+    padding: 1.5rem;
+}
+
+.blog-post__toc {
+    width: 100%;
+    margin-bottom: 2rem;
+}
+
+.blog-post__toc-content {
+    position: static; /* Not sticky on mobile */
+    padding: 1.5rem;
+    background-color: oklch(6% 0.02 265 / 0.6);
+    border: 1px solid var(--border-primary);
+    border-radius: 16px;
 }
 
 .blog-post__content {
-    flex: 1;
-    min-width: 0; /* Prevents flexbox overflow */
+    min-width: 0; /* Prevents flexbox overflow issues if ever used */
 }
 
+/* --- Common Blog Post Content Styling --- */
 .blog-post__header {
     margin-bottom: 2rem;
     padding-bottom: 1rem;
@@ -51,34 +65,29 @@
     margin-bottom: 1rem;
 }
 
+.blog-post__content h3 {
+    font-size: 1.25rem;
+    margin-top: 2rem;
+    margin-bottom: 1rem;
+}
+
 .blog-post__content p,
-.blog-post__content ul {
+.blog-post__content ul,
+.blog-post__content ol {
     font-size: 1rem;
     line-height: 1.7;
     color: var(--text-secondary);
     margin-bottom: 1.5rem;
 }
 
-.blog-post__content ul {
+.blog-post__content ul,
+.blog-post__content ol {
     padding-left: 1.5rem;
-}
-
-.blog-post__toc {
-    width: 280px;
-    flex-shrink: 0;
-}
-
-.blog-post__toc-content {
-    position: sticky;
-    top: 8rem; /* Adjust this value to match header height + desired spacing */
-    padding: 1.5rem;
-    background-color: oklch(6% 0.02 265 / 0.6);
-    border: 1px solid var(--border-primary);
-    border-radius: 16px;
 }
 
 .blog-post__toc h3 {
     font-size: 1.1rem;
+    margin-top: 0;
     margin-bottom: 1rem;
     border-bottom: 1px solid var(--border-secondary);
     padding-bottom: 0.5rem;
@@ -87,6 +96,7 @@
 .blog-post__toc ul {
     list-style: none;
     padding: 0;
+    margin: 0;
 }
 
 .blog-post__toc li a {
@@ -100,4 +110,40 @@
 
 .blog-post__toc li a:hover {
     color: var(--color-aurora-primary);
+}
+
+
+/* --- Desktop Layout (The Magic Happens Here) --- */
+@media (min-width: 1024px) {
+    .blog-post__container {
+        position: relative;
+        padding: 0; /* Remove padding from container, will be on content */
+    }
+
+    .blog-post__toc {
+        position: absolute;
+        /* Position it to the left of the container's content area */
+        right: 100%;
+        margin-right: 4rem; /* The gap between TOC and content */
+        width: 280px;
+        /* Hide on desktop if there's not enough space */
+        display: none;
+    }
+
+    .blog-post__toc-content {
+        position: sticky;
+        top: 6rem; /* Stick 6rem from the top of the viewport */
+    }
+
+    .blog-post__content {
+        /* The article now takes up the full width of its parent */
+        width: 100%;
+    }
+}
+
+/* A wider breakpoint to ensure there's enough room for the TOC */
+@media (min-width: 1280px) {
+    .blog-post__toc {
+        display: block; /* Show the TOC only on wider screens */
+    }
 }

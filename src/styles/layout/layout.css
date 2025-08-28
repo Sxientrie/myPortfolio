@@ -48,6 +48,7 @@
     margin: 0 auto;
     position: relative;
     padding: 0 1rem;
+    animation: fade-in 1s ease-in-out forwards;
 }
 .layout__section {
     display: flex;

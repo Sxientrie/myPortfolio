@@ -1,0 +1,139 @@
+<!--
+@file blog/posts/003-my-ai-co-pilot-is-a-genius/index.html
+@version 1.3.0
+@description The blog post page for "My AI Co-Pilot is a Genius (and an Idiot)".
+
+@changelog
+- v1.3.0 (2025-08-29): Wrapped content in #content-bed div to match main page aesthetic.
+- v1.2.0 (2025-08-29): Removed hyperlink from header logo for consistency.
+- v1.1.0 (2025-08-29): Fixed all asset paths to be root-relative for Vite build.
+- v1.0.0 (2025-08-29): Initial creation of the blog post page.
+-->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>My AI Co-Pilot is a Genius (and an Idiot) | Jayson Jamora</title>
+    <meta name="description" content="An explanation of the 'Human-in-the-Loop' concept and why it's essential for effective AI-assisted development.">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;700&display=swap" />
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500&family=Rajdhani:wght@600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="/src/styles/main.css" />
+</head>
+<body>
+    <div class="layout__aurora layout__aurora--right"></div>
+    <div class="layout__aurora layout__aurora--left"></div>
+    <div class="layout__shader layout__shader--top"></div>
+    <div class="layout__shader layout__shader--bottom"></div>
+    <div id="page-overlay" class="page-overlay"></div>
+
+    <header class="site-header">
+        <div class="site-header__container">
+            <div class="site-header__logo">
+                <div class="site-header__animated-logo listening-icon">
+                    <svg viewBox="-4 -4 32 32" fill="none" xmlns="http://www.w3.org/2000/svg" overflow="visible">
+                       <defs>
+                            <linearGradient id="aurora-icon-gradient" x1="0%" y1="0%" x2="100%" y2="100%">
+                                <stop offset="0%" style="stop-color: oklch(65% 0.15 190)"></stop>
+                                <stop offset="100%" style="stop-color: oklch(50% 0.19 210)"></stop>
+                            </linearGradient>
+                            <mask id="icon-mask">
+                                <g>
+                                    <circle cx="12" cy="12" r="2" fill="white"></circle>
+                                    <circle cx="12" cy="12" r="6" stroke="white" stroke-width="1.5" stroke-linecap="round"></circle>
+                                    <circle cx="12" cy="12" r="10" stroke="white" stroke-width="1.5" stroke-linecap="round"></circle>
+                                </g>
+                            </mask>
+                        </defs>
+                        <rect width="100%" height="100%" fill="url(#aurora-icon-gradient)" mask="url(#icon-mask)"></rect>
+                    </svg>
+                </div>
+                <span>|</span>
+                <span class="tracking-wider">myPortfolio</span>
+            </div>
+            <nav class="site-header__nav--desktop" role="navigation" aria-label="Main Navigation">
+                <div class="site-header__nav-buttons">
+                    <a href="/" class="site-header__nav-button">Home</a>
+                    <a href="/blog/" class="site-header__nav-button">Blog</a>
+                </div>
+            </nav>
+            <div class="site-header__actions">
+                <a href="/Jayson_Jamora_Resume.pdf" class="aurora-button" target="_blank">
+                    <div class="aurora-button__mask">
+                        <span class="aurora-button__text">RESUME</span>
+                    </div>
+                </a>
+            </div>
+        </div>
+    </header>
+
+    <main id="main-content" class="layout__content">
+        <!-- THIS IS THE CRUCIAL WRAPPER YOU WANTED -->
+        <div id="content-bed" class="layout__sequential-scroll-section" style="padding-top: 6rem;">
+            <div class="blog-post__container">
+                <aside class="blog-post__toc">
+                    <div class="blog-post__toc-content">
+                        <h3>Table of Contents</h3>
+                        <ul>
+                            <li><a href="#co-pilot-captain">My Co-Pilot Can Fly...</a></li>
+                            <li><a href="#levels-of-control">The Three Levels of Control</a></li>
+                            <li><a href="#why-sparky-needs-a-boss">Why Sparky Needs a Boss</a></li>
+                            <li><a href="#duet-not-duel">It's a Duet, Not a Duel</a></li>
+                        </ul>
+                    </div>
+                </aside>
+                <article class="blog-post__content">
+                    <header class="blog-post__header">
+                        <h1>My AI Co-Pilot is a Genius (and an Idiot)</h1>
+                        <p class="blog-post__meta">Published on August 29, 2025 by Jayson Jamora</p>
+                    </header>
+                    <p>Picture this: you're deep in a coding session at 2 AM, wrestling with a particularly nasty TypeScript implementation. Your AI assistant, let's call it Sparky, suddenly pipes up with a suggestion that looks... well, suspicious. The code works, technically, but something feels off. This is where the rubber meets the road in the age of AI-assisted development.</p>
+                    <p>Do you just accept it and move on? Or do you stop and ask, "Wait a minute, what is this thing <em>actually</em> doing?"</p>
+                    <p>For me, the answer is always the second one. Because Sparky, my trusty AI co-pilot, is both a genius and a complete idiot. And the difference between a breakthrough and a disaster is me, the human, sitting in the captain's chair.</p>
+                    <p>This whole idea has a fancy name: "Human-in-the-Loop." But forget the jargon. Let's just call it what it is: common sense.</p>
+                    <h2 id="co-pilot-captain">My Co-Pilot Can Fly, But I'm Still the Captain</h2>
+                    <p>Think of building software with AI like flying a futuristic plane.</p>
+                    <p>Sparky is the advanced autopilot. It can handle cruising altitude, crunch numbers at light speed, and spot a potential issue in the engine diagnostics from a million miles away. It's incredible.</p>
+                    <p>But Sparky can't handle the take-off or the landing. It doesn't know how to navigate a surprise storm, and it definitely can't talk to air traffic control. It has no real-world context. It just knows the patterns it was trained on.</p>
+                    <p>That's my job. I'm the captain. I decide the destination, I handle the tricky maneuvers, and I have the final say on every decision. Sparky is a tool, the most powerful tool I've ever had, but I'm the one flying the plane.</p>
+                    <p>This partnership is the essence of Human-in-the-Loop. It’s not about a lack of trust in the AI. It’s about building a system where the machine’s raw power and the human’s contextual wisdom work together.</p>
+                    <p>(Image Placeholder 1: The Captain and the AI Co-Pilot)</p>
+                    <h2 id="levels-of-control">The Three Levels of Control</h2>
+                    <p>This whole "human-AI partnership" isn't one-size-fits-all. It really breaks down into three levels of control, depending on how critical the task is.</p>
+                    <ol>
+                        <li><strong>Human IN the Loop (The Collaborator):</strong> This is my default mode with Sparky. We're working side-by-side. It’s a constant conversation.
+                            <ul><li><strong>Workflow:</strong> Sparky flags a weird bit of code -> I personally review it, understand the <em>why</em>, and maybe tweak it -> Only then does it get my stamp of approval and touch my git repo.</li></ul>
+                        </li>
+                        <li><strong>Human ON the Loop (The Supervisor):</strong> This is more like a supervisor watching over an automated process. The AI is running the show, but I'm watching from the control room, ready to hit the big red button if things go sideways. Think of an automated deployment script that I monitor closely.</li>
+                        <li><strong>Human OUT of the Loop (The Autonomous Agent):</strong> Here, the AI is completely on its own. This is only for low-stakes, simple tasks. A great example is an email spam filter. If it makes a mistake and sends a good email to junk, it's annoying, but nobody's day is ruined. I would never, ever let Sparky operate this way on a client's project.</li>
+                    </ol>
+                    <h2 id="why-sparky-needs-a-boss">Why Sparky Needs a Boss (Me)</h2>
+                    <p>So why all the caution? Because for all its genius, Sparky has some massive blind spots.</p>
+                    <p>First, <strong>it has zero common sense.</strong> Sparky can write a beautifully efficient sorting algorithm, but it has no idea if the data it's sorting is a list of customer names or the launch codes for a Mars rocket. It lacks the big-picture understanding that tells you <em>why</em> you're building something in the first place.</p>
+                    <p>Second, <strong>it can be a bias machine.</strong> AI models learn from the data we feed them. If that data comes from the internet, which is a dumpster fire of human biases, Sparky can learn some really bad habits. It's my job to be the ethical filter, to catch those biases before they turn into a real problem for a user.</p>
+                    <p>And finally, <strong>it doesn't understand nuance.</strong> The other day, Sparky suggested "optimizing" a piece of code by removing what it saw as redundant error checks. But I knew that specific client's system was notoriously flaky, and those "redundant" checks were the only thing keeping the app from crashing once a week. Sparky saw inefficient code. I saw a necessary safety net.</p>
+                    <p>(Image Placeholder 2: The Human Filter)</p>
+                    <h2 id="duet-not-duel">It's a Duet, Not a Duel</h2>
+                    <p>The narrative of "AI vs. Humans" is just plain wrong. It's a distraction. This is not a competition. It's a collaboration, a duet.</p>
+                    <p>As a "Technologist for Uncharted Challenges," my goal is to solve hard problems. Sparky is the single greatest force multiplier I've ever had. It helps me explore ideas faster, write boilerplate code in seconds, and catch bugs I might have missed. It helps me get from zero to something.</p>
+                    <p>But my personal mantra is "Finish or un finish." A project isn't finished just because the code runs. It's finished when it's robust, ethical, and actually solves the user's problem in a thoughtful way. That last mile, that final 10% of polish and wisdom, is purely human. That's the part that requires the captain in the chair.</p>
+                    <p>Using AI without a human in the loop is a recipe for an "un finish" project. It's a plane with no pilot, and we all know how that story ends.</p>
+                    <p>The future isn't about replacing developers. It's about augmenting them. And I, for one, am excited to keep flying.</p>
+                </article>
+            </div>
+        </div>
+    </main>
+
+    <footer class="site-footer">
+        <p class="site-footer__text">
+            <span>&copy; 2024 Jayson Jamora. All Rights Reserved.</span>
+            <span class="site-footer__separator">|</span>
+            <span>Built with HTML, CSS, JS & lots of coffee.</span>
+        </p>
+    </footer>
+
+    <script type="module" src="/src/scripts/main.js"></script>
+</body>
+</html>
