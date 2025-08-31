@@ -1,4 +1,4 @@
-/**
+0/*1*
  * @file src/scripts/modules/scroll-animations.js
  * @version 1.0.1
  * @description Manages all scroll-based animations and observers.

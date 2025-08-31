@@ -1,17 +1,14 @@
 import { defineConfig } from 'vite';
 import htmlMinifier from 'vite-plugin-html-minifier';
 import { glob } from 'glob';
-import { resolve, dirname } from 'path';
+import { resolve } from 'path';
 
-// Find all index.html files within the blog/posts/ subdirectories.
-const blogPostFiles = glob.sync('blog/posts/**/index.html');
+const htmlFiles = glob.sync('blog/**/*.html');
 
 const input = {
   main: resolve(__dirname, 'index.html'),
-  blog: resolve(__dirname, 'blog/index.html'),
-  ...blogPostFiles.reduce((acc, file) => {
-    // Create a clean name like "blog/posts/001-the-no-code-tech-stack-101"
-    const name = dirname(file);
+  ...htmlFiles.reduce((acc, file) => {
+    const name = file.replace('.html', '');
     acc[name] = resolve(__dirname, file);
     return acc;
   }, {})

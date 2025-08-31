@@ -28,7 +28,6 @@ import { initTimeline } from './modules/timeline.js';
 import { initNavigation } from './modules/navigation.js';
 import { initScrollAnimations } from './modules/scroll-animations.js';
 import { initTestimonialCarousel } from './modules/testimonial-carousel.js';
-import { initPageTransitions } from './modules/page-transitions.js';
 
 /**
  * Main application initializer.
@@ -41,7 +40,6 @@ function initializeApp() {
         initNavigation();
         initScrollAnimations();
         initTestimonialCarousel();
-        initPageTransitions();
 
         // Lazy-load the chat panel module only when the user interacts with it.
         const chatTrigger = document.getElementById('chat-trigger');
