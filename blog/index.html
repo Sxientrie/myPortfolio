@@ -1,6 +1,6 @@
 <!--
-@file blog/index.html
-@version 0.3.0
+@file src/pages/blog/main.html
+@version 0.1.0
 @description The main blog page that displays a list of all blog posts.
 
 @module Pages
@@ -11,14 +11,11 @@ portfolio website.
 
 @dependencies
 - /src/styles/main.css (for all styles)
-- /src/styles/pages/blog-list.css (for page-specific layout)
 
 @outputs
 - The rendered blog hub page.
 
 @changelog
-- v0.3.0 (2025-08-28): Fixed layout, spacing, and header alignment issues.
-- v0.2.0 (2025-08-28): Restructured for clean URLs and fixed post links.
 - v0.1.0 (2025-08-28): Initial creation of the blog hub page.
 -->
 <!DOCTYPE html>
@@ -39,9 +36,8 @@ portfolio website.
     <!-- Main application stylesheet -->
     <link rel="stylesheet" href="/src/styles/main.css" />
     <link rel="stylesheet" href="/src/styles/pages/blog.css" />
-    <link rel="stylesheet" href="/src/styles/pages/blog-list.css" />
 </head>
-<body class="blog-list-page">
+<body>
 
     <!-- =================================================================
     BACKGROUND EFFECTS
@@ -58,7 +54,7 @@ portfolio website.
     <header class="site-header">
         <div class="site-header__container">
             <div class="site-header__logo">
-                <a href="/myPortfolio/" class="site-header__logo-link" style="display: flex; align-items: center; color: inherit; text-decoration: none;">
+                <a href="/" class="site-header__logo-link">
                     <div class="site-header__animated-logo listening-icon">
                         <svg viewBox="-4 -4 32 32" fill="none" xmlns="http://www.w3.org/2000/svg" overflow="visible">
                             <defs>
@@ -112,21 +108,20 @@ portfolio website.
     MAIN CONTENT
     ================================================================== -->
     <main id="main-content" class="layout__content">
-        <div id="content-bed" class="layout__sequential-scroll-section">
-            <section id="blog-posts" class="layout__section">
-                <header class="section-header">
-                    <h2>From the Desk of Jayson</h2>
-                    <p>Thoughts on code, life, and everything in between.</p>
-                </header>
-                <div class="projects-grid" style="grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));">
-                    <!-- Blog Post Card 1 -->
-                    <article class="project-card">
+        <section id="blog-posts" class="layout__section">
+            <header class="section-header" style="text-align: center; margin-bottom: 4rem;">
+                <h2>From the Desk of Jayson</h2>
+                <p>Thoughts on code, life, and everything in between.</p>
+            </header>
+            <div class="projects-grid" style="grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));">
+                <!-- Blog Post Card 1 -->
+                <article class="project-card">
                     <div class="project-card__image"><img src="https://placehold.co/600x400/0a0e10/ffffff?text=Blog+Post+One" alt="Blog Post One Placeholder Image" loading="lazy"></div>
                     <h3 class="project-card__title">Demystifying the Event Loop</h3>
                     <p class="project-card__description">A deep dive into the JavaScript event loop and how it enables non-blocking asynchronous operations.</p>
                     <div class="project-card__tech-stack"><span class="project-card__tech-item">JavaScript</span><span class="project-card__tech-item">Node.js</span><span class="project-card__tech-item">Async</span></div>
                     <div class="project-card__links">
-                        <a href="/myPortfolio/blog/post/" class="project-card__link">Read More</a>
+                        <a href="/src/pages/blog/post.html" class="project-card__link">Read More</a>
                     </div>
                 </article>
 
@@ -137,7 +132,7 @@ portfolio website.
                     <p class="project-card__description">Exploring how to effectively use AI tools like Gemini and Copilot to augment, not replace, your development workflow.</p>
                     <div class="project-card__tech-stack"><span class="project-card__tech-item">AI</span><span class="project-card__tech-item">Productivity</span><span class="project-card__tech-item">Development</span></div>
                     <div class="project-card__links">
-                        <a href="/myPortfolio/blog/post/" class="project-card__link">Read More</a>
+                        <a href="/src/pages/blog/post.html" class="project-card__link">Read More</a>
                     </div>
                 </article>
 
@@ -148,14 +143,11 @@ portfolio website.
                     <p class="project-card__description">Strategies for cleaning up legacy code without breaking everything. A guide to technical debt management.</p>
                     <div class="project-card__tech-stack"><span class="project-card__tech-item">Refactoring</span><span class="project-card__tech-item">Legacy Code</span><span class="project-card__tech-item">Best Practices</span></div>
                     <div class="project-card__links">
-                        <a href="/myPortfolio/blog/post/" class="project-card__link">Read More</a>
-                    </div>
-                </article>
+                        <a href="/src/pages/blog/post.html" class="project-card__link">Read More</a>
                     </div>
                 </article>
             </div>
         </section>
-        </div>
     </main>
 
     <!-- =================================================================
