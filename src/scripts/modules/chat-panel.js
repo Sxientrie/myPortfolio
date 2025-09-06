@@ -68,11 +68,13 @@ export function initChatPanel() {
             chatPanel.classList.remove('is-opening');
             chatPanel.classList.add('is-open');
             chatInput.focus();
+            overlay.classList.remove('is-entering'); // Remove after open animation
         } else if (event.animationName.startsWith('close-pill')) {
             chatAnimationState = 'idle';
             chatPanel.classList.remove('is-closing');
             chatPanel.style.display = 'none';
             document.body.classList.remove('is-chat-open');
+            overlay.classList.remove('is-exiting'); // Remove after close animation
         }
     });
 }

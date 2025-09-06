@@ -35,6 +35,11 @@ import { initTestimonialCarousel } from './modules/testimonial-carousel.js';
  */
 function initializeApp() {
     try {
+        // Update copyright year
+        const copyrightSpan = document.getElementById('copyright-year');
+        if (copyrightSpan) {
+            copyrightSpan.innerHTML = `&copy; ${new Date().getFullYear()} Jayson Jamora. All Rights Reserved.`;
+        }
         // Initialize core modules that are visible on page load.
         initTimeline();
         initNavigation();
