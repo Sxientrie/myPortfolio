@@ -1,22 +1,23 @@
 <!--
-@file src/pages/blog/main.html
+@file src/pages/blog/post.html
 @version 0.1.0
-@description The main blog page that displays a list of all blog posts.
+@description A template for an individual blog post.
 
 @module Pages
 
-@summary This file serves as the hub for all blog posts. It displays a grid of cards, each
-representing a single blog post. The layout and styling are consistent with the rest of the
-portfolio website.
+@summary This file provides the structure for a single blog post page. It includes a main
+content area for the article and a sticky side panel for the table of contents, ensuring a
+user-friendly reading experience.
 
 @dependencies
 - /src/styles/main.css (for all styles)
+- /src/styles/pages/blog.css (for blog-specific styles)
 
 @outputs
-- The rendered blog hub page.
+- The rendered single blog post page.
 
 @changelog
-- v0.1.0 (2025-08-28): Initial creation of the blog hub page.
+- v0.1.0 (2025-08-28): Initial creation of the blog post page template.
 -->
 <!DOCTYPE html>
 <html lang="en">
@@ -24,8 +25,8 @@ portfolio website.
     <!-- Meta Tags for Character Set, Viewport, and SEO -->
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Blog | Jayson Jamora</title>
-    <meta name="description" content="A collection of thoughts, tutorials, and articles on web development, AI, and more.">
+    <title>The Art of Refactoring | Jayson Jamora</title>
+    <meta name="description" content="Strategies for cleaning up legacy code without breaking everything. A guide to technical debt management.">
 
     <!-- External Dependencies -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -60,16 +61,7 @@ portfolio website.
                                 <linearGradient id="aurora-icon-gradient" x1="0%" y1="0%" x2="100%" y2="100%">
                                     <stop offset="0%" style="stop-color: oklch(65% 0.15 190)"></stop>
                                     <stop offset="100%" style="stop-color: oklch(50% 0.19 210)"></stop>
-                                    <animate attributeName="x1" values="-100%; 100%; -100%" dur="10s" repeatCount="indefinite"></animate>
-                                    <animate attributeName="x2" values="0%; 200%; 0%" dur="10s" repeatCount="indefinite"></animate>
                                 </linearGradient>
-                                <mask id="icon-mask">
-                                    <g>
-                                        <circle cx="12" cy="12" r="2" fill="white"></circle>
-                                        <circle cx="12" cy="12" r="6" stroke="white" stroke-width="1.5" stroke-linecap="round"></circle>
-                                        <circle cx="12" cy="12" r="10" stroke="white" stroke-width="1.5" stroke-linecap="round"></circle>
-                                    </g>
-                                </mask>
                             </defs>
                             <rect width="100%" height="100%" fill="url(#aurora-icon-gradient)" mask="url(#icon-mask)"></rect>
                         </svg>
@@ -107,46 +99,36 @@ portfolio website.
     MAIN CONTENT
     ================================================================== -->
     <main id="main-content" class="layout__content">
-        <section id="blog-posts" class="layout__section">
-            <header class="section-header section-header--blog-center">
-                <h2>From the Desk of Jayson</h2>
-                <p>Thoughts on code, life, and everything in between.</p>
-            </header>
-            <div class="projects-grid projects-grid--blog-layout">
-                <!-- Blog Post Card 1 -->
-                <article class="project-card">
-                    <div class="project-card__image"><img src="https://placehold.co/600x400/0a0e10/ffffff?text=Blog+Post+One" alt="Blog Post One Placeholder Image" loading="lazy"></div>
-                    <h3 class="project-card__title">Demystifying the Event Loop</h3>
-                    <p class="project-card__description">A deep dive into the JavaScript event loop and how it enables non-blocking asynchronous operations.</p>
-                    <div class="project-card__tech-stack"><span class="project-card__tech-item">JavaScript</span><span class="project-card__tech-item">Node.js</span><span class="project-card__tech-item">Async</span></div>
-                    <div class="project-card__links">
-                        <a href="./demystifying-event-loop.html" class="project-card__link">Read More</a>
-                    </div>
-                </article>
+        <div class="blog-post__container">
+            <article class="blog-post__content">
+                <header class="blog-post__header">
+                    <h1>The Art of Refactoring</h1>
+                    <p class="blog-post__meta">Published on September 12, 2025 by Jayson Jamora</p>
+                </header>
 
-                <!-- Blog Post Card 2 -->
-                <article class="project-card">
-                    <div class="project-card__image"><img src="https://placehold.co/600x400/0a0e10/ffffff?text=Blog+Post+Two" alt="Blog Post Two Placeholder Image" loading="lazy"></div>
-                    <h3 class="project-card__title">AI as a Development Partner</h3>
-                    <p class="project-card__description">Exploring how to effectively use AI tools like Gemini and Copilot to augment, not replace, your development workflow.</p>
-                    <div class="project-card__tech-stack"><span class="project-card__tech-item">AI</span><span class="project-card__tech-item">Productivity</span><span class="project-card__tech-item">Development</span></div>
-                    <div class="project-card__links">
-                        <a href="./ai-development-partner.html" class="project-card__link">Read More</a>
-                    </div>
-                </article>
+                <p>Technical debt is an inevitable part of software development. As projects evolve, code that was once clean and efficient can become complex and difficult to maintain. Refactoring is the process of restructuring existing computer code—changing the factoring—without changing its external behavior. It's a disciplined technique to clean up code that minimizes the chances of introducing bugs.</p>
 
-                <!-- Blog Post Card 3 -->
-                <article class="project-card">
-                    <div class="project-card__image"><img src="https://placehold.co/600x400/0a0e10/ffffff?text=Blog+Post+Three" alt="Blog Post Three Placeholder Image" loading="lazy"></div>
-                    <h3 class="project-card__title">The Art of Refactoring</h3>
-                    <p class="project-card__description">Strategies for cleaning up legacy code without breaking everything. A guide to technical debt management.</p>
-                    <div class="project-card__tech-stack"><span class="project-card__tech-item">Refactoring</span><span class="project-card__tech-item">Legacy Code</span><span class="project-card__tech-item">Best Practices</span></div>
-                    <div class="project-card__links">
-                        <a href="./the-art-of-refactoring.html" class="project-card__link">Read More</a>
-                    </div>
-                </article>
-            </div>
-        </section>
+                <h2 id="when-to-refactor">When to Refactor</h2>
+                <p>The best time to refactor is not on a whim, but as part of a regular development cycle. A good rule of thumb is the "campsite rule": always leave the code cleaner than you found it. If you're working on a feature and you see a small piece of code that could be improved, take a moment to refactor it.</p>
+
+                <h2 id="strategies">Strategies for Safe Refactoring</h2>
+                <p>Before you begin refactoring, ensure you have a solid suite of tests. Tests act as a safety net, allowing you to make changes with confidence. Start with small, incremental changes. Rename a variable to be more descriptive. Extract a complex piece of logic into its own function. Each small step makes the code easier to understand and work with.</p>
+
+                <h2 id="benefits">The Long-Term Benefits</h2>
+                <p>While it might feel like you're not adding new features, refactoring is a crucial investment in the long-term health of a project. It improves code readability, reduces complexity, and makes it easier to add new features in the future. A clean codebase is a happy codebase.</p>
+            </article>
+
+            <aside class="blog-post__toc">
+                <div class="blog-post__toc-content">
+                    <h3>Table of Contents</h3>
+                    <ul>
+                        <li><a href="#when-to-refactor">When to Refactor</a></li>
+                        <li><a href="#strategies">Strategies for Safe Refactoring</a></li>
+                        <li><a href="#benefits">The Long-Term Benefits</a></li>
+                    </ul>
+                </div>
+            </aside>
+        </div>
     </main>
 
     <!-- =================================================================
