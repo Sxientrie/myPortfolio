@@ -41,7 +41,6 @@ export function initChatPanel() {
     const openChat = () => {
         if (chatAnimationState === 'idle') {
             chatAnimationState = 'opening';
-            chatPanel.style.display = 'block';
             chatPanel.classList.add('is-opening');
             document.body.classList.add('is-chat-open');
             overlay.classList.add('is-entering');
@@ -72,7 +71,6 @@ export function initChatPanel() {
         } else if (event.animationName.startsWith('close-pill')) {
             chatAnimationState = 'idle';
             chatPanel.classList.remove('is-closing');
-            chatPanel.style.display = 'none';
             document.body.classList.remove('is-chat-open');
             overlay.classList.remove('is-exiting'); // Remove after close animation
         }
