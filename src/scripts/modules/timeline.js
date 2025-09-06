@@ -21,6 +21,7 @@
  */
 
 import { experienceData } from './experience-data.js';
+import { icons } from './icons.js';
 
 /**
  * Finds the timeline wrapper in the DOM and populates it with experience data.
@@ -37,7 +38,7 @@ export function initTimeline() {
         <div class="timeline-item">
             <div class="timeline-item__icon">
                 <div class="timeline-item__icon-wrapper">
-                    ${item.icon}
+                    ${icons[item.icon]}
                 </div>
                 <svg class="timeline-item__icon-frame" viewBox="0 0 48 48">
                    <path d="M 24 2 a 22 22 0 0 1 0 44"></path>

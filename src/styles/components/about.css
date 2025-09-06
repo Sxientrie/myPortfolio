@@ -52,7 +52,7 @@
     pointer-events: none;
 }
 .about__story-divider {
-    display: none;
+    visibility: hidden;
 }
 .about__story-divider-progress {
     width: 100%; height: 100%;

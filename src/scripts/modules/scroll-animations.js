@@ -1,4 +1,4 @@
-0/*1*
+/**
  * @file src/scripts/modules/scroll-animations.js
  * @version 1.0.1
  * @description Manages all scroll-based animations and observers.
@@ -25,55 +25,30 @@ const SCROLL_CONFIG = {
     FOOTER_VISIBILITY_OFFSET: 5
 };
 
-let lastScrollY = window.scrollY;
-let isScrollTicking = false;
-
 /**
- * Handles animations that update on every scroll frame.
+ * Sets up an IntersectionObserver to manage the active state of timeline items.
  */
-function handleFrameAnimations() {
-    const screenHeight = window.innerHeight;
-    const viewportCenter = screenHeight / 2;
-
-    // Animate 'About' section divider
-    const aboutSection = document.getElementById('about');
-    const storyDividerProgress = document.querySelector('.about__story-divider-progress');
-    if (aboutSection && storyDividerProgress) {
-        const aboutRect = aboutSection.getBoundingClientRect();
-        const aboutProgress = (viewportCenter - aboutRect.top) / aboutRect.height;
-        storyDividerProgress.style.transform = `scaleY(${Math.max(0, Math.min(1, aboutProgress))})`;
-    }
-
-    // Animate 'Experience' timeline progress bar
-    const timelineContainer = document.getElementById('timeline-container');
-    const timelineProgress = document.querySelector('.timeline__progress');
-    if (timelineContainer && timelineProgress) {
-        const timelineRect = timelineContainer.getBoundingClientRect();
-        const timelineProgressVal = (viewportCenter - timelineRect.top) / timelineRect.height;
-        timelineProgress.style.transform = `scaleY(${Math.max(0, Math.min(1, timelineProgressVal))})`;
-    }
-
-    // Activate timeline items based on scroll direction
-    const isScrollingDown = window.scrollY > lastScrollY;
-    lastScrollY = window.scrollY;
-
-    document.querySelectorAll('.timeline-item').forEach(item => {
-        const iconRect = item.querySelector('.timeline-item__icon')?.getBoundingClientRect();
-        if (iconRect) {
-            if (isScrollingDown) {
-                if (iconRect.top < viewportCenter) item.classList.add('timeline-item--active');
-            } else {
-                if (iconRect.top > viewportCenter) item.classList.remove('timeline-item--active');
+function setupTimelineActiveObserver() {
+    const timelineActiveObserver = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+            const item = entry.target.closest('.timeline-item');
+            if (item) {
+                if (entry.isIntersecting) {
+                    item.classList.add('timeline-item--active');
+                } else {
+                    item.classList.remove('timeline-item--active');
+                }
             }
-        }
+        });
+    }, {
+        root: null,
+        rootMargin: '-30% 0px -30% 0px', // Activates when icon is in the middle 40% of the viewport
+        threshold: 0
     });
 
-    // Show/hide footer
-    const footer = document.querySelector('.site-footer');
-    if (footer) {
-        const isAtBottom = window.innerHeight + window.scrollY >= document.documentElement.scrollHeight - SCROLL_CONFIG.FOOTER_VISIBILITY_OFFSET;
-        footer.classList.toggle('site-footer--visible', isAtBottom);
-    }
+    document.querySelectorAll('.timeline-item__icon').forEach(icon => {
+        timelineActiveObserver.observe(icon);
+    });
 }
 
 /**
@@ -96,6 +71,44 @@ function setupContentObserver() {
  * Initializes all scroll-based animations and the main scroll event listener.
  */
 export function initScrollAnimations() {
+    let lastScrollY = window.scrollY;
+    let isScrollTicking = false;
+
+    /**
+     * Handles animations that update on every scroll frame.
+     */
+    function handleFrameAnimations() {
+        const screenHeight = window.innerHeight;
+        const viewportCenter = screenHeight / 2;
+
+        // Animate 'About' section divider
+        const aboutSection = document.getElementById('about');
+        const storyDividerProgress = document.querySelector('.about__story-divider-progress');
+        if (aboutSection && storyDividerProgress) {
+            const aboutRect = aboutSection.getBoundingClientRect();
+            const aboutProgress = (viewportCenter - aboutRect.top) / aboutRect.height;
+            storyDividerProgress.style.transform = `scaleY(${Math.max(0, Math.min(1, aboutProgress))})`;
+        }
+
+        // Animate 'Experience' timeline progress bar
+        const timelineContainer = document.getElementById('timeline-container');
+        const timelineProgress = document.querySelector('.timeline__progress');
+        if (timelineContainer && timelineProgress) {
+            const timelineRect = timelineContainer.getBoundingClientRect();
+            const timelineProgressVal = (viewportCenter - timelineRect.top) / timelineRect.height;
+            timelineProgress.style.transform = `scaleY(${Math.max(0, Math.min(1, timelineProgressVal))})`;
+        }
+
+        // Show/hide footer
+        const footer = document.querySelector('.site-footer');
+        if (footer) {
+            const isAtBottom = window.innerHeight + window.scrollY >= document.documentElement.scrollHeight - SCROLL_CONFIG.FOOTER_VISIBILITY_OFFSET;
+            footer.classList.toggle('site-footer--visible', isAtBottom);
+        }
+
+        lastScrollY = window.scrollY;
+    }
+
     // Optimized scroll handling using requestAnimationFrame
     window.addEventListener('scroll', () => {
         if (!isScrollTicking) {
@@ -108,5 +121,6 @@ export function initScrollAnimations() {
     }, { passive: true });
 
     setupContentObserver();
+    setupTimelineActiveObserver();
     handleFrameAnimations(); // Initial call to set correct states on load
 }

@@ -21,8 +21,6 @@
  * - v1.0.0 (2025-08-25): File created to encapsulate all logic for the chat component.
  */
 
-let chatAnimationState = 'idle';
-
 /**
  * Sets up event listeners and state management for the chat panel UI.
  */
@@ -37,6 +35,8 @@ export function initChatPanel() {
         console.warn('Chat panel elements not found. Skipping chat panel initialization.');
         return;
     }
+
+    let chatAnimationState = 'idle';
 
     const openChat = () => {
         if (chatAnimationState === 'idle') {

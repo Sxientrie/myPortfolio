@@ -24,6 +24,15 @@
     align-items: flex-start;
 }
 
+.section-header--blog-center {
+    text-align: center;
+    margin-bottom: 4rem;
+}
+
+.projects-grid--blog-layout {
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+}
+
 .blog-post__content {
     flex: 1;
     min-width: 0; /* Prevents flexbox overflow */
