@@ -59,16 +59,23 @@ export function initNavigation() {
     // --- Intersection Observer for active nav link ---
     const navObserver = new IntersectionObserver((entries) => {
         entries.forEach(entry => {
-            if (entry.isIntersecting) {
+            if (entry.isIntersecting && entry.boundingClientRect.top <= window.innerHeight * 0.2) { // Activate when section top is in top 20%
                 const sectionId = entry.target.id;
                 navButtons.forEach(btn => {
                     btn.classList.toggle('active', btn.dataset.section === sectionId);
+                });
+            } else if (!entry.isIntersecting && entry.boundingClientRect.top > window.innerHeight * 0.2) { // Deactivate when section scrolls up past 20%
+                const sectionId = entry.target.id;
+                navButtons.forEach(btn => {
+                    if (btn.dataset.section === sectionId) {
+                        btn.classList.remove('active');
+                    }
                 });
             }
         });
     }, {
         root: null,
-        rootMargin: '-20% 0px -80% 0px', // Activates when section top is 20% from viewport top, deactivates when bottom is 80% from viewport bottom
+        rootMargin: '0px 0px -80% 0px', // Observe when 20% of section is visible from top
         threshold: 0
     });
 
