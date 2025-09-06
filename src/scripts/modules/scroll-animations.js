@@ -42,7 +42,7 @@ function setupTimelineActiveObserver() {
         });
     }, {
         root: null,
-        rootMargin: '-30% 0px -30% 0px', // Activates when icon is in the middle 40% of the viewport
+        rootMargin: '-10% 0px -80% 0px', // Activates when icon is 10% from viewport top, deactivates when 80% from viewport bottom
         threshold: 0
     });
 
@@ -71,7 +71,6 @@ function setupContentObserver() {
  * Initializes all scroll-based animations and the main scroll event listener.
  */
 export function initScrollAnimations() {
-    let lastScrollY = window.scrollY;
     let isScrollTicking = false;
 
     /**
@@ -105,8 +104,6 @@ export function initScrollAnimations() {
             const isAtBottom = window.innerHeight + window.scrollY >= document.documentElement.scrollHeight - SCROLL_CONFIG.FOOTER_VISIBILITY_OFFSET;
             footer.classList.toggle('site-footer--visible', isAtBottom);
         }
-
-        lastScrollY = window.scrollY;
     }
 
     // Optimized scroll handling using requestAnimationFrame

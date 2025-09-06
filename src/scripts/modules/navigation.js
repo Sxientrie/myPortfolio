@@ -68,7 +68,7 @@ export function initNavigation() {
         });
     }, {
         root: null,
-        rootMargin: '-50% 0px -50% 0px', // Trigger when section is in the middle of the viewport
+        rootMargin: '-20% 0px -80% 0px', // Activates when section top is 20% from viewport top, deactivates when bottom is 80% from viewport bottom
         threshold: 0
     });
 
