@@ -47,6 +47,12 @@
     padding: 1px;
     overflow: hidden;
     background-color: transparent;
+    display: none;
+}
+
+.chat-panel.is-opening,
+.chat-panel.is-open {
+    display: block;
 }
 .chat-panel::after {
     content: ''; position: absolute; z-index: -1;

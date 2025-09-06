@@ -77,7 +77,7 @@ export function initTestimonialCarousel() {
         } else if (index >= slideCount) {
             index = 0;
         }
-        track.style.transform = 'translateX(-' + (index * 100) + '%)';
+        track.style.transform = `translateX(-${index * 100}%)`;
         currentIndex = index;
         updateIndicators(currentIndex);
         updateAriaLabels(currentIndex);
