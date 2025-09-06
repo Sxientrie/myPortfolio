@@ -42,7 +42,7 @@ function setupTimelineActiveObserver() {
         });
     }, {
         root: null,
-        rootMargin: '-10% 0px -80% 0px', // Activates when icon is 10% from viewport top, deactivates when 80% from viewport bottom
+        rootMargin: '-40% 0px -40% 0px', // Activates when icon is roughly in the middle 20% of the viewport
         threshold: 0
     });
 
