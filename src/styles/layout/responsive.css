@@ -64,9 +64,6 @@
 /* Mobile-Specific Styles */
 @media (max-width: 767px) {
     .site-header { padding: 0.5rem 1rem; }
-    .site-header__nav--desktop { display: none; }
-    .site-header__actions .aurora-button { display: none; }
-    .hamburger-button { display: block; }
 
     .layout__section { padding: 3rem 1rem; }
     #hero {

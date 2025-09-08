@@ -34,13 +34,15 @@
     mask-image: linear-gradient(to right, transparent, black 15%, black 85%, transparent);
 }
 .tech-stack-carousel__track {
+    --item-width: 120px;
+    --item-count: 16;
     display: flex;
-    width: calc(120px * 32);
+    width: calc(var(--item-width) * var(--item-count) * 2); /* Multiply by 2 for the duplicated set */
     animation: scroll 60s linear infinite;
 }
 @keyframes scroll {
     0% { transform: translateX(0); }
-    100% { transform: translateX(calc(-120px * 16)); }
+    100% { transform: translateX(calc(var(--item-width) * var(--item-count) * -1)); }
 }
 .tech-stack-carousel__slide {
     width: 120px;

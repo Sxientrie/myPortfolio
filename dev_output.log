@@ -1,0 +1,9 @@
+
+> my-portfolio@1.0.0 dev
+> vite --host
+
+
+  VITE v5.4.19  ready in 502 ms
+
+  ➜  Local:   http://localhost:5173/myPortfolio/
+  ➜  Network: http://192.168.0.2:5173/myPortfolio/

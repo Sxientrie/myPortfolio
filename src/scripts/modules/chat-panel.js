@@ -61,18 +61,23 @@ export function initChatPanel() {
     chatTrigger.addEventListener('click', openChat);
     closeButton.addEventListener('click', closeChat);
 
-    chatPanel.addEventListener('animationend', () => {
-        if (chatAnimationState === 'opening') {
-            chatAnimationState = 'open';
-            chatPanel.classList.remove('is-opening');
-            chatPanel.classList.add('is-open');
-            chatInput.focus();
-            overlay.classList.remove('is-entering');
-        } else if (chatAnimationState === 'closing') {
-            chatAnimationState = 'idle';
-            chatPanel.classList.remove('is-closing');
-            document.body.classList.remove('is-chat-open');
-            overlay.classList.remove('is-exiting');
+    chatPanel.addEventListener('animationend', (event) => {
+        // Check if the animation is one of the pill animations
+        if (event.animationName.startsWith('open-pill')) {
+            if (chatAnimationState === 'opening') {
+                chatAnimationState = 'open';
+                chatPanel.classList.remove('is-opening');
+                chatPanel.classList.add('is-open');
+                chatInput.focus();
+                overlay.classList.remove('is-entering');
+            }
+        } else if (event.animationName.startsWith('close-pill')) {
+            if (chatAnimationState === 'closing') {
+                chatAnimationState = 'idle';
+                chatPanel.classList.remove('is-closing');
+                document.body.classList.remove('is-chat-open');
+                overlay.classList.remove('is-exiting');
+            }
         }
     });
 }
