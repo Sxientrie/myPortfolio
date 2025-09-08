@@ -16,34 +16,40 @@ const input = {
 };
 
 /** @type {import('vite').UserConfig} */
-export default defineConfig({
-  plugins: [
-    handlebars({
-      partialDirectory: resolve(__dirname, 'src/partials'),
-    }),
-    htmlMinifier(),
-  ],
-  // The base path for the project. This is necessary for GitHub Pages
-  // deployment, as the site will be served from a subdirectory.
-  base: '/myPortfolio/',
+export default defineConfig(({ command }) => {
+  const isBuild = command === 'build';
+  const base = isBuild ? '/myPortfolio/' : '/';
 
-  // The directory where the build output will be placed.
-  build: {
-    outDir: 'dist',
-    // This ensures the dist directory is cleared on each build.
-    emptyOutDir: true,
-    // Minify settings
-    minify: 'terser',
-    terserOptions: {
-      format: {
-        comments: false,
+  return {
+    plugins: [
+      handlebars({
+        partialDirectory: resolve(__dirname, 'src/partials'),
+        context: {
+          baseUrl: base,
+        },
+      }),
+      htmlMinifier(),
+    ],
+    base: base,
+
+    // The directory where the build output will be placed.
+    build: {
+      outDir: 'dist',
+      // This ensures the dist directory is cleared on each build.
+      emptyOutDir: true,
+      // Minify settings
+      minify: 'terser',
+      terserOptions: {
+        format: {
+          comments: false,
+        },
+      },
+      rollupOptions: {
+        input,
       },
     },
-    rollupOptions: {
-      input,
-    },
-  },
 
-  // The directory for static assets that are copied directly.
-  publicDir: 'public',
+    // The directory for static assets that are copied directly.
+    publicDir: 'public',
+  };
 });
