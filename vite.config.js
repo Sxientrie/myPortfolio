@@ -2,6 +2,7 @@ import { defineConfig } from 'vite';
 import htmlMinifier from 'vite-plugin-html-minifier';
 import { glob } from 'glob';
 import { resolve } from 'path';
+import handlebars from 'vite-plugin-handlebars';
 
 const htmlFiles = glob.sync('blog/**/*.html');
 
@@ -17,6 +18,9 @@ const input = {
 /** @type {import('vite').UserConfig} */
 export default defineConfig({
   plugins: [
+    handlebars({
+      partialDirectory: resolve(__dirname, 'src/partials'),
+    }),
     htmlMinifier(),
   ],
   // The base path for the project. This is necessary for GitHub Pages

@@ -35,9 +35,13 @@ export function initNavigation() {
 
     // --- Desktop navigation clicks ---
     navButtons.forEach(btn => {
-        btn.addEventListener('click', () => {
-            const sectionId = btn.dataset.section;
-            document.getElementById(sectionId)?.scrollIntoView({ behavior: 'smooth' });
+        btn.addEventListener('click', (e) => {
+            const href = btn.getAttribute('href');
+            if (href.startsWith('#')) {
+                e.preventDefault();
+                const sectionId = href.substring(1);
+                document.getElementById(sectionId)?.scrollIntoView({ behavior: 'smooth' });
+            }
         });
     });
 
@@ -48,11 +52,15 @@ export function initNavigation() {
     });
 
     mobileNavButtons.forEach(btn => {
-        btn.addEventListener('click', () => {
-            const sectionId = btn.dataset.section;
-            document.getElementById(sectionId)?.scrollIntoView({ behavior: 'smooth' });
-            mobileNavMenu.classList.remove('mobile-nav--open'); // Close menu after click
-            hamburgerButton.setAttribute('aria-expanded', 'false');
+        btn.addEventListener('click', (e) => {
+            const href = btn.getAttribute('href');
+            if (href.startsWith('#')) {
+                e.preventDefault();
+                const sectionId = href.substring(1);
+                document.getElementById(sectionId)?.scrollIntoView({ behavior: 'smooth' });
+                mobileNavMenu.classList.remove('mobile-nav--open'); // Close menu after click
+                hamburgerButton.setAttribute('aria-expanded', 'false');
+            }
         });
     });
 
@@ -66,7 +74,10 @@ export function initNavigation() {
             const activeSectionId = activeEntry.target.id;
             // Update all buttons based on the single active section.
             navButtons.forEach(btn => {
-                btn.classList.toggle('active', btn.dataset.section === activeSectionId);
+                const href = btn.getAttribute('href');
+                if (href && href.startsWith('#')) {
+                    btn.classList.toggle('active', href === `#${activeSectionId}`);
+                }
             });
         }
     }, {
