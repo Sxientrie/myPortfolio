@@ -1,3 +1,9 @@
 
 > my-portfolio@1.0.0 dev
-> npx vite
+> vite
+
+
+  VITE v5.4.19  ready in 654 ms
+
+  ➜  Local:   http://localhost:5173/myPortfolio/
+  ➜  Network: use --host to expose
