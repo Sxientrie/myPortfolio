@@ -9,7 +9,8 @@ const blogHtmlFiles = glob.sync('**/*.html', { cwd: resolve(__dirname, 'blog') }
 const input = {
   main: resolve(__dirname, 'index.html'),
   ...blogHtmlFiles.reduce((acc, file) => {
-    const name = `blog/${file.replace('.html', '')}`;
+    // The key should mirror the file path to ensure Vite respects the directory structure.
+    const name = `blog/${file}`;
     acc[name] = resolve(__dirname, 'blog', file);
     return acc;
   }, {})
