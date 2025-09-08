@@ -28,6 +28,7 @@ import { initTimeline } from './modules/timeline.js';
 import { initNavigation } from './modules/navigation.js';
 import { initScrollAnimations } from './modules/scroll-animations.js';
 import { initTestimonialCarousel } from './modules/testimonial-carousel.js';
+import { initCarouselCloner } from './modules/carousel-cloner.js';
 
 /**
  * Main application initializer.
@@ -41,6 +42,7 @@ function initializeApp() {
             copyrightSpan.innerHTML = `&copy; ${new Date().getFullYear()} Jayson Jamora. All Rights Reserved.`;
         }
         // Initialize core modules that are visible on page load.
+        initCarouselCloner();
         initTimeline();
         initNavigation();
         initScrollAnimations();

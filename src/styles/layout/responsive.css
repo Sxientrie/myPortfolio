@@ -85,7 +85,6 @@
     .about__grid { gap: 3rem; }
     .about__image-container { padding-right: 0; justify-self: initial; }
     .about__text-content { padding-left: 0; }
-    .about__story-divider { display: none; }
 
     .timeline-item__content {
         width: calc(100% - 3.5rem);
