@@ -4,13 +4,13 @@ import { glob } from 'glob';
 import { resolve } from 'path';
 import handlebars from 'vite-plugin-handlebars';
 
-const htmlFiles = glob.sync('blog/**/*.html');
+const blogHtmlFiles = glob.sync('**/*.html', { cwd: resolve(__dirname, 'blog') });
 
 const input = {
   main: resolve(__dirname, 'index.html'),
-  ...htmlFiles.reduce((acc, file) => {
-    const name = file.replace('.html', '');
-    acc[name] = resolve(__dirname, file);
+  ...blogHtmlFiles.reduce((acc, file) => {
+    const name = `blog/${file.replace('.html', '')}`;
+    acc[name] = resolve(__dirname, 'blog', file);
     return acc;
   }, {})
 };

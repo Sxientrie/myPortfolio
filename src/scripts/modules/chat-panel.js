@@ -58,7 +58,6 @@ export function initChatPanel() {
         }
     };
 
-    chatTrigger.addEventListener('click', openChat);
     closeButton.addEventListener('click', closeChat);
 
     chatPanel.addEventListener('animationend', () => {
@@ -75,4 +74,7 @@ export function initChatPanel() {
             overlay.classList.remove('is-exiting');
         }
     });
+
+    // Immediately open the chat panel when this function is called.
+    openChat();
 }
