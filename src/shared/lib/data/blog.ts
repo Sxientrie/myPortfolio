@@ -32,7 +32,9 @@ export const getBlogPosts = async () => {
 	const posts = await Promise.all(
 		postFilenames.map(async (filename) => {
 			try {
-				const response = await fetch(`/src/posts/${filename}`);
+				const postUrl = new URL(`../../../posts/${filename}`, import.meta.url)
+					.href;
+				const response = await fetch(postUrl);
 				if (!response.ok) {
 					throw new Error(`Failed to fetch ${filename}: ${response.statusText}`);
 				}

@@ -25,7 +25,7 @@ export const testimonialsData = [
 		author: {
 			name: 'Claire Uy',
 			title: 'LocalHire PH',
-			image: 'src/assets/images/avatar_claire_uy.webp',
+			image: 'assets/images/avatar_claire_uy.webp',
 		},
 	},
 	{
@@ -34,7 +34,7 @@ export const testimonialsData = [
 		author: {
 			name: 'Marcus R.',
 			title: 'DataSync',
-			image: 'src/assets/images/avatar_marcus_r.webp',
+			image: 'assets/images/avatar_marcus_r.webp',
 		},
 	},
 	{
@@ -43,7 +43,7 @@ export const testimonialsData = [
 		author: {
 			name: 'Gobies',
 			title: 'CodeCrafters Discord',
-			image: 'src/assets/images/avatar_gobies.webp',
+			image: 'assets/images/avatar_gobies.webp',
 		},
 	},
 ];
