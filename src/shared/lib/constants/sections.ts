@@ -3,5 +3,4 @@ export const SECTIONS: { [key: string]: string } = {
 	ABOUT: "about",
 	EXPERIENCE: "experience",
 	PROJECTS: "projects",
-	TESTIMONIALS: "testimonials",
 };

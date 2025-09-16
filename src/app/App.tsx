@@ -13,7 +13,6 @@ import { Footer } from "../widgets/Footer.tsx";
 import { HeroSection } from "../widgets/HeroSection.tsx";
 import { SiteHeader } from "../widgets/SiteHeader.tsx";
 import { StackingSections } from "../widgets/StackingSections.tsx";
-import { TestimonialsSection } from "../widgets/TestimonialsSection.tsx";
 export function App(): React.ReactElement {
 	const [activeSection, setActiveSection] = useState<string>("");
 	const { sectionRefs, registerRef } =
@@ -101,7 +100,6 @@ export function App(): React.ReactElement {
 								className="relative z-[3] bg-[oklch(5%_0_0_/_0.85)] backdrop-blur-md rounded-[16px] overflow-hidden"
 							>
 								<StackingSections registerRef={registerRef} />
-								<TestimonialsSection registerRef={registerRef} />
 							</div>
 							<CtaSection registerRef={registerRef} />
 						</main>
