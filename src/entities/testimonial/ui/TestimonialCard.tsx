@@ -1,6 +1,7 @@
 import type React from "react";
 import { memo } from "react";
 import { ImageWithFallback } from "../../../shared/ui/ImageWithFallback.tsx";
+
 interface TestimonialCardProps {
 	testimonial: {
 		quote: string;

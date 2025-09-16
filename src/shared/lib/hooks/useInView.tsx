@@ -1,41 +1,43 @@
-import { useState, useEffect, useCallback } from "react";
+import { useCallback, useEffect, useState } from "react";
 
 interface IntersectionObserverOptions {
-  root?: Element | null;
-  rootMargin?: string;
-  threshold?: number | number[];
+	root?: Element | null;
+	rootMargin?: string;
+	threshold?: number | number[];
 }
 
-export const useInView = <T extends Element>(options?: IntersectionObserverOptions): [React.RefCallback<T>, boolean] => {
-  const [isIntersecting, setIntersecting] = useState(false);
-  const [node, setNode] = useState<T | null>(null);
+export const useInView = <T extends Element>(
+	options?: IntersectionObserverOptions,
+): [React.RefCallback<T>, boolean] => {
+	const [isIntersecting, setIntersecting] = useState(false);
+	const [node, setNode] = useState<T | null>(null);
 
-  const ref = useCallback((n: T | null) => {
-    setNode(n);
-  }, []);
+	const ref = useCallback((n: T | null) => {
+		setNode(n);
+	}, []);
 
-  useEffect(() => {
-    if (!node) return;
+	useEffect(() => {
+		if (!node) return;
 
-    const observer = new IntersectionObserver(
-      ([entry]) => {
-        if (entry.isIntersecting) {
-          setIntersecting(true);
-          observer.unobserve(node);
-        }
-      },
-      {
-        rootMargin: "200px",
-        ...options,
-      }
-    );
+		const observer = new IntersectionObserver(
+			([entry]) => {
+				if (entry.isIntersecting) {
+					setIntersecting(true);
+					observer.unobserve(node);
+				}
+			},
+			{
+				rootMargin: "200px",
+				...options,
+			},
+		);
 
-    observer.observe(node);
+		observer.observe(node);
 
-    return () => {
-      observer.unobserve(node);
-    };
-  }, [node, options]);
+		return () => {
+			observer.unobserve(node);
+		};
+	}, [node, options]);
 
-  return [ref, isIntersecting];
+	return [ref, isIntersecting];
 };

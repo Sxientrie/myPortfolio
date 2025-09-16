@@ -9,7 +9,9 @@ export const useIconFillAnimation = (
 		let isTicking = false;
 		const stops = gradient.querySelectorAll("stop");
 		if (stops.length < 2) return;
-		stops.forEach((stop) => stop.setAttribute("offset", "0%"));
+		stops.forEach((stop) => {
+			stop.setAttribute("offset", "0%");
+		});
 		const handleScroll = (): void => {
 			if (!gradient.ownerSVGElement) {
 				isTicking = false;
@@ -24,7 +26,7 @@ export const useIconFillAnimation = (
 			const viewportCenter = window.innerHeight / 2;
 			const animationZoneHeight = height;
 			const triggerStart = viewportCenter + animationZoneHeight / 2;
-			const triggerEnd = viewportCenter - animationZoneHeight / 2;
+			const _triggerEnd = viewportCenter - animationZoneHeight / 2;
 			const progress = (triggerStart - elementCenter) / animationZoneHeight;
 			const clampedProgress = Math.max(0, Math.min(1, progress));
 			const offset = `${clampedProgress * 100}%`;

@@ -1,5 +1,6 @@
 import type React from "react";
 import { memo } from "react";
+
 interface AnimatedLogoProps {
 	className?: string;
 }
@@ -14,6 +15,7 @@ export const AnimatedLogo = memo(
 				className="w-full h-full overflow-visible"
 				style={{ transform: "rotateX(-15deg) rotateY(10deg)" }}
 			>
+				<title>Animated Portfolio Logo</title>
 				<g
 					fill="none"
 					stroke="currentColor"

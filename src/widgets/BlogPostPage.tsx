@@ -1,8 +1,9 @@
 import type React from "react";
-import { memo } from "react";
+import { memo, useId } from "react";
 import ReactMarkdown from "react-markdown";
 import remarkGfm from "remark-gfm";
 import { ImageWithFallback } from "../shared/ui/ImageWithFallback.tsx";
+
 interface BlogPostPageProps {
 	post: {
 		title: string;
@@ -15,14 +16,16 @@ interface BlogPostPageProps {
 }
 export const BlogPostPage = memo(
 	({ post, navigateTo }: BlogPostPageProps): React.ReactElement => {
+		const mainId = useId();
 		return (
 			<main
-				id="blog-post-content"
+				id={mainId}
 				className="w-full max-w-4xl mx-auto relative px-4 py-32 animate-fade-in"
 				style={{ animation: "fade-in 0.5s ease-out forwards" }}
 			>
 				<div className="mb-8">
 					<button
+						type="button"
 						onClick={() => navigateTo("blog")}
 						className="flex items-center gap-2 text-[oklch(95%_0_0_/_0.7)] hover:text-white transition-colors"
 					>
@@ -37,6 +40,7 @@ export const BlogPostPage = memo(
 							strokeLinecap="round"
 							strokeLinejoin="round"
 						>
+							<title>Back</title>
 							<path d="M15 18l-6-6 6-6" />
 						</svg>
 						Back to Blog

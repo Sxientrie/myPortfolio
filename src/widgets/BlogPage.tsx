@@ -1,16 +1,19 @@
 import type React from "react";
-import { memo } from "react";
+import { memo, useId } from "react";
 import { BlogPostCard } from "../entities/blog/BlogPostCard.tsx";
+import type { BlogPost } from "../shared/lib/types/index.ts";
+
 interface BlogPageProps {
 	navigateTo: (destination: string) => void;
-	posts: any[];
+	posts: BlogPost[];
 	isLoading: boolean;
 }
 export const BlogPage = memo(
 	({ navigateTo, posts, isLoading }: BlogPageProps): React.ReactElement => {
+		const mainId = useId();
 		return (
 			<main
-				id="blog-content"
+				id={mainId}
 				className="w-full max-w-6xl mx-auto relative px-4 py-32 animate-fade-in"
 				style={{ animation: "fade-in 0.5s ease-out forwards" }}
 			>

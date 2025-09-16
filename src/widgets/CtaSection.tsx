@@ -1,7 +1,8 @@
 import type React from "react";
-import { memo, useState } from "react";
 import type { FormEvent } from "react";
+import { memo, useState } from "react";
 import { AuroraButton } from "../shared/ui/AuroraButton.tsx";
+
 type FormStatus = "idle" | "submitting" | "success" | "error";
 interface CtaSectionProps {
 	registerRef: (name: string, el: HTMLElement | null) => void;
@@ -38,6 +39,7 @@ export const CtaSection = memo(
 			}
 		};
 		return (
+			// biome-ignore lint/correctness/useUniqueElementIds: This ID is static for navigation purposes.
 			<section
 				id="contact"
 				ref={(el) => registerRef("contact", el)}

@@ -1,9 +1,11 @@
-import React, { useEffect, useState } from "react";
+import type React from "react";
+import { useEffect, useId, useState } from "react";
 import { ChatController } from "../features/chat/ui/ChatController.tsx";
 import { SECTIONS } from "../shared/lib/constants/sections.ts";
 import { getBlogPosts } from "../shared/lib/data/blog.ts";
 import { useFooterVisibility } from "../shared/lib/hooks/useFooterVisibility.tsx";
 import { useIntersectionObserver } from "../shared/lib/hooks/useIntersectionObserver.tsx";
+import type { BlogPost } from "../shared/lib/types/index.ts";
 import { AnimatedLogo } from "../shared/ui/AnimatedLogo.tsx";
 import { GlobalStyles } from "../shared/ui/GlobalStyles.tsx";
 import { BlogPage } from "../widgets/BlogPage.tsx";
@@ -24,8 +26,10 @@ export function App(): React.ReactElement {
 	>("portfolio");
 	const [currentPostSlug, setCurrentPostSlug] = useState<string | null>(null);
 	const [navigationTarget, setNavigationTarget] = useState<string | null>(null);
-	const [blogPosts, setBlogPosts] = useState<any[]>([]);
+	const [blogPosts, setBlogPosts] = useState<BlogPost[]>([]);
 	const [isLoadingPosts, setIsLoadingPosts] = useState(true);
+	const mainContentId = useId();
+	const contentBedId = useId();
 	useEffect(() => {
 		const fetchPosts = async () => {
 			try {
@@ -89,7 +93,7 @@ export function App(): React.ReactElement {
 				return (
 					<>
 						<main
-							id="main-content"
+							id={mainContentId}
 							className="w-full max-w-6xl mx-auto relative px-4"
 						>
 							<HeroSection
@@ -97,7 +101,7 @@ export function App(): React.ReactElement {
 								sectionRefs={sectionRefs}
 							/>
 							<div
-								id="content-bed"
+								id={contentBedId}
 								className="relative z-[3] bg-[oklch(5%_0_0_/_0.85)] backdrop-blur-md rounded-[16px] overflow-hidden"
 							>
 								<StackingSections registerRef={registerRef} />
