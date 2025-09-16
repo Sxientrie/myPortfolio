@@ -1,60 +1,22 @@
-/**
- * @file: src/widgets/StackingSections.tsx
- *
- * @description: A container component that corrals the main content sections of the portfolio
- *               (About, Experience, Projects).
- *
- * @module: Shared.UI
- *
- * @overview:
- * This component, `StackingSections`, is the workhorse that lays out the narrative backbone of the
- * portfolio. Despite its ambitious name, it doesn't actually do any of the "stacking" itself—that's
- * a CSS trick handled elsewhere. Instead, its job is to act as a container, a glorified `<div>`,
- * for the "About", "Experience", and "Projects" sections. It's the digital equivalent of a chapter
- * in a book.
- *
- * Architecturally, it's a simple composition piece. It imports entity components like
- * `TimelineItem` and `ProjectCard` and feeds them data from static arrays. It dutifully registers
- * each of its `<section>` children with the `IntersectionObserver` via the `registerRef` prop,
- * ensuring the main `SiteHeader` knows what the user is looking at. It also showcases the timeline
- * feature, which involves passing refs to the `AnimatedTimelineLine` component, a clear sign of a
- * component that needs to know about its own DOM layout to work its magic. The whole thing is
- * memoized because, let's be honest, this content isn't changing unless there's a deployment.
- *
- * @dependencies:
- * ➥ react
- * ➥ ../entities/experience/ui/AnimatedTimelineLine.tsx
- * ➥ ../entities/experience/ui/TimelineItem.tsx
- * ➥ ../entities/project/ui/ProjectCard.tsx
- * ➥ ../shared/lib/constants/sections.ts
- * ➥ ../shared/lib/data/experience.ts
- * ➥ ../shared/lib/data/projects.ts
- *
- * @outputs:
- * ➥ StackingSections (component)
- */
-import type React from 'react';
-import { memo, useRef } from 'react';
-
-import { AnimatedTimelineLine } from '../entities/experience/ui/AnimatedTimelineLine.tsx';
-import { TimelineItem } from '../entities/experience/ui/TimelineItem.tsx';
-import { ProjectCard } from '../entities/project/ui/ProjectCard.tsx';
-import { SECTIONS } from '../shared/lib/constants/sections.ts';
-import { experienceData } from '../shared/lib/data/experience.ts';
-import { projectsData } from '../shared/lib/data/projects.ts';
-import { ImageWithFallback } from '../shared/ui/ImageWithFallback.tsx';
-
+import type React from "react";
+import { memo, useRef } from "react";
+import { AnimatedTimelineLine } from "../entities/experience/ui/AnimatedTimelineLine.tsx";
+import { TimelineItem } from "../entities/experience/ui/TimelineItem.tsx";
+import { ProjectCard } from "../entities/project/ui/ProjectCard.tsx";
+import { SECTIONS } from "../shared/lib/constants/sections.ts";
+import { experienceData } from "../shared/lib/data/experience.ts";
+import { projectsData } from "../shared/lib/data/projects.ts";
+import { ImageWithFallback } from "../shared/ui/ImageWithFallback.tsx";
 interface StackingSectionsProps {
 	registerRef: (name: string, el: HTMLElement | null) => void;
 }
-
 const BrushStrokeFilter = memo(() => (
 	<svg
 		style={{
-			position: 'absolute',
+			position: "absolute",
 			width: 0,
 			height: 0,
-			pointerEvents: 'none',
+			pointerEvents: "none",
 		}}
 	>
 		<defs>
@@ -77,12 +39,10 @@ const BrushStrokeFilter = memo(() => (
 		</defs>
 	</svg>
 ));
-
 export const StackingSections = memo(
 	({ registerRef }: StackingSectionsProps): React.ReactElement => {
 		const aboutContainerRef = useRef<HTMLDivElement>(null);
 		const experienceContainerRef = useRef<HTMLDivElement>(null);
-
 		return (
 			<>
 				<BrushStrokeFilter />
@@ -102,7 +62,7 @@ export const StackingSections = memo(
 						<div className="md:pr-12 flex justify-center">
 							<div className="rounded-2xl shadow-lg max-w-sm w-full overflow-hidden">
 								<ImageWithFallback
-								src="assets/images/aboutme-image.png"
+									src="assets/images/aboutme-image.png"
 									alt="An illustration of a career journey from chef to IT to developer."
 									className="w-full h-full object-cover"
 									loading="lazy"
@@ -110,11 +70,11 @@ export const StackingSections = memo(
 								>
 									<source
 										media="(min-width: 768px)"
-									srcSet="assets/images/aboutme-image-large.webp"
+										srcSet="assets/images/aboutme-image-large.webp"
 										type="image/webp"
 									/>
 									<source
-									srcSet="assets/images/aboutme-image-small.webp"
+										srcSet="assets/images/aboutme-image-small.webp"
 										type="image/webp"
 									/>
 								</ImageWithFallback>
@@ -153,8 +113,8 @@ export const StackingSections = memo(
 								<p>
 									If you’re facing a challenge that feels overwhelming and could
 									use a fresh set of eyes, please connect. Some of the most
-									wonderful solutions start with nothing more than a good cup over the air
-									coffee and a real colaboration.
+									wonderful solutions start with nothing more than a good cup
+									over the air coffee and a real colaboration.
 								</p>
 							</div>
 						</div>

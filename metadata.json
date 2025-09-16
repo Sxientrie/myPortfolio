@@ -1,5 +1,5 @@
 {
-  "name": "myPortfolio",
-  "description": "An interactive portfolio application built with React and Gemini, showcasing skills and experience through a conversational interface.",
-  "requestFramePermissions": []
+	"name": "myPortfolio",
+	"description": "An interactive portfolio application built with React and Gemini, showcasing skills and experience through a conversational interface.",
+	"requestFramePermissions": []
 }

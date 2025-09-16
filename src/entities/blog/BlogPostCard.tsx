@@ -1,30 +1,7 @@
-/**
- * @file: src/entities/blog/BlogPostCard.tsx
- *
- * @description: A card component to display a single blog post summary.
- *
- * @module: Shared.UI
- *
- * @overview:
- * This is the `BlogPostCard`, a self-contained component for showcasing a single article.
- * It's responsible for displaying a post's image, title, publication date, a short excerpt, and
- * relevant tags. It uses the shared `Card` component to maintain a consistent "neon glass"
- * aesthetic with other cards in the application. It is interactive, allowing navigation to the
- * full blog post.
- *
- * @dependencies:
- * ➥ react
- * ➥ ../../shared/ui/Card.tsx
- * ➥ ../../shared/ui/ImageWithFallback.tsx
- *
- * @outputs:
- * ➥ BlogPostCard (component)
- */
-import type React from 'react';
-import { memo } from 'react';
-import { Card } from '../../shared/ui/Card.tsx';
-import { ImageWithFallback } from '../../shared/ui/ImageWithFallback.tsx';
-
+import type React from "react";
+import { memo } from "react";
+import { Card } from "../../shared/ui/Card.tsx";
+import { ImageWithFallback } from "../../shared/ui/ImageWithFallback.tsx";
 interface BlogPostCardProps {
 	post: {
 		imagePlaceholder: string;
@@ -36,7 +13,6 @@ interface BlogPostCardProps {
 	};
 	navigateTo: (destination: string) => void;
 }
-
 export const BlogPostCard = memo(
 	({ post, navigateTo }: BlogPostCardProps): React.ReactElement => {
 		return (
@@ -46,7 +22,7 @@ export const BlogPostCard = memo(
 				tabIndex={0}
 				onClick={() => navigateTo(post.slug)}
 				onKeyDown={(e) => {
-					if (e.key === 'Enter' || e.key === ' ') {
+					if (e.key === "Enter" || e.key === " ") {
 						navigateTo(post.slug);
 					}
 				}}
@@ -54,7 +30,7 @@ export const BlogPostCard = memo(
 			>
 				<div className="bg-[oklch(3%_0.01_265)] rounded-lg aspect-video mb-6 overflow-hidden flex items-center justify-center text-gray-500 flex-shrink-0">
 					<ImageWithFallback
-						src={post.imagePlaceholder?.replace('.webp', '.png')}
+						src={post.imagePlaceholder?.replace(".webp", ".png")}
 						alt={`Placeholder image for the blog post: ${post.title}`}
 						loading="lazy"
 						className="w-full h-full object-cover transition-transform duration-300 group-hover:scale-105"

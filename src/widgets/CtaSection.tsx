@@ -1,79 +1,46 @@
-/**
- * @file: src/widgets/CtaSection.tsx
- *
- * @description: A Call-to-Action (CTA) section that now has a real job: handling a contact form.
- *
- * @module: Shared.UI
- *
- * @overview:
- * This component used to be a simple "contact me" block with a mailto link. It has since been
- * promoted to handle a full-blown contact form. It now manages the state for the form inputs
- * (name, email, message) and the submission status. When the user submits the form, this
- * component makes a POST request to our trusty `/api/send-email` serverless function. It also
- * provides visual feedback to the user, displaying success or error messages, because we're not
- * monsters. It's a hard-working component now, with responsibilities. It's probably complaining
- * about the extra work.
- *
- * @dependencies:
- * ➥ react
- * ➥ ../shared/ui/AuroraButton.tsx
- *
- * @outputs:
- * ➥ CtaSection (component)
- */
-import type React from 'react';
-import { memo, useState } from 'react';
-import type { FormEvent } from 'react';
-
-import { AuroraButton } from '../shared/ui/AuroraButton.tsx';
-
-type FormStatus = 'idle' | 'submitting' | 'success' | 'error';
-
-// FIX: Added props to allow this section to be registered for intersection observing.
+import type React from "react";
+import { memo, useState } from "react";
+import type { FormEvent } from "react";
+import { AuroraButton } from "../shared/ui/AuroraButton.tsx";
+type FormStatus = "idle" | "submitting" | "success" | "error";
 interface CtaSectionProps {
 	registerRef: (name: string, el: HTMLElement | null) => void;
 }
-
 export const CtaSection = memo(
 	({ registerRef }: CtaSectionProps): React.ReactElement => {
-		const [name, setName] = useState('');
-		const [email, setEmail] = useState('');
-		const [message, setMessage] = useState('');
-		const [status, setStatus] = useState<FormStatus>('idle');
-
+		const [name, setName] = useState("");
+		const [email, setEmail] = useState("");
+		const [message, setMessage] = useState("");
+		const [status, setStatus] = useState<FormStatus>("idle");
 		const handleSubmit = async (
 			event: FormEvent<HTMLFormElement>,
 		): Promise<void> => {
 			event.preventDefault();
-			setStatus('submitting');
-
+			setStatus("submitting");
 			try {
-				const response = await fetch('/api/send-email', {
-					method: 'POST',
+				const response = await fetch("/api/send-email", {
+					method: "POST",
 					headers: {
-						'Content-Type': 'application/json',
+						"Content-Type": "application/json",
 					},
 					body: JSON.stringify({ name, email, message }),
 				});
-
 				if (!response.ok) {
-					throw new Error('Failed to send message.');
+					throw new Error("Failed to send message.");
 				}
-
-				setStatus('success');
-				setName('');
-				setEmail('');
-				setMessage('');
+				setStatus("success");
+				setName("");
+				setEmail("");
+				setMessage("");
 			} catch (error) {
 				console.error(error);
-				setStatus('error');
+				setStatus("error");
 			}
 		};
-
 		return (
 			<section
 				id="contact"
-				ref={(el) => registerRef('contact', el)}
+				ref={(el) => registerRef("contact", el)}
 				className="text-center py-16 px-8"
 			>
 				<h2 className="text-3xl font-medium tracking-tighter mb-4">
@@ -84,8 +51,7 @@ export const CtaSection = memo(
 					solutions. If you have a project that needs a developer who isn't
 					afraid to dive into the intricate details, let's connect.
 				</p>
-
-				{status === 'success' ? (
+				{status === "success" ? (
 					<p className="text-lg text-green-400">
 						Thank you for your message! I'll get back to you shortly.
 					</p>
@@ -121,14 +87,11 @@ export const CtaSection = memo(
 							/>
 						</div>
 						<div className="mt-6">
-							<AuroraButton
-								type="submit"
-								disabled={status === 'submitting'}
-							>
-								{status === 'submitting' ? 'SENDING...' : 'GET IN TOUCH'}
+							<AuroraButton type="submit" disabled={status === "submitting"}>
+								{status === "submitting" ? "SENDING..." : "GET IN TOUCH"}
 							</AuroraButton>
 						</div>
-						{status === 'error' && (
+						{status === "error" && (
 							<p className="mt-4 text-red-500">
 								Something went wrong. Please try again later.
 							</p>

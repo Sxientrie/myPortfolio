@@ -1,34 +1,6 @@
-/**
- * @file: src/entities/testimonial/ui/TestimonialCard.tsx
- *
- * @description: A component that displays a single testimonial, including a quote and author
- *               attribution.
- *
- * @module: Shared.UI
- *
- * @overview:
- * This is the `TestimonialCard`, a component with the simple and noble purpose of displaying
- * someone else's kind words. It takes a testimonial object—complete with a quote and an author—and
- * lays it out in a clean, centered format. It's designed to live inside a carousel, hence the
- * `flex-shrink-0` utility to prevent it from getting squished.
- *
- * From an architectural standpoint, it's a model citizen. It uses semantic HTML (`<blockquote>`,
- * `<figure>`, `<figcaption>`) like it's going out of style, which is a rare and beautiful thing. It
- * also uses the `<picture>` tag to serve responsive images, demonstrating a level of care that
- * suggests the developer actually thought about network performance. It's a purely data-driven,
- * presentational component that does one thing and does it well. It's memoized, of course, because
- * re-rendering praise is just redundant.
- *
- * @dependencies:
- * ➥ react
- *
- * @outputs:
- * ➥ TestimonialCard (component)
- */
-import type React from 'react';
-import { memo } from 'react';
-import { ImageWithFallback } from '../../../shared/ui/ImageWithFallback.tsx';
-
+import type React from "react";
+import { memo } from "react";
+import { ImageWithFallback } from "../../../shared/ui/ImageWithFallback.tsx";
 interface TestimonialCardProps {
 	testimonial: {
 		quote: string;
@@ -39,7 +11,6 @@ interface TestimonialCardProps {
 		};
 	};
 }
-
 export const TestimonialCard = memo(
 	({ testimonial }: TestimonialCardProps): React.ReactElement => {
 		return (
@@ -56,7 +27,6 @@ export const TestimonialCard = memo(
 							fallbackText={testimonial.author.name}
 						/>
 					</div>
-
 					<figcaption>
 						<div className="font-medium text-white">
 							{testimonial.author.name}

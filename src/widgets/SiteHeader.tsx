@@ -1,52 +1,19 @@
-/**
- * @file: src/widgets/SiteHeader.tsx
- *
- * @description: The main site header, which includes the logo and primary navigation.
- *
- * @module: Shared.UI
- *
- * @overview:
- * This is the `SiteHeader`, the ever-present navigational compass of the application. It's a
- * "sticky" header that remains fixed at the top of the viewport. It's responsible for displaying
- * the site's animated logo and a list of navigation links that allow users to jump to different
- * sections of the page.
- *
- * Architecturally, this component is a hub of awareness. It receives the `activeSection` prop,
- * which tells it which part of the page the user is currently viewing, so it can apply a visual
- * highlight to the corresponding navigation link. It also receives `currentPage` and `navigateTo`
- * props to handle the new multi-page navigation. It dynamically changes its links, showing section
- * navigation for the portfolio page and a simple "Portfolio" link when on the blog page. It's a
- * smart, context-aware component that elegantly handles the site's primary navigation.
- *
- * @dependencies:
- * ➥ react
- * ➥ ../shared/lib/constants/sections.ts
- * ➥ ../shared/ui/AnimatedLogo.tsx
- * ➥ ../shared/ui/AuroraButton.tsx
- *
- * @outputs:
- * ➥ SiteHeader (component)
- */
-import type React from 'react';
-import { memo, useEffect, useState } from 'react';
-
-import { SECTIONS } from '../shared/lib/constants/sections.ts';
-import { AnimatedLogo } from '../shared/ui/AnimatedLogo.tsx';
-import { AuroraButton } from '../shared/ui/AuroraButton.tsx';
-
+import type React from "react";
+import { memo, useEffect, useState } from "react";
+import { SECTIONS } from "../shared/lib/constants/sections.ts";
+import { AnimatedLogo } from "../shared/ui/AnimatedLogo.tsx";
+import { AuroraButton } from "../shared/ui/AuroraButton.tsx";
 interface SiteHeaderProps {
 	activeSection: string;
 	sectionRefs: React.MutableRefObject<{ [key: string]: HTMLElement | null }>;
-	currentPage: 'portfolio' | 'blog' | 'blogPost';
+	currentPage: "portfolio" | "blog" | "blogPost";
 	navigateTo: (destination: string) => void;
 }
-
 const portfolioNavLinks = [
-	{ id: SECTIONS.ABOUT, label: 'About' },
-	{ id: SECTIONS.EXPERIENCE, label: 'Experience' },
-	{ id: SECTIONS.PROJECTS, label: 'Work' },
+	{ id: SECTIONS.ABOUT, label: "About" },
+	{ id: SECTIONS.EXPERIENCE, label: "Experience" },
+	{ id: SECTIONS.PROJECTS, label: "Work" },
 ];
-
 export const SiteHeader = memo(
 	({
 		activeSection,
@@ -55,31 +22,25 @@ export const SiteHeader = memo(
 	}: SiteHeaderProps): React.ReactElement => {
 		const [isScrolled, setIsScrolled] = useState(false);
 		const [isMenuOpen, setIsMenuOpen] = useState(false);
-
 		useEffect(() => {
 			const handleScroll = (): void => {
 				setIsScrolled(window.scrollY > 50);
 			};
-			window.addEventListener('scroll', handleScroll);
+			window.addEventListener("scroll", handleScroll);
 			return () => {
-				window.removeEventListener('scroll', handleScroll);
+				window.removeEventListener("scroll", handleScroll);
 			};
 		}, []);
-
 		const handleNavClick = (destination: string): void => {
 			navigateTo(destination);
-			setIsMenuOpen(false); // Close menu on navigation
+			setIsMenuOpen(false);
 		};
-
-		// Don't highlight any nav item when the hero section is active.
-		const currentSection = activeSection === SECTIONS.HERO ? '' : activeSection;
-		const isBlogView = currentPage === 'blog' || currentPage === 'blogPost';
-
+		const currentSection = activeSection === SECTIONS.HERO ? "" : activeSection;
+		const isBlogView = currentPage === "blog" || currentPage === "blogPost";
 		const mainNavLinks =
-			currentPage === 'portfolio'
+			currentPage === "portfolio"
 				? portfolioNavLinks
-				: [{ id: 'portfolio', label: 'Portfolio' }];
-
+				: [{ id: "portfolio", label: "Portfolio" }];
 		return (
 			<header
 				className={`fixed top-4 left-1/2 -translate-x-1/2 z-50 w-[95%] max-w-6xl transition-all duration-300`}
@@ -87,15 +48,15 @@ export const SiteHeader = memo(
 				<div
 					className={`flex justify-between items-center p-2 pl-4 rounded-xl transition-all duration-300 ${
 						isScrolled || isMenuOpen
-							? 'bg-[oklch(3%_0.01_265_/_0.8)] backdrop-blur-md border border-[oklch(100%_0_0_/_0.1)]'
-							: 'bg-transparent border border-transparent'
+							? "bg-[oklch(3%_0.01_265_/_0.8)] backdrop-blur-md border border-[oklch(100%_0_0_/_0.1)]"
+							: "bg-transparent border border-transparent"
 					}`}
 				>
 					<a
 						href="#hero"
 						onClick={(e) => {
 							e.preventDefault();
-							handleNavClick('hero');
+							handleNavClick("hero");
 						}}
 						className="flex items-center gap-3"
 						aria-label="Go to top of page"
@@ -110,9 +71,9 @@ export const SiteHeader = memo(
 									key={link.id}
 									onClick={() => handleNavClick(link.id)}
 									className={`px-4 py-2 text-sm font-medium transition-colors rounded-md ${
-										currentSection === link.id && currentPage === 'portfolio'
-											? 'bg-[oklch(100%_0_0_/_0.1)] text-white'
-											: 'text-[oklch(95%_0_0_/_0.7)] hover:text-white hover:bg-[oklch(100%_0_0_/_0.1)]'
+										currentSection === link.id && currentPage === "portfolio"
+											? "bg-[oklch(100%_0_0_/_0.1)] text-white"
+											: "text-[oklch(95%_0_0_/_0.7)] hover:text-white hover:bg-[oklch(100%_0_0_/_0.1)]"
 									}`}
 								>
 									{link.label}
@@ -120,11 +81,11 @@ export const SiteHeader = memo(
 							))}
 							<button
 								key="blog"
-								onClick={() => handleNavClick('blog')}
+								onClick={() => handleNavClick("blog")}
 								className={`px-4 py-2 text-sm font-medium transition-colors rounded-md ${
 									isBlogView
-										? 'bg-[oklch(100%_0_0_/_0.1)] text-white'
-										: 'text-[oklch(95%_0_0_/_0.7)] hover:text-white hover:bg-[oklch(100%_0_0_/_0.1)]'
+										? "bg-[oklch(100%_0_0_/_0.1)] text-white"
+										: "text-[oklch(95%_0_0_/_0.7)] hover:text-white hover:bg-[oklch(100%_0_0_/_0.1)]"
 								}`}
 							>
 								Blog
@@ -132,9 +93,7 @@ export const SiteHeader = memo(
 						</div>
 						<AuroraButton
 							className="py-2.5 px-3 text-white hover:text-white transition-colors duration-300 group"
-							onClick={() => {
-								/* TODO: Implement resume link */
-							}}
+							onClick={() => {}}
 						>
 							<span className="transition-colors duration-300 text-[oklch(95%_0_0_/_0.7)] group-hover:text-white">
 								RESUME
@@ -161,19 +120,19 @@ export const SiteHeader = memo(
 								<path
 									d="M3 6h18"
 									className={`transform transition duration-300 ease-in-out origin-center ${
-										isMenuOpen ? 'rotate-45 translate-y-[6px]' : ''
+										isMenuOpen ? "rotate-45 translate-y-[6px]" : ""
 									}`}
 								/>
 								<path
 									d="M3 12h18"
 									className={`transform transition duration-300 ease-in-out ${
-										isMenuOpen ? 'opacity-0' : 'opacity-100'
+										isMenuOpen ? "opacity-0" : "opacity-100"
 									}`}
 								/>
 								<path
 									d="M3 18h18"
 									className={`transform transition duration-300 ease-in-out origin-center ${
-										isMenuOpen ? '-rotate-45 -translate-y-[6px]' : ''
+										isMenuOpen ? "-rotate-45 -translate-y-[6px]" : ""
 									}`}
 								/>
 							</svg>
@@ -188,9 +147,9 @@ export const SiteHeader = memo(
 									key={link.id}
 									onClick={() => handleNavClick(link.id)}
 									className={`text-base font-medium transition-colors w-full py-2 ${
-										currentSection === link.id && currentPage === 'portfolio'
-											? 'text-[var(--color-aurora-primary)]'
-											: 'text-[oklch(95%_0_0_/_0.7)] hover:text-white'
+										currentSection === link.id && currentPage === "portfolio"
+											? "text-[var(--color-aurora-primary)]"
+											: "text-[oklch(95%_0_0_/_0.7)] hover:text-white"
 									}`}
 								>
 									{link.label}
@@ -198,21 +157,16 @@ export const SiteHeader = memo(
 							))}
 							<button
 								key="blog-mobile"
-								onClick={() => handleNavClick('blog')}
+								onClick={() => handleNavClick("blog")}
 								className={`text-base font-medium transition-colors w-full py-2 ${
 									isBlogView
-										? 'text-[var(--color-aurora-primary)]'
-										: 'text-[oklch(95%_0_0_/_0.7)] hover:text-white'
+										? "text-[var(--color-aurora-primary)]"
+										: "text-[oklch(95%_0_0_/_0.7)] hover:text-white"
 								}`}
 							>
 								Blog
 							</button>
-							<AuroraButton
-								className="w-full py-3"
-								onClick={() => {
-									/* TODO: Implement resume link */
-								}}
-							>
+							<AuroraButton className="w-full py-3" onClick={() => {}}>
 								RESUME
 							</AuroraButton>
 						</nav>

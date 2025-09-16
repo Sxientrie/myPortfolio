@@ -1,42 +1,18 @@
-/**
- * @file: src/entities/project/ui/ProjectCard.tsx
- *
- * @description: A card component used to display a single project in a portfolio grid.
- *
- * @module: Shared.UI
- *
- * @overview:
- * This is the `ProjectCard`. It's a self-contained unit of professional pride, designed to showcase
- * a single project in all its glory. It dutifully displays an image, a title, a description, and a
- * list of technologies used, because if you don't list the tech stack, did the project even
- * happen? It's a purely presentational component, a blank canvas that gets all its personality
- * from the `project` data object that's passed in. It now uses the reusable `Card` component to achieve its neon-glass styling.
- *
- * @dependencies:
- * ➥ react
- * ➥ ../../../shared/ui/Card.tsx
- * ➥ ../../../shared/ui/ImageWithFallback.tsx
- *
- * @outputs:
- * ➥ ProjectCard (component)
- */
-import type React from 'react';
-import { memo } from 'react';
-import { Card } from '../../../shared/ui/Card.tsx';
-import { ImageWithFallback } from '../../../shared/ui/ImageWithFallback.tsx';
-import type { Project } from '../../../shared/types/project.ts';
-
+import type React from "react";
+import { memo } from "react";
+import { Card } from "../../../shared/ui/Card.tsx";
+import { ImageWithFallback } from "../../../shared/ui/ImageWithFallback.tsx";
+import type { Project } from "../../../shared/types/project.ts";
 interface ProjectCardProps {
 	project: Project;
 }
-
 export const ProjectCard = memo(
 	({ project }: ProjectCardProps): React.ReactElement => {
 		return (
 			<Card as="article" className="h-full">
 				<div className="bg-[oklch(3%_0.01_265)] rounded-lg aspect-video mb-6 overflow-hidden flex items-center justify-center text-gray-500 flex-shrink-0">
 					<ImageWithFallback
-						src={project.imagePlaceholder.replace('.webp', '.png')}
+						src={project.imagePlaceholder.replace(".webp", ".png")}
 						alt={`Placeholder image for the project: ${project.title}`}
 						loading="lazy"
 						className="w-full h-full object-cover"
@@ -44,17 +20,11 @@ export const ProjectCard = memo(
 					>
 						<source
 							media="(min-width: 768px)"
-							srcSet={project.imagePlaceholder.replace(
-								'.webp',
-								'-large.webp',
-							)}
+							srcSet={project.imagePlaceholder.replace(".webp", "-large.webp")}
 							type="image/webp"
 						/>
 						<source
-							srcSet={project.imagePlaceholder.replace(
-								'.webp',
-								'-small.webp',
-							)}
+							srcSet={project.imagePlaceholder.replace(".webp", "-small.webp")}
 							type="image/webp"
 						/>
 					</ImageWithFallback>
@@ -78,8 +48,8 @@ export const ProjectCard = memo(
 						<div className="flex mt-auto gap-6">
 							<a
 								href={project.demoUrl}
-								target={project.demoUrl === '#' ? '_self' : '_blank'}
-								rel={project.demoUrl === '#' ? '' : 'noopener noreferrer'}
+								target={project.demoUrl === "#" ? "_self" : "_blank"}
+								rel={project.demoUrl === "#" ? "" : "noopener noreferrer"}
 								className="text-sm flex items-center gap-1.5 transition-colors text-white hover:text-[var(--color-aurora-primary)]"
 							>
 								<svg
