@@ -1,32 +1,8 @@
-/**
- * @file: src/widgets/BlogPostPage.tsx
- *
- * @description: A page component to display a single, full blog post.
- *
- * @module: Shared.UI
- *
- * @overview:
- * This component is the dedicated view for a single blog post. It takes a post object and
- * lays out its content in a clean, readable format. This includes a prominent title, the main
- * feature image, metadata like the publication date, and the full post content. A crucial UX
- * feature is the "Back to Blog" button, which uses the `navigateTo` function prop to return the
- * user to the main blog listing. It now uses the `react-markdown` library for safe and robust
- * rendering of markdown content.
- *
- * @dependencies:
- * ➥ react
- * ➥ react-markdown
- * ➥ remark-gfm
- *
- * @outputs:
- * ➥ BlogPostPage (component)
- */
-import type React from 'react';
-import { memo } from 'react';
-import ReactMarkdown from 'react-markdown';
-import remarkGfm from 'remark-gfm';
-import { ImageWithFallback } from '../shared/ui/ImageWithFallback.tsx';
-
+import type React from "react";
+import { memo } from "react";
+import ReactMarkdown from "react-markdown";
+import remarkGfm from "remark-gfm";
+import { ImageWithFallback } from "../shared/ui/ImageWithFallback.tsx";
 interface BlogPostPageProps {
 	post: {
 		title: string;
@@ -37,18 +13,17 @@ interface BlogPostPageProps {
 	};
 	navigateTo: (destination: string) => void;
 }
-
 export const BlogPostPage = memo(
 	({ post, navigateTo }: BlogPostPageProps): React.ReactElement => {
 		return (
 			<main
 				id="blog-post-content"
 				className="w-full max-w-4xl mx-auto relative px-4 py-32 animate-fade-in"
-				style={{ animation: 'fade-in 0.5s ease-out forwards' }}
+				style={{ animation: "fade-in 0.5s ease-out forwards" }}
 			>
 				<div className="mb-8">
 					<button
-						onClick={() => navigateTo('blog')}
+						onClick={() => navigateTo("blog")}
 						className="flex items-center gap-2 text-[oklch(95%_0_0_/_0.7)] hover:text-white transition-colors"
 					>
 						<svg
@@ -76,7 +51,7 @@ export const BlogPostPage = memo(
 					</header>
 					<div className="bg-[oklch(3%_0.01_265)] rounded-lg aspect-[16/9] mb-8 overflow-hidden">
 						<ImageWithFallback
-							src={post.imagePlaceholder?.replace('.webp', '.png')}
+							src={post.imagePlaceholder?.replace(".webp", ".png")}
 							alt={`Header image for ${post.title}`}
 							className="w-full h-full object-cover"
 							fallbackText={post.title}

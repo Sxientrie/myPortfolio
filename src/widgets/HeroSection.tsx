@@ -1,61 +1,23 @@
-/**
- * @file: src/widgets/HeroSection.tsx
- *
- * @description: The hero section of the portfolio, featuring a headline, call-to-action buttons,
- *               and a scrolling tech stack carousel.
- *
- * @module: Shared.UI
- *
- * @overview:
- * This is the `HeroSection`, the grand opening statement of the portfolio. It's the first thing a
- * user sees, so it's designed to make an impact. It displays a bold headline and a brief bio,
- * followed by two primary calls-to-action: one to open the interactive chat ("Ask Me Anything") and
- * another to scroll down to the contact form ("Get In Touch").
- *
- * Architecturally, it's a "smart" component that needs to interact with other parts of the
- * application. It uses the `registerRef` prop to announce its presence to the `IntersectionObserver`
- * so the main navigation can track it. It also taps into the `ChatContext` to get the `openChat`
- * function, allowing it to trigger the chat panel without being directly coupled to it. The "Get In
- * Touch" button uses the `sectionRefs` prop to smoothly scroll the user to the contact section,
- * demonstrating a need to be aware of the page's overall structure. It also composes the
- * `TechCarousel` component at the bottom, adding a dynamic visual element to the page fold.
- *
- * @dependencies:
- * ➥ react
- * ➥ ../features/chat/ChatContext.tsx
- * ➥ ../shared/lib/constants/sections.ts
- * ➥ ../shared/ui/AuroraButton.tsx
- * ➥ ./TechCarousel.tsx
- *
- * @outputs:
- * ➥ HeroSection (component)
- */
-import type React from 'react';
-import { memo, useContext } from 'react';
-
-import { ChatContext } from '../features/chat/ChatContext.tsx';
-import { SECTIONS } from '../shared/lib/constants/sections.ts';
-import { AuroraButton } from '../shared/ui/AuroraButton.tsx';
-import { ImageWithFallback } from '../shared/ui/ImageWithFallback.tsx';
-import { TechCarousel } from './TechCarousel.tsx';
-
+import type React from "react";
+import { memo, useContext } from "react";
+import { ChatContext } from "../features/chat/ChatContext.tsx";
+import { SECTIONS } from "../shared/lib/constants/sections.ts";
+import { AuroraButton } from "../shared/ui/AuroraButton.tsx";
+import { ImageWithFallback } from "../shared/ui/ImageWithFallback.tsx";
+import { TechCarousel } from "./TechCarousel.tsx";
 interface HeroSectionProps {
 	registerRef: (name: string, el: HTMLElement | null) => void;
 	sectionRefs: React.MutableRefObject<{ [key: string]: HTMLElement | null }>;
 }
-
 export const HeroSection = memo(
 	({ registerRef, sectionRefs }: HeroSectionProps): React.ReactElement => {
 		const chatContext = useContext(ChatContext);
-
 		const handleScrollToContact = (): void => {
-			// Find the contact section by its ID and scroll to it.
-			const contactSection = sectionRefs.current['contact'];
+			const contactSection = sectionRefs.current["contact"];
 			if (contactSection) {
-				contactSection.scrollIntoView({ behavior: 'smooth' });
+				contactSection.scrollIntoView({ behavior: "smooth" });
 			}
 		};
-
 		return (
 			<section
 				id={SECTIONS.HERO}
@@ -72,10 +34,9 @@ export const HeroSection = memo(
 						</p>
 						<p className="max-w-xl mx-auto md:mx-0 text-[oklch(95%_0_0_/_0.7)] text-base leading-relaxed font-light mb-8">
 							Some careers are built on best practices. Mine was built on
-							finding a steady pulse in the middle of a storm. From kitchens
-							to code, the job has always been the same: listen past the
-							panic, find the real problem, and build something that genuinely
-							helps.
+							finding a steady pulse in the middle of a storm. From kitchens to
+							code, the job has always been the same: listen past the panic,
+							find the real problem, and build something that genuinely helps.
 						</p>
 						<div className="flex flex-col sm:flex-row gap-4 justify-center md:justify-start">
 							<button

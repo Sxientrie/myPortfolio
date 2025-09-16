@@ -1,78 +1,31 @@
-/**
- * @file: src/app/App.tsx
- *
- * @description: The root component that assembles the entire user interface.
- *
- * @module: Shared.Core
- *
- * @overview:
- * This is the grand puppet master, the `App` component. It sits at the top of the component
- * hierarchy and orchestrates the entire visual symphony of the application. Its job is to compose
- * the page by stacking all the major widgets (`SiteHeader`, `HeroSection`, `Footer`, etc.) in the
- * correct order. It's also responsible for initializing the `ChatController`, which provides the
- * chat functionality to its children. Furthermore, it wrangles a few top-level hooks, like
- * `useIntersectionObserver` to track which section is currently in view (and feed that to the
- * `SiteHeader`), and `useFooterVisibility` to decide when the footer should make its grand
- * entrance. It now also manages the state for page navigation, switching between the main portfolio
- * view and the new blog page.
- *
- * @dependencies:
- * ➥ react
- * ➥ ../features/chat/ui/ChatController.tsx
- * ➥ ../shared/lib/hooks/useFooterVisibility.tsx
- * ➥ ../shared/lib/hooks/useIntersectionObserver.tsx
- * ➥ ../shared/ui/GlobalStyles.tsx
- * ➥ ../widgets/CtaSection.tsx
- * ➥ ../widgets/Footer.tsx
- * ➥ ../widgets/HeroSection.tsx
- * ➥ ../widgets/SiteHeader.tsx
- * ➥ ../widgets/StackingSections.tsx
- * ➥ ../widgets/TestimonialsSection.tsx
- * ➥ ../widgets/BlogPage.tsx
- *
- * @outputs:
- * ➥ App (function)
- */
-
-/**
- * FIXME[COMPILATION-001]: The original `import type React from 'react'` did not bring
- * the React object into scope for JSX transpilation, causing a compilation error.
- * This was corrected to a standard import.
- */
-import React, { useEffect, useState } from 'react';
-
-import { ChatController } from '../features/chat/ui/ChatController.tsx';
-import { SECTIONS } from '../shared/lib/constants/sections.ts';
-import { getBlogPosts } from '../shared/lib/data/blog.ts';
-import { useFooterVisibility } from '../shared/lib/hooks/useFooterVisibility.tsx';
-import { useIntersectionObserver } from '../shared/lib/hooks/useIntersectionObserver.tsx';
-import { AnimatedLogo } from '../shared/ui/AnimatedLogo.tsx';
-import { GlobalStyles } from '../shared/ui/GlobalStyles.tsx';
-import { BlogPage } from '../widgets/BlogPage.tsx';
-import { BlogPostPage } from '../widgets/BlogPostPage.tsx';
-import { CtaSection } from '../widgets/CtaSection.tsx';
-import { Footer } from '../widgets/Footer.tsx';
-import { HeroSection } from '../widgets/HeroSection.tsx';
-import { SiteHeader } from '../widgets/SiteHeader.tsx';
-import { StackingSections } from '../widgets/StackingSections.tsx';
-import { TestimonialsSection } from '../widgets/TestimonialsSection.tsx';
-
+import React, { useEffect, useState } from "react";
+import { ChatController } from "../features/chat/ui/ChatController.tsx";
+import { SECTIONS } from "../shared/lib/constants/sections.ts";
+import { getBlogPosts } from "../shared/lib/data/blog.ts";
+import { useFooterVisibility } from "../shared/lib/hooks/useFooterVisibility.tsx";
+import { useIntersectionObserver } from "../shared/lib/hooks/useIntersectionObserver.tsx";
+import { AnimatedLogo } from "../shared/ui/AnimatedLogo.tsx";
+import { GlobalStyles } from "../shared/ui/GlobalStyles.tsx";
+import { BlogPage } from "../widgets/BlogPage.tsx";
+import { BlogPostPage } from "../widgets/BlogPostPage.tsx";
+import { CtaSection } from "../widgets/CtaSection.tsx";
+import { Footer } from "../widgets/Footer.tsx";
+import { HeroSection } from "../widgets/HeroSection.tsx";
+import { SiteHeader } from "../widgets/SiteHeader.tsx";
+import { StackingSections } from "../widgets/StackingSections.tsx";
+import { TestimonialsSection } from "../widgets/TestimonialsSection.tsx";
 export function App(): React.ReactElement {
-	const [activeSection, setActiveSection] = useState<string>('');
+	const [activeSection, setActiveSection] = useState<string>("");
 	const { sectionRefs, registerRef } =
 		useIntersectionObserver(setActiveSection);
 	const isFooterVisible = useFooterVisibility();
-
 	const [currentPage, setCurrentPage] = useState<
-		'portfolio' | 'blog' | 'blogPost'
-	>('portfolio');
+		"portfolio" | "blog" | "blogPost"
+	>("portfolio");
 	const [currentPostSlug, setCurrentPostSlug] = useState<string | null>(null);
 	const [navigationTarget, setNavigationTarget] = useState<string | null>(null);
-	// FIX: Initialize blogPosts state with `any[]` to prevent TypeScript from inferring `never[]`
-	// from the initial empty array, which caused a downstream compilation error.
 	const [blogPosts, setBlogPosts] = useState<any[]>([]);
 	const [isLoadingPosts, setIsLoadingPosts] = useState(true);
-
 	useEffect(() => {
 		const fetchPosts = async () => {
 			try {
@@ -86,70 +39,63 @@ export function App(): React.ReactElement {
 		};
 		fetchPosts();
 	}, []);
-
 	const handleNavigate = (destination: string): void => {
-		const portfolioSections = [
-			...Object.values(SECTIONS),
-			'contact', // CtaSection ID
-		];
+		const portfolioSections = [...Object.values(SECTIONS), "contact"];
 		const isSection = portfolioSections.includes(destination);
-
 		if (isSection) {
-			if (currentPage !== 'portfolio') {
-				setCurrentPage('portfolio');
-				setNavigationTarget(destination); // Defer scrolling until after re-render
+			if (currentPage !== "portfolio") {
+				setCurrentPage("portfolio");
+				setNavigationTarget(destination);
 			} else {
-				// Already on portfolio page, just scroll
-				sectionRefs.current[destination]?.scrollIntoView({ behavior: 'smooth' });
+				sectionRefs.current[destination]?.scrollIntoView({
+					behavior: "smooth",
+				});
 			}
-		} else if (destination === 'blog') {
-			if (currentPage !== 'blog') {
-				setCurrentPage('blog');
-				setCurrentPostSlug(null); // Clear any selected post
-				window.scrollTo({ top: 0, behavior: 'smooth' });
-			}
-		} else if (destination === 'portfolio') {
-			// General portfolio link from blog page
-			if (currentPage !== 'portfolio') {
-				setCurrentPage('portfolio');
+		} else if (destination === "blog") {
+			if (currentPage !== "blog") {
+				setCurrentPage("blog");
 				setCurrentPostSlug(null);
-				window.scrollTo({ top: 0, behavior: 'smooth' });
+				window.scrollTo({ top: 0, behavior: "smooth" });
+			}
+		} else if (destination === "portfolio") {
+			if (currentPage !== "portfolio") {
+				setCurrentPage("portfolio");
+				setCurrentPostSlug(null);
+				window.scrollTo({ top: 0, behavior: "smooth" });
 			}
 		} else {
-			// Assumes any other destination is a blog post slug
 			const postExists = blogPosts.some((post) => post.slug === destination);
 			if (postExists) {
-				setCurrentPage('blogPost');
+				setCurrentPage("blogPost");
 				setCurrentPostSlug(destination);
-				window.scrollTo({ top: 0, behavior: 'smooth' });
+				window.scrollTo({ top: 0, behavior: "smooth" });
 			}
 		}
 	};
-
 	useEffect(() => {
-		// This effect handles scrolling after the page has switched back to 'portfolio'
-		if (currentPage === 'portfolio' && navigationTarget) {
+		if (currentPage === "portfolio" && navigationTarget) {
 			const section = sectionRefs.current[navigationTarget];
 			if (section) {
-				// A timeout ensures the DOM has updated before we try to scroll
 				setTimeout(() => {
-					section.scrollIntoView({ behavior: 'smooth' });
+					section.scrollIntoView({ behavior: "smooth" });
 				}, 100);
 			}
-			setNavigationTarget(null); // Clear the target after scrolling
+			setNavigationTarget(null);
 		}
 	}, [currentPage, navigationTarget, sectionRefs]);
-
 	const renderPage = () => {
 		switch (currentPage) {
-			case 'portfolio':
+			case "portfolio":
 				return (
 					<>
 						<main
 							id="main-content"
 							className="w-full max-w-6xl mx-auto relative px-4"
 						>
-							<HeroSection registerRef={registerRef} sectionRefs={sectionRefs} />
+							<HeroSection
+								registerRef={registerRef}
+								sectionRefs={sectionRefs}
+							/>
 							<div
 								id="content-bed"
 								className="relative z-[3] bg-[oklch(5%_0_0_/_0.85)] backdrop-blur-md rounded-[16px] overflow-hidden"
@@ -162,7 +108,7 @@ export function App(): React.ReactElement {
 						<Footer isVisible={isFooterVisible} />
 					</>
 				);
-			case 'blog':
+			case "blog":
 				return (
 					<BlogPage
 						navigateTo={handleNavigate}
@@ -170,9 +116,8 @@ export function App(): React.ReactElement {
 						isLoading={isLoadingPosts}
 					/>
 				);
-			case 'blogPost': {
+			case "blogPost": {
 				const post = blogPosts.find((p) => p.slug === currentPostSlug);
-				// Fallback to blog list if post not found
 				return post ? (
 					<BlogPostPage post={post} navigateTo={handleNavigate} />
 				) : (
@@ -187,7 +132,6 @@ export function App(): React.ReactElement {
 				return null;
 		}
 	};
-
 	return (
 		<ChatController>
 			<div className="bg-[oklch(3%_0.01_265)] text-[oklch(95%_0_0)] w-full min-h-screen relative overflow-x-hidden font-sans">
