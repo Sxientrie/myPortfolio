@@ -1,4 +1,4 @@
-import { useState, useEffect, useRef } from "react";
+import { useState, useEffect, useCallback } from "react";
 
 interface IntersectionObserverOptions {
   root?: Element | null;
@@ -6,18 +6,22 @@ interface IntersectionObserverOptions {
   threshold?: number | number[];
 }
 
-export const useInView = <T extends Element>(options?: IntersectionObserverOptions): [React.RefObject<T>, boolean] => {
+export const useInView = <T extends Element>(options?: IntersectionObserverOptions): [React.RefCallback<T>, boolean] => {
   const [isIntersecting, setIntersecting] = useState(false);
-  const ref = useRef<T>(null);
+  const [node, setNode] = useState<T | null>(null);
+
+  const ref = useCallback((n: T | null) => {
+    setNode(n);
+  }, []);
 
   useEffect(() => {
+    if (!node) return;
+
     const observer = new IntersectionObserver(
       ([entry]) => {
         if (entry.isIntersecting) {
           setIntersecting(true);
-          if (ref.current) {
-            observer.unobserve(ref.current);
-          }
+          observer.unobserve(node);
         }
       },
       {
@@ -26,16 +30,12 @@ export const useInView = <T extends Element>(options?: IntersectionObserverOptio
       }
     );
 
-    if (ref.current) {
-      observer.observe(ref.current);
-    }
+    observer.observe(node);
 
     return () => {
-      if (ref.current) {
-        observer.unobserve(ref.current);
-      }
+      observer.unobserve(node);
     };
-  }, [options]);
+  }, [node, options]);
 
   return [ref, isIntersecting];
 };

@@ -15,7 +15,7 @@ const Placeholder = ({ fallbackText }: { fallbackText?: string }) => (
 				xmlns="http://www.w3.org/2000/svg"
 				width="24"
 				height="24"
-				viewBox="0 0 24"
+				viewBox="0 0 24 24"
 				fill="none"
 				stroke="currentColor"
 				strokeWidth="1"
@@ -58,7 +58,7 @@ export const ImageWithFallback = memo(
         const effectiveChildren = isIntersecting ? children : undefined;
 
 		return (
-			<div ref={ref} className={`relative ${className}`}>
+			<div ref={ref} className="relative w-full h-full">
 				{/* Image container for opacity transition */}
 				{!showError && (
 					<div
