@@ -32,7 +32,6 @@ export const BlogPostCard = memo(
 					<ImageWithFallback
 						src={post.imagePlaceholder?.replace(".webp", ".png")}
 						alt={`Placeholder image for the blog post: ${post.title}`}
-						loading="lazy"
 						className="w-full h-full object-cover transition-transform duration-300 group-hover:scale-105"
 						fallbackText={post.title}
 					/>

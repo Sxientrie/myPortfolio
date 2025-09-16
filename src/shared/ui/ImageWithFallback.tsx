@@ -1,18 +1,21 @@
 import type React from "react";
-import { memo, useState } from "react";
+import { memo, useState, useEffect, useMemo } from "react";
+import { useInView } from "../lib/hooks/useInView";
+
 interface ImageWithFallbackProps
 	extends Omit<React.ImgHTMLAttributes<HTMLImageElement>, "children"> {
 	fallbackText?: string;
 	children?: React.ReactNode;
 }
+
 const Placeholder = ({ fallbackText }: { fallbackText?: string }) => (
-	<div className="flex w-full h-full items-center justify-center bg-[oklch(6%_0.02_265)] text-[oklch(95%_0_0_/_0.3)]">
+	<div className="absolute inset-0 flex w-full h-full items-center justify-center bg-[oklch(6%_0.02_265)] text-[oklch(95%_0_0_/_0.3)]">
 		<div className="flex flex-col items-center gap-2">
 			<svg
 				xmlns="http://www.w3.org/2000/svg"
 				width="24"
 				height="24"
-				viewBox="0 0 24 24"
+				viewBox="0 0 24"
 				fill="none"
 				stroke="currentColor"
 				strokeWidth="1"
@@ -28,6 +31,7 @@ const Placeholder = ({ fallbackText }: { fallbackText?: string }) => (
 		</div>
 	</div>
 );
+
 export const ImageWithFallback = memo(
 	({
 		src,
@@ -37,32 +41,63 @@ export const ImageWithFallback = memo(
 		children,
 		...props
 	}: ImageWithFallbackProps): React.ReactElement => {
+		const inViewOptions = useMemo(() => ({ rootMargin: "200px" }), []);
+		const [ref, isIntersecting] = useInView<HTMLDivElement>(inViewOptions);
 		const [hasError, setHasError] = useState(!src);
-		if (hasError) {
-			return <Placeholder fallbackText={fallbackText} />;
-		}
-		if (children) {
-			return (
-				<picture>
-					{children}
-					<img
-						src={src}
-						alt={alt}
-						onError={() => setHasError(true)}
-						className={className}
-						{...props}
-					/>
-				</picture>
-			);
-		}
+		const [isLoaded, setLoaded] = useState(false);
+
+		useEffect(() => {
+			if (src) {
+				setHasError(false);
+			}
+			setLoaded(false);
+		}, [src]);
+
+		const showError = hasError || (!src && isIntersecting);
+		const effectiveSrc = isIntersecting ? src : undefined;
+        const effectiveChildren = isIntersecting ? children : undefined;
+
 		return (
-			<img
-				src={src}
-				alt={alt}
-				onError={() => setHasError(true)}
-				className={className}
-				{...props}
-			/>
+			<div ref={ref} className={`relative ${className}`}>
+				{/* Image container for opacity transition */}
+				{!showError && (
+					<div
+						className="transition-opacity duration-300 w-full h-full"
+						style={{ opacity: isLoaded ? 1 : 0 }}
+					>
+						{children ? (
+							<picture>
+								{effectiveChildren}
+								<img
+									src={effectiveSrc}
+									alt={alt}
+									className={className}
+									onLoad={() => setLoaded(true)}
+									onError={() => setHasError(true)}
+									{...props}
+								/>
+							</picture>
+						) : (
+							<img
+								src={effectiveSrc}
+								alt={alt}
+								className={className}
+								onLoad={() => setLoaded(true)}
+								onError={() => setHasError(true)}
+								{...props}
+							/>
+						)}
+					</div>
+				)}
+
+				{/* Placeholder, fades out */}
+				<div
+					className="transition-opacity duration-300"
+					style={{ opacity: !isLoaded || showError ? 1 : 0 }}
+				>
+					<Placeholder fallbackText={fallbackText} />
+				</div>
+			</div>
 		);
 	},
 );

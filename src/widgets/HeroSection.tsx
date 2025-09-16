@@ -63,7 +63,6 @@ export const HeroSection = memo(
 								src="assets/images/hero-image.png"
 								alt="An illustration of a career journey from chef to IT to developer."
 								className="w-full h-full object-cover"
-								loading="lazy"
 								fallbackText="Hero Image"
 							>
 								<source

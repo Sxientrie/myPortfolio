@@ -65,7 +65,6 @@ export const StackingSections = memo(
 									src="assets/images/aboutme-image.png"
 									alt="An illustration of a career journey from chef to IT to developer."
 									className="w-full h-full object-cover"
-									loading="lazy"
 									fallbackText="About Me"
 								>
 									<source
