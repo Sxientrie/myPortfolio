@@ -14,7 +14,6 @@ export const ProjectCard = memo(
 					<ImageWithFallback
 						src={project.imagePlaceholder.replace(".webp", ".png")}
 						alt={`Placeholder image for the project: ${project.title}`}
-						loading="lazy"
 						className="w-full h-full object-cover"
 						fallbackText={project.title}
 					>
