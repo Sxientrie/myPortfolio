@@ -1,5 +1,4 @@
 import { useCallback, useEffect, useRef } from "react";
-
 type SetActiveSection = (sectionId: string) => void;
 export const useIntersectionObserver = (setActiveSection: SetActiveSection) => {
 	const sectionRefs = useRef<{ [key: string]: HTMLElement | null }>({});

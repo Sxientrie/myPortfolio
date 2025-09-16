@@ -2,7 +2,6 @@ import type React from "react";
 import { memo } from "react";
 import { Card } from "../../shared/ui/Card.tsx";
 import { ImageWithFallback } from "../../shared/ui/ImageWithFallback.tsx";
-
 interface BlogPostCardProps {
 	post: {
 		imagePlaceholder: string;
@@ -33,6 +32,7 @@ export const BlogPostCard = memo(
 					<ImageWithFallback
 						src={post.imagePlaceholder?.replace(".webp", ".png")}
 						alt={`Placeholder image for the blog post: ${post.title}`}
+						loading="lazy"
 						className="w-full h-full object-cover transition-transform duration-300 group-hover:scale-105"
 						fallbackText={post.title}
 					/>

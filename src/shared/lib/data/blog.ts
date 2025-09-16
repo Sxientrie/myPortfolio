@@ -1,11 +1,9 @@
-import type { BlogPost } from "../types/index.ts";
 import { parseMarkdown } from "../utils/parseMarkdown.ts";
-
 const postFilenames = [
 	"sxentrie-the-ai-code-navigator.md",
 	"the-no-code-tech-stack.md",
 ];
-export const getBlogPosts = async (): Promise<BlogPost[]> => {
+export const getBlogPosts = async () => {
 	const posts = await Promise.all(
 		postFilenames.map(async (filename) => {
 			try {
@@ -27,6 +25,10 @@ export const getBlogPosts = async (): Promise<BlogPost[]> => {
 		}),
 	);
 	return posts
-		.filter((post): post is BlogPost => post !== null)
-		.sort((a, b) => new Date(b.date).getTime() - new Date(a.date).getTime());
+		.filter(Boolean)
+		.sort(
+			(a, b) =>
+				new Date((b as any).date).getTime() -
+				new Date((a as any).date).getTime(),
+		);
 };

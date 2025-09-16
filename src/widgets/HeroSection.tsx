@@ -5,7 +5,6 @@ import { SECTIONS } from "../shared/lib/constants/sections.ts";
 import { AuroraButton } from "../shared/ui/AuroraButton.tsx";
 import { ImageWithFallback } from "../shared/ui/ImageWithFallback.tsx";
 import { TechCarousel } from "./TechCarousel.tsx";
-
 interface HeroSectionProps {
 	registerRef: (name: string, el: HTMLElement | null) => void;
 	sectionRefs: React.MutableRefObject<{ [key: string]: HTMLElement | null }>;
@@ -14,7 +13,7 @@ export const HeroSection = memo(
 	({ registerRef, sectionRefs }: HeroSectionProps): React.ReactElement => {
 		const chatContext = useContext(ChatContext);
 		const handleScrollToContact = (): void => {
-			const contactSection = sectionRefs.current.contact;
+			const contactSection = sectionRefs.current["contact"];
 			if (contactSection) {
 				contactSection.scrollIntoView({ behavior: "smooth" });
 			}
@@ -41,7 +40,6 @@ export const HeroSection = memo(
 						</p>
 						<div className="flex flex-col sm:flex-row gap-4 justify-center md:justify-start">
 							<button
-								type="button"
 								onClick={handleScrollToContact}
 								className="bg-transparent border border-[oklch(100%_0_0_/_0.2)] rounded-lg px-5 py-3 text-sm font-medium tracking-widest uppercase text-white transition-all duration-300 hover:bg-[oklch(100%_0_0_/_0.1)]"
 							>
@@ -65,6 +63,7 @@ export const HeroSection = memo(
 								src="assets/images/hero-image.png"
 								alt="An illustration of a career journey from chef to IT to developer."
 								className="w-full h-full object-cover"
+								loading="lazy"
 								fallbackText="Hero Image"
 							>
 								<source

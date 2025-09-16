@@ -1,5 +1,4 @@
-import type { icons } from "./icons.tsx";
-
+import { icons } from "./icons.ts";
 type ExperienceItem = {
 	date: string;
 	title: string;

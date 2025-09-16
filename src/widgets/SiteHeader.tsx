@@ -3,7 +3,6 @@ import { memo, useEffect, useState } from "react";
 import { SECTIONS } from "../shared/lib/constants/sections.ts";
 import { AnimatedLogo } from "../shared/ui/AnimatedLogo.tsx";
 import { AuroraButton } from "../shared/ui/AuroraButton.tsx";
-
 interface SiteHeaderProps {
 	activeSection: string;
 	sectionRefs: React.MutableRefObject<{ [key: string]: HTMLElement | null }>;
@@ -53,8 +52,8 @@ export const SiteHeader = memo(
 							: "bg-transparent border border-transparent"
 					}`}
 				>
-					<button
-						type="button"
+					<a
+						href="#hero"
 						onClick={(e) => {
 							e.preventDefault();
 							handleNavClick("hero");
@@ -64,12 +63,11 @@ export const SiteHeader = memo(
 					>
 						<AnimatedLogo />
 						<span className="font-semibold text-lg">myPortfolio</span>
-					</button>
+					</a>
 					<nav className="hidden md:flex items-center gap-4">
 						<div className="flex items-center gap-1 p-1 rounded-lg bg-[oklch(100%_0_0_/_0.05)]">
 							{mainNavLinks.map((link) => (
 								<button
-									type="button"
 									key={link.id}
 									onClick={() => handleNavClick(link.id)}
 									className={`px-4 py-2 text-sm font-medium transition-colors rounded-md ${
@@ -82,7 +80,6 @@ export const SiteHeader = memo(
 								</button>
 							))}
 							<button
-								type="button"
 								key="blog"
 								onClick={() => handleNavClick("blog")}
 								className={`px-4 py-2 text-sm font-medium transition-colors rounded-md ${
@@ -95,7 +92,6 @@ export const SiteHeader = memo(
 							</button>
 						</div>
 						<AuroraButton
-							type="button"
 							className="py-2.5 px-3 text-white hover:text-white transition-colors duration-300 group"
 							onClick={() => {}}
 						>
@@ -106,7 +102,6 @@ export const SiteHeader = memo(
 					</nav>
 					<div className="md:hidden">
 						<button
-							type="button"
 							onClick={() => setIsMenuOpen(!isMenuOpen)}
 							className="p-2"
 							aria-label="Toggle menu"
@@ -122,7 +117,6 @@ export const SiteHeader = memo(
 								strokeLinecap="round"
 								strokeLinejoin="round"
 							>
-								<title>Menu</title>
 								<path
 									d="M3 6h18"
 									className={`transform transition duration-300 ease-in-out origin-center ${
@@ -150,7 +144,6 @@ export const SiteHeader = memo(
 						<nav className="flex flex-col items-center gap-4">
 							{mainNavLinks.map((link) => (
 								<button
-									type="button"
 									key={link.id}
 									onClick={() => handleNavClick(link.id)}
 									className={`text-base font-medium transition-colors w-full py-2 ${
@@ -163,7 +156,6 @@ export const SiteHeader = memo(
 								</button>
 							))}
 							<button
-								type="button"
 								key="blog-mobile"
 								onClick={() => handleNavClick("blog")}
 								className={`text-base font-medium transition-colors w-full py-2 ${
@@ -174,11 +166,7 @@ export const SiteHeader = memo(
 							>
 								Blog
 							</button>
-							<AuroraButton
-								type="button"
-								className="w-full py-3"
-								onClick={() => {}}
-							>
+							<AuroraButton className="w-full py-3" onClick={() => {}}>
 								RESUME
 							</AuroraButton>
 						</nav>

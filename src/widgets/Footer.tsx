@@ -1,6 +1,5 @@
 import type React from "react";
 import { memo } from "react";
-
 interface FooterProps {
 	isVisible: boolean;
 }

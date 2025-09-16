@@ -6,18 +6,13 @@ export const parseMarkdown = (rawContent: string) => {
 	}
 	const frontmatterString = match[1];
 	const content = rawContent.slice(match[0].length).trim();
-	const frontmatter: { [key: string]: unknown } = {};
+	const frontmatter: { [key: string]: any } = {};
 	frontmatterString.split("\n").forEach((line) => {
 		const colonIndex = line.indexOf(":");
 		if (colonIndex !== -1) {
 			const key = line.slice(0, colonIndex).trim();
-			let value: unknown = line.slice(colonIndex + 1).trim();
-			if (
-				key === "tags" &&
-				typeof value === "string" &&
-				value.startsWith("[") &&
-				value.endsWith("]")
-			) {
+			let value: any = line.slice(colonIndex + 1).trim();
+			if (key === "tags" && value.startsWith("[") && value.endsWith("]")) {
 				value = value
 					.slice(1, -1)
 					.split(",")

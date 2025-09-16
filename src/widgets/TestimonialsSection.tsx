@@ -3,7 +3,6 @@ import { memo, useCallback, useEffect, useState } from "react";
 import { TestimonialCard } from "../entities/testimonial/ui/TestimonialCard.tsx";
 import { SECTIONS } from "../shared/lib/constants/sections.ts";
 import { testimonialsData } from "../shared/lib/data/testimonials.ts";
-
 interface TestimonialsSectionProps {
 	registerRef: (name: string, el: HTMLElement | null) => void;
 }
@@ -40,16 +39,12 @@ export const TestimonialsSection = memo(
 						className="flex transition-transform duration-500 ease-in-out"
 						style={{ transform: `translateX(-${currentIndex * 100}%)` }}
 					>
-						{testimonialsData.map((testimonial) => (
-							<TestimonialCard
-								key={testimonial.author.name}
-								testimonial={testimonial}
-							/>
+						{testimonialsData.map((testimonial, index) => (
+							<TestimonialCard key={index} testimonial={testimonial} />
 						))}
 					</div>
 					<div className="absolute top-1/2 -translate-y-1/2 flex justify-between w-full px-4">
 						<button
-							type="button"
 							onClick={() => goToSlide(currentIndex - 1)}
 							className="bg-[oklch(100%_0_0_/_0.05)] border border-[oklch(100%_0_0_/_0.1)] text-white w-10 h-10 rounded-full flex items-center justify-center transition-colors hover:bg-[oklch(100%_0_0_/_0.1)]"
 						>
@@ -63,12 +58,10 @@ export const TestimonialsSection = memo(
 								strokeLinecap="round"
 								strokeLinejoin="round"
 							>
-								<title>Previous</title>
 								<path d="M15 18l-6-6 6-6" />
 							</svg>
 						</button>
 						<button
-							type="button"
 							onClick={() => goToSlide(currentIndex + 1)}
 							className="bg-[oklch(100%_0_0_/_0.05)] border border-[oklch(100%_0_0_/_0.1)] text-white w-10 h-10 rounded-full flex items-center justify-center transition-colors hover:bg-[oklch(100%_0_0_/_0.1)]"
 						>
@@ -82,16 +75,14 @@ export const TestimonialsSection = memo(
 								strokeLinecap="round"
 								strokeLinejoin="round"
 							>
-								<title>Next</title>
 								<path d="M9 18l6-6-6-6" />
 							</svg>
 						</button>
 					</div>
 					<div className="flex justify-center gap-3 mt-8">
-						{testimonialsData.map((testimonial, index) => (
+						{testimonialsData.map((_, index) => (
 							<button
-								type="button"
-								key={testimonial.author.name}
+								key={index}
 								onClick={() => goToSlide(index)}
 								className={`w-3 h-3 rounded-full border border-[oklch(100%_0_0_/_0.1)] transition-colors ${currentIndex === index ? "bg-[var(--color-aurora-primary)]" : "bg-[oklch(100%_0_0_/_0.1)] hover:bg-[oklch(100%_0_0_/_0.2)]"}`}
 							/>

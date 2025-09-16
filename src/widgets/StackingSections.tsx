@@ -7,7 +7,6 @@ import { SECTIONS } from "../shared/lib/constants/sections.ts";
 import { experienceData } from "../shared/lib/data/experience.ts";
 import { projectsData } from "../shared/lib/data/projects.ts";
 import { ImageWithFallback } from "../shared/ui/ImageWithFallback.tsx";
-
 interface StackingSectionsProps {
 	registerRef: (name: string, el: HTMLElement | null) => void;
 }
@@ -20,9 +19,7 @@ const BrushStrokeFilter = memo(() => (
 			pointerEvents: "none",
 		}}
 	>
-		<title>Brush Stroke SVG Filter</title>
 		<defs>
-			{/* biome-ignore lint/correctness/useUniqueElementIds: This ID is static on purpose to be referenced by other components. */}
 			<filter id="brush-stroke">
 				<feTurbulence
 					type="fractalNoise"
@@ -68,6 +65,7 @@ export const StackingSections = memo(
 									src="assets/images/aboutme-image.png"
 									alt="An illustration of a career journey from chef to IT to developer."
 									className="w-full h-full object-cover"
+									loading="lazy"
 									fallbackText="About Me"
 								>
 									<source
@@ -140,7 +138,7 @@ export const StackingSections = memo(
 						<div className="relative space-y-24">
 							{experienceData.map((item, index) => (
 								<TimelineItem
-									key={item.title}
+									key={index}
 									item={item}
 									isLeft={index % 2 === 0}
 								/>
@@ -162,8 +160,8 @@ export const StackingSections = memo(
 						</p>
 					</div>
 					<div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-						{projectsData.map((project) => (
-							<ProjectCard key={project.title} project={project} />
+						{projectsData.map((project, index) => (
+							<ProjectCard key={index} project={project} />
 						))}
 					</div>
 				</section>
