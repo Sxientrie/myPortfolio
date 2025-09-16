@@ -2,7 +2,7 @@
 title: Building This Portfolio: A Deep Dive into the Tech Stack
 date: September 18, 2025
 excerpt: A technical breakdown of how this interactive portfolio was built, from the conversational Gemini API to the subtle UI animations that bring it to life.
-imagePlaceholder: 'src/assets/images/project_conversational_portfolio.webp'
+imagePlaceholder: '/myPortfolio/assets/project_conversational_portfolio.webp'
 tags: [React, Gemini API, Case Study, Tailwind]
 ---
 

@@ -2,7 +2,7 @@
 title: The No-Code Tech Stack - 101
 date: August 15, 2025
 excerpt: A developer's guide to the world of no-code. Learn how to build powerful, custom applications by stacking specialized digital tools like digital Lego bricks.
-imagePlaceholder: 'src/assets/images/blog_no_code.webp'
+imagePlaceholder: '/myPortfolio/assets/blog_no_code.webp'
 tags: [No-Code, Webflow, Startups, Strategy]
 ---
 

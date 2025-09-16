@@ -38,6 +38,9 @@ import { SECTIONS } from '../shared/lib/constants/sections.ts';
 import { AuroraButton } from '../shared/ui/AuroraButton.tsx';
 import { ImageWithFallback } from '../shared/ui/ImageWithFallback.tsx';
 import { TechCarousel } from './TechCarousel.tsx';
+import aboutMeImage from '../assets/images/aboutme-image.png';
+import aboutMeImageLarge from '../assets/images/aboutme-image-large.webp';
+import aboutMeImageSmall from '../assets/images/aboutme-image-small.webp';
 
 interface HeroSectionProps {
 	registerRef: (name: string, el: HTMLElement | null) => void;
@@ -99,7 +102,7 @@ export const HeroSection = memo(
 					<div className="hidden md:flex justify-center items-center p-4">
 						<div className="rounded-2xl max-w-md w-full overflow-hidden">
 							<ImageWithFallback
-								src="src/assets/images/aboutme-image.png"
+								src={aboutMeImage}
 								alt="An illustration of a career journey from chef to IT to developer."
 								className="w-full h-full object-cover"
 								loading="lazy"
@@ -107,11 +110,11 @@ export const HeroSection = memo(
 							>
 								<source
 									media="(min-width: 768px)"
-									srcSet="src/assets/images/aboutme-image-large.webp"
+									srcSet={aboutMeImageLarge}
 									type="image/webp"
 								/>
 								<source
-									srcSet="src/assets/images/aboutme-image-small.webp"
+									srcSet={aboutMeImageSmall}
 									type="image/webp"
 								/>
 							</ImageWithFallback>

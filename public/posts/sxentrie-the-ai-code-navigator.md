@@ -2,7 +2,7 @@
 title: Sxentrie: Taming a Codebase
 date: September 16, 2025
 excerpt: Ever parachute into a massive, unfamiliar codebase on a Monday morning? It's a special kind of dread. Here's the story of why I built Sxentrie, an AI-powered tool to map the jungle for you.
-imagePlaceholder: 'src/assets/images/project_ai_agent.webp'
+imagePlaceholder: '/myPortfolio/assets/project_ai_agent.webp'
 tags: [AI, React, Developer Tools, Gemini API]
 ---
 

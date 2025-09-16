@@ -24,6 +24,7 @@ import { parseMarkdown } from '../utils/parseMarkdown.ts';
 
 // A list of all blog post files. To add a new post, add its filename here.
 const postFilenames = [
+	'building-this-portfolio.md',
 	'sxentrie-the-ai-code-navigator.md',
 	'the-no-code-tech-stack.md',
 ];
@@ -32,7 +33,7 @@ export const getBlogPosts = async () => {
 	const posts = await Promise.all(
 		postFilenames.map(async (filename) => {
 			try {
-				const response = await fetch(`/src/posts/${filename}`);
+				const response = await fetch(`/myPortfolio/posts/${filename}`);
 				if (!response.ok) {
 					throw new Error(`Failed to fetch ${filename}: ${response.statusText}`);
 				}
