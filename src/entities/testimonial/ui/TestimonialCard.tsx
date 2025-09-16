@@ -50,27 +50,11 @@ export const TestimonialCard = memo(
 				<figure className="flex flex-col items-center gap-2">
 					<div className="w-16 h-16 rounded-full overflow-hidden border-2 border-[oklch(100%_0_0_/_0.1)] flex-shrink-0">
 						<ImageWithFallback
-							src={testimonial.author.image.replace('.webp', '.png')}
+							src={testimonial.author.image}
 							alt={`Portrait of ${testimonial.author.name}, who provided a testimonial.`}
 							className="w-full h-full object-cover"
 							fallbackText={testimonial.author.name}
-						>
-							<source
-								media="(min-width: 768px)"
-								srcSet={testimonial.author.image.replace(
-									'.webp',
-									'-large.webp',
-								)}
-								type="image/webp"
-							/>
-							<source
-								srcSet={testimonial.author.image.replace(
-									'.webp',
-									'-small.webp',
-								)}
-								type="image/webp"
-							/>
-						</ImageWithFallback>
+						/>
 					</div>
 
 					<figcaption>
