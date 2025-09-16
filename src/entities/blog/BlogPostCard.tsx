@@ -2,6 +2,7 @@ import type React from "react";
 import { memo } from "react";
 import { Card } from "../../shared/ui/Card.tsx";
 import { ImageWithFallback } from "../../shared/ui/ImageWithFallback.tsx";
+
 interface BlogPostCardProps {
 	post: {
 		imagePlaceholder: string;

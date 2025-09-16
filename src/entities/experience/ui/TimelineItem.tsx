@@ -1,8 +1,9 @@
 import type React from "react";
 import { memo, useRef } from "react";
-import { icons } from "../../../shared/lib/data/icons.ts";
+import { icons } from "../../../shared/lib/data/icons.tsx";
 import { useIconFillAnimation } from "../../../shared/lib/hooks/useIconFillAnimation.ts";
 import { useScrollAnimation } from "../../../shared/lib/hooks/useScrollAnimation.tsx";
+
 interface TimelineItemProps {
 	item: {
 		date: string;
@@ -19,7 +20,7 @@ interface TimelineIconProps {
 const TimelineIcon = memo(({ iconKey }: TimelineIconProps) => {
 	const gradientRef = useRef<SVGLinearGradientElement>(null);
 	useIconFillAnimation(gradientRef);
-	const iconMarkup = icons[iconKey];
+	const IconComponent = icons[iconKey];
 	const gradientId = `icon-grad-${iconKey}`;
 	return (
 		<div className="w-12 h-12 flex items-center justify-center relative">
@@ -27,6 +28,7 @@ const TimelineIcon = memo(({ iconKey }: TimelineIconProps) => {
 				className="w-full h-full overflow-visible absolute"
 				viewBox="0 0 48 48"
 			>
+				<title>{iconKey}</title>
 				<defs>
 					{}
 					<linearGradient
@@ -59,10 +61,9 @@ const TimelineIcon = memo(({ iconKey }: TimelineIconProps) => {
 					strokeWidth="0.5"
 				/>
 			</svg>
-			<div
-				className="absolute w-6 h-6 text-white"
-				dangerouslySetInnerHTML={{ __html: iconMarkup }}
-			/>
+			<div className="absolute w-6 h-6 text-white">
+				<IconComponent />
+			</div>
 		</div>
 	);
 });

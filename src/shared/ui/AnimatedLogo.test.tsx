@@ -1,11 +1,10 @@
-import { render } from '@testing-library/react';
-import { AnimatedLogo } from './AnimatedLogo';
-import type React from 'react';
+import { render } from "@testing-library/react";
+import { AnimatedLogo } from "./AnimatedLogo";
 
-describe('AnimatedLogo', () => {
-  it('renders the logo', () => {
-    const { container } = render(<AnimatedLogo />);
-    const svgElement = container.querySelector('svg');
-    expect(svgElement).toBeInTheDocument();
-  });
+describe("AnimatedLogo", () => {
+	it("renders the logo", () => {
+		const { container } = render(<AnimatedLogo />);
+		const svgElement = container.querySelector("svg");
+		expect(svgElement).toBeInTheDocument();
+	});
 });

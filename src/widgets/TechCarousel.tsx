@@ -28,7 +28,7 @@ export const TechCarousel = memo((): React.ReactElement => {
 				{extendedTechStack.map((tech, index) => (
 					<div
 						className="w-[120px] md:w-[120px] flex flex-col items-center justify-center gap-3 group"
-						key={index}
+						key={`${tech.name}-${index}`}
 						style={{ flexShrink: 0 }}
 					>
 						<div className="w-16 h-16 flex items-center justify-center rounded-xl bg-[oklch(5%_0_0_/_0.75)] backdrop-blur-md border border-[oklch(100%_0_0_/_0.1)] transition-all duration-300 group-hover:bg-[oklch(8%_0_0_/_0.8)] group-hover:border-[oklch(100%_0_0_/_0.3)]">

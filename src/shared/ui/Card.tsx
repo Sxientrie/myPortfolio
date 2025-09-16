@@ -1,5 +1,6 @@
 import type React from "react";
 import { memo } from "react";
+
 type CardProps<C extends React.ElementType> = {
 	as?: C;
 	children: React.ReactNode;

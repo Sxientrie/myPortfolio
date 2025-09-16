@@ -1,8 +1,9 @@
 import type React from "react";
 import { useCallback, useEffect, useMemo, useState } from "react";
+import type { AnimState } from "../../../shared/lib/types/index.ts";
 import { ChatContext } from "../ChatContext.tsx";
 import { ChatPanelContainer } from "./ChatPanel.tsx";
-import type { AnimState } from "../../../shared/lib/types/index.ts";
+
 interface ChatControllerProps {
 	children: React.ReactNode;
 }
@@ -24,7 +25,8 @@ export function ChatController({
 	}, [animationState]);
 	const handleAnimationEnd = useCallback(
 		(event: React.AnimationEvent<HTMLDivElement>) => {
-			const animationName = (event.nativeEvent as any).animationName || "";
+			const animationName =
+				(event.nativeEvent as AnimationEvent).animationName || "";
 			if (animationName.startsWith("open-pill")) {
 				setAnimationState("open");
 			} else if (animationName.startsWith("close-pill")) {

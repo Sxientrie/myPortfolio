@@ -1,6 +1,6 @@
+import { motion, useScroll } from "framer-motion";
 import type React from "react";
 import { memo } from "react";
-import { motion, useScroll } from "framer-motion";
 
 interface AnimatedTimelineLineProps {
 	containerRef: React.RefObject<HTMLElement>;

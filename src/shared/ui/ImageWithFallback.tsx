@@ -1,5 +1,5 @@
 import type React from "react";
-import { memo, useState, useEffect, useMemo } from "react";
+import { memo, useEffect, useMemo, useState } from "react";
 import { useInView } from "../lib/hooks/useInView";
 
 interface ImageWithFallbackProps
@@ -23,6 +23,7 @@ const Placeholder = ({ fallbackText }: { fallbackText?: string }) => (
 				strokeLinejoin="round"
 				className="opacity-50 w-8 h-8"
 			>
+				<title>Image placeholder</title>
 				<rect x="3" y="3" width="18" height="18" rx="2" ry="2"></rect>
 				<circle cx="8.5" cy="8.5" r="1.5"></circle>
 				<polyline points="21 15 16 10 5 21"></polyline>
@@ -55,7 +56,7 @@ export const ImageWithFallback = memo(
 
 		const showError = hasError || (!src && isIntersecting);
 		const effectiveSrc = isIntersecting ? src : undefined;
-        const effectiveChildren = isIntersecting ? children : undefined;
+		const effectiveChildren = isIntersecting ? children : undefined;
 
 		return (
 			<div ref={ref} className="relative w-full h-full">
