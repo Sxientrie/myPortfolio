@@ -4,8 +4,28 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Portfolio - Jayson Jamora</title>
+    <!-- Tailwind Play CDN with Typography plugin -->
+    <script src="https://cdn.tailwindcss.com?plugins=typography"></script>
     <!-- Google Fonts -->
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;700&display=swap" />
+    <!-- Force Font Family -->
+    <style>
+      body, body * {
+        font-family: 'Space Grotesk', sans-serif !important;
+      }
+    </style>
+    <script>
+        // Configure Tailwind CSS
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        sans: ['Space Grotesk', 'sans-serif'],
+                    },
+                },
+            },
+        };
+    </script>
 <script type="importmap">
 {
   "imports": {
@@ -30,8 +50,9 @@
   }
 }
 </script>
+<link rel="stylesheet" href="/index.css">
 </head>
-<body class="bg-red-500 m-0 font-sans">
+<body class="bg-[oklch(3%_0.01_265)] m-0 font-sans">
     <div id="root"></div>
     <!-- Main application script -->
     <script type="module" src="/index.tsx"></script>

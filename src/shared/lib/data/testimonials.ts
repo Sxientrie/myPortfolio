@@ -18,8 +18,6 @@
  * @outputs:
  * ➥ testimonialsData (constant)
  */
-import placeholderAvatar from '../../../assets/images/placeholder-avatar.svg';
-
 export const testimonialsData = [
 	{
 		quote:
@@ -27,7 +25,7 @@ export const testimonialsData = [
 		author: {
 			name: 'Claire Uy',
 			title: 'LocalHire PH',
-			image: placeholderAvatar,
+			image: 'src/assets/images/avatar_claire_uy.webp',
 		},
 	},
 	{
@@ -36,7 +34,7 @@ export const testimonialsData = [
 		author: {
 			name: 'Marcus R.',
 			title: 'DataSync',
-			image: placeholderAvatar,
+			image: 'src/assets/images/avatar_marcus_r.webp',
 		},
 	},
 	{
@@ -45,7 +43,7 @@ export const testimonialsData = [
 		author: {
 			name: 'Gobies',
 			title: 'CodeCrafters Discord',
-			image: placeholderAvatar,
+			image: 'src/assets/images/avatar_gobies.webp',
 		},
 	},
 ];

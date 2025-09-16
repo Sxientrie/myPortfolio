@@ -43,9 +43,6 @@ import { SECTIONS } from '../shared/lib/constants/sections.ts';
 import { experienceData } from '../shared/lib/data/experience.ts';
 import { projectsData } from '../shared/lib/data/projects.ts';
 import { ImageWithFallback } from '../shared/ui/ImageWithFallback.tsx';
-import aboutMeImage from '../assets/images/aboutme-image.png';
-import aboutMeImageLarge from '../assets/images/aboutme-image-large.webp';
-import aboutMeImageSmall from '../assets/images/aboutme-image-small.webp';
 
 interface StackingSectionsProps {
 	registerRef: (name: string, el: HTMLElement | null) => void;
@@ -105,7 +102,7 @@ export const StackingSections = memo(
 						<div className="md:pr-12 flex justify-center">
 							<div className="rounded-2xl shadow-lg max-w-sm w-full overflow-hidden">
 								<ImageWithFallback
-									src={aboutMeImage}
+									src="src/assets/images/aboutme-image.png"
 									alt="An illustration of a career journey from chef to IT to developer."
 									className="w-full h-full object-cover"
 									loading="lazy"
@@ -113,11 +110,11 @@ export const StackingSections = memo(
 								>
 									<source
 										media="(min-width: 768px)"
-										srcSet={aboutMeImageLarge}
+										srcSet="src/assets/images/aboutme-image-large.webp"
 										type="image/webp"
 									/>
 									<source
-										srcSet={aboutMeImageSmall}
+										srcSet="src/assets/images/aboutme-image-small.webp"
 										type="image/webp"
 									/>
 								</ImageWithFallback>

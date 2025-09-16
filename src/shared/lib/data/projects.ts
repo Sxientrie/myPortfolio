@@ -23,11 +23,10 @@
  * ➥ projectsData (constant)
  */
 import type { Project } from '../../types/project.ts';
-import placeholderAvatar from '../../../assets/images/placeholder-avatar.svg';
 
 export const projectsData: Project[] = [
 	{
-		imagePlaceholder: placeholderAvatar,
+		imagePlaceholder: 'src/assets/images/project_conversational_portfolio.webp',
 		title: 'myPortfolio',
 		description:
 			'An interactive portfolio powered by the Gemini API to create a more engaging and memorable user experience. This is the very site you are viewing.',
@@ -35,7 +34,7 @@ export const projectsData: Project[] = [
 		demoUrl: '#',
 	},
 	{
-		imagePlaceholder: placeholderAvatar,
+		imagePlaceholder: 'src/assets/images/project_ai_agent.webp',
 		title: 'Sxentrie',
 		description:
 			'An AI-powered RAG suite that provides instant code comprehension for GitHub repositories, accelerating developer onboarding and code reviews.',
@@ -43,7 +42,7 @@ export const projectsData: Project[] = [
 		demoUrl: 'https://sxientrie.github.io/Sxentrie-RAG/',
 	},
 	{
-		imagePlaceholder: placeholderAvatar,
+		imagePlaceholder: 'src/assets/images/project_automation_hub.webp',
 		title: 'Workflow Automation Hub',
 		description:
 			'A centralized system using n8n to automate repetitive tasks and streamline development workflows.',
