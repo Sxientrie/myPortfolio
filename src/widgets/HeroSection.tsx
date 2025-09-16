@@ -99,19 +99,19 @@ export const HeroSection = memo(
 					<div className="hidden md:flex justify-center items-center p-4">
 						<div className="rounded-2xl max-w-md w-full overflow-hidden">
 							<ImageWithFallback
-								src="assets/images/aboutme-image.png"
+								src="/assets/images/hero-image.png"
 								alt="An illustration of a career journey from chef to IT to developer."
 								className="w-full h-full object-cover"
 								loading="lazy"
-								fallbackText="About Me"
+								fallbackText="Hero Image"
 							>
 								<source
 									media="(min-width: 768px)"
-									srcSet="assets/images/aboutme-image-large.webp"
+									srcSet="/assets/images/hero-image-large.webp"
 									type="image/webp"
 								/>
 								<source
-									srcSet="assets/images/aboutme-image-small.webp"
+									srcSet="/assets/images/hero-image-small.webp"
 									type="image/webp"
 								/>
 							</ImageWithFallback>
