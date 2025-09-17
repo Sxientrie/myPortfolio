@@ -41,12 +41,12 @@ export const HeroSection = memo(
 						<div className="flex flex-col sm:flex-row gap-4 justify-center md:justify-start">
 							<button
 								onClick={handleScrollToContact}
-								className="bg-transparent border border-[oklch(100%_0_0_/_0.2)] rounded-lg px-5 py-3 text-sm font-medium tracking-widest uppercase text-white transition-all duration-300 hover:bg-[oklch(100%_0_0_/_0.1)]"
+								className="bg-transparent border border-[oklch(100%_0_0_/_0.2)] rounded-lg px-4 py-2 text-sm font-medium tracking-widest uppercase text-white transition-all duration-300 hover:bg-[oklch(100%_0_0_/_0.1)]"
 							>
 								Get In Touch
 							</button>
 							<AuroraButton
-								className="px-5 py-3"
+								className="px-4 py-2"
 								onClick={() => {
 									if (chatContext) {
 										chatContext.openChat();
