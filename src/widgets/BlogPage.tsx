@@ -9,9 +9,9 @@ interface BlogPageProps {
 export const BlogPage = memo(
 	({ navigateTo, posts, isLoading }: BlogPageProps): React.ReactElement => {
 		return (
-			<main
+			<div
 				id="blog-content"
-				className="w-full max-w-6xl mx-auto relative px-4 py-32 animate-fade-in"
+				className="animate-fade-in px-4 py-16"
 				style={{ animation: "fade-in 0.5s ease-out forwards" }}
 			>
 				<div className="text-center mb-16">
@@ -38,7 +38,7 @@ export const BlogPage = memo(
 						))}
 					</div>
 				)}
-			</main>
+			</div>
 		);
 	},
 );
