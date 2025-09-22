@@ -82,40 +82,14 @@ export const StackingSections = memo(
 						</div>
 						<div className="md:pl-12">
 							<h2 className="text-3xl font-medium tracking-tighter mb-4">
-								ME, MYSELF & I:
+								ME, MYSELF & I: The Calm in the Code.
 							</h2>
 							<div className="space-y-4 text-[oklch(95%_0_0_/_0.7)] text-base leading-relaxed font-light">
-								<p>
-									There's a unique sense of calm to be found in the middle of a
-									storm. It's a feeling discovered in the heat of a chaotic
-									kitchen and in being a steady voice for someone whose
-									business, and a piece of their world, just collapsed. A career
-									built on finding clarity when everything feels like it's
-									falling apart.
-								</p>
-								<p>
-									The journey to becoming a developer wasn't a straight line,
-									but the twists and turns have made all the difference. Intense
-									moments in the kitchen taught precision and focus, even when
-									it felt like everything was burning down. Working in IT
-									revealed how to listen beyond the panic in someone's voice to
-									gently uncover the real problem underneath.
-								</p>
-								<p>
-									All of that heart and experience is now channeled into
-									creating applications that just feel right—the kind that are
-									dependable. The joy from launching a seamless app is the same
-									warmth felt when a frantic client is told that everything is
-									going to be okay. It’s all about creating things that
-									genuinely help people and give them back a little of their
-									precious time and peace of mind.
-								</p>
-								<p>
-									If you’re facing a challenge that feels overwhelming and could
-									use a fresh set of eyes, please connect. Some of the most
-									wonderful solutions start with nothing more than a good cup
-									over the air coffee and a real colaboration.
-								</p>
+								<p>I've built my career on finding clarity in the middle of a storm. It’s a skill learned in the heat of a chaotic kitchen and honed as the steady voice for a client whose business—and a piece of their world—just collapsed. It's about being the calm when everything feels like it's falling apart.</p>
+								<p>My journey to becoming a developer wasn't a straight line, but the detours made all the difference. The high-pressure kitchen taught me precision and focus under fire. My time in IT taught me to listen past the panic to gently uncover the real problem underneath.</p>
+								<p>Today, I channel all of that experience into building applications that just feel right. My workflow is modern and strategic; I architect the logic and direct AI to handle the boilerplate code. This allows me to bypass the noise and focus entirely on what truly matters: solving the core problem and ensuring the final product is seamless, intuitive, and dependable.</p>
+								<p>The joy I get from launching a flawless app is the same warmth I feel when a frantic client finally exhales, knowing everything is going to be okay. My work is about creating things that genuinely help people, giving them back their precious time and peace of mind.</p>
+								<p>If you're facing a challenge that feels overwhelming and need a partner to find the clarity within it, I'd love to connect. Some of the best solutions begin with nothing more than a conversation (and maybe some virtual coffee).</p>
 							</div>
 						</div>
 					</div>
