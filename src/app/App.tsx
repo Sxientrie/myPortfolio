@@ -5,7 +5,6 @@ import { getBlogPosts } from "../shared/lib/data/blog.ts";
 import { useFooterVisibility } from "../shared/lib/hooks/useFooterVisibility.tsx";
 import { useIntersectionObserver } from "../shared/lib/hooks/useIntersectionObserver.tsx";
 import { AnimatedLogo } from "../shared/ui/AnimatedLogo.tsx";
-import { ContentBed } from "../shared/ui/ContentBed.tsx";
 import { GlobalStyles } from "../shared/ui/GlobalStyles.tsx";
 import { BlogPage } from "../widgets/BlogPage.tsx";
 import { BlogPostPage } from "../widgets/BlogPostPage.tsx";
@@ -96,9 +95,12 @@ export function App(): React.ReactElement {
 								registerRef={registerRef}
 								sectionRefs={sectionRefs}
 							/>
-							<ContentBed>
+							<div
+								id="content-bed"
+								className="relative z-[3] bg-[oklch(5%_0_0_/_0.85)] backdrop-blur-md rounded-[16px] overflow-hidden"
+							>
 								<StackingSections registerRef={registerRef} />
-							</ContentBed>
+							</div>
 							<CtaSection registerRef={registerRef} />
 						</main>
 						<Footer isVisible={isFooterVisible} />
@@ -106,34 +108,22 @@ export function App(): React.ReactElement {
 				);
 			case "blog":
 				return (
-					<main className="w-full max-w-6xl mx-auto relative px-4 py-32">
-						<ContentBed>
-							<BlogPage
-								navigateTo={handleNavigate}
-								posts={blogPosts}
-								isLoading={isLoadingPosts}
-							/>
-						</ContentBed>
-					</main>
+					<BlogPage
+						navigateTo={handleNavigate}
+						posts={blogPosts}
+						isLoading={isLoadingPosts}
+					/>
 				);
 			case "blogPost": {
 				const post = blogPosts.find((p) => p.slug === currentPostSlug);
 				return post ? (
-					<main className="w-full max-w-4xl mx-auto relative px-4 py-32">
-						<ContentBed>
-							<BlogPostPage post={post} navigateTo={handleNavigate} />
-						</ContentBed>
-					</main>
+					<BlogPostPage post={post} navigateTo={handleNavigate} />
 				) : (
-					<main className="w-full max-w-6xl mx-auto relative px-4 py-32">
-						<ContentBed>
-							<BlogPage
-								navigateTo={handleNavigate}
-								posts={blogPosts}
-								isLoading={isLoadingPosts}
-							/>
-						</ContentBed>
-					</main>
+					<BlogPage
+						navigateTo={handleNavigate}
+						posts={blogPosts}
+						isLoading={isLoadingPosts}
+					/>
 				);
 			}
 			default:
