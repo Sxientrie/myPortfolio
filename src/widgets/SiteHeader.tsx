@@ -92,7 +92,7 @@ export const SiteHeader = memo(
 							</button>
 						</div>
 						<a
-							href="/assets/resume/jaysonjamora-resume.pdf"
+							href="assets/resume/jaysonjamora-resume.pdf"
 							target="_blank"
 							download="jaysonjamora-resume.pdf"
 						>
@@ -170,7 +170,7 @@ export const SiteHeader = memo(
 								Blog
 							</button>
 							<a
-								href="/assets/resume/jaysonjamora-resume.pdf"
+								href="assets/resume/jaysonjamora-resume.pdf"
 								target="_blank"
 								download="jaysonjamora-resume.pdf"
 								className="w-full"
