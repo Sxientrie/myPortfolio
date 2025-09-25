@@ -91,14 +91,17 @@ export const SiteHeader = memo(
 								Blog
 							</button>
 						</div>
-						<AuroraButton
-							className="py-2.5 px-3 text-white hover:text-white transition-colors duration-300 group"
-							onClick={() => {}}
+						<a
+							href="/assets/resume/jaysonjamora-resume.pdf"
+							target="_blank"
+							download
 						>
-							<span className="transition-colors duration-300 text-[oklch(95%_0_0_/_0.7)] group-hover:text-white">
-								RESUME
-							</span>
-						</AuroraButton>
+							<AuroraButton className="py-2.5 px-3 text-white hover:text-white transition-colors duration-300 group">
+								<span className="transition-colors duration-300 text-[oklch(95%_0_0_/_0.7)] group-hover:text-white">
+									RESUME
+								</span>
+							</AuroraButton>
+						</a>
 					</nav>
 					<div className="md:hidden">
 						<button
@@ -166,9 +169,14 @@ export const SiteHeader = memo(
 							>
 								Blog
 							</button>
-							<AuroraButton className="w-full py-3" onClick={() => {}}>
-								RESUME
-							</AuroraButton>
+							<a
+								href="/assets/resume/jaysonjamora-resume.pdf"
+								target="_blank"
+								download
+								className="w-full"
+							>
+								<AuroraButton className="w-full py-3">RESUME</AuroraButton>
+							</a>
 						</nav>
 					</div>
 				)}
