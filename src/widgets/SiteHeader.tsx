@@ -94,7 +94,7 @@ export const SiteHeader = memo(
 						<a
 							href="/assets/resume/jaysonjamora-resume.pdf"
 							target="_blank"
-							download
+							download="jaysonjamora-resume.pdf"
 						>
 							<AuroraButton className="py-2.5 px-3 text-white hover:text-white transition-colors duration-300 group">
 								<span className="transition-colors duration-300 text-[oklch(95%_0_0_/_0.7)] group-hover:text-white">
@@ -172,7 +172,7 @@ export const SiteHeader = memo(
 							<a
 								href="/assets/resume/jaysonjamora-resume.pdf"
 								target="_blank"
-								download
+								download="jaysonjamora-resume.pdf"
 								className="w-full"
 							>
 								<AuroraButton className="w-full py-3">RESUME</AuroraButton>
