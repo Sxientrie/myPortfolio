@@ -1,3 +1,6 @@
+import heroImage from "/assets/images/hero-image.png";
+import heroImageLarge from "/assets/images/hero-image-large.webp";
+import heroImageSmall from "/assets/images/hero-image-small.webp";
 import type React from "react";
 import { memo, useContext } from "react";
 import { ChatContext } from "../features/chat/ChatContext.tsx";
@@ -60,7 +63,7 @@ export const HeroSection = memo(
 					<div className="hidden md:flex justify-center items-center p-4">
 						<div className="rounded-2xl max-w-md w-full overflow-hidden">
 							<ImageWithFallback
-								src="assets/images/hero-image.png"
+								src={heroImage}
 								alt="An illustration of a career journey from chef to IT to developer."
 								className="w-full h-full object-cover"
 								loading="lazy"
@@ -68,13 +71,10 @@ export const HeroSection = memo(
 							>
 								<source
 									media="(min-width: 768px)"
-									srcSet="assets/images/hero-image-large.webp"
+									srcSet={heroImageLarge}
 									type="image/webp"
 								/>
-								<source
-									srcSet="assets/images/hero-image-small.webp"
-									type="image/webp"
-								/>
+								<source srcSet={heroImageSmall} type="image/webp" />
 							</ImageWithFallback>
 						</div>
 					</div>
