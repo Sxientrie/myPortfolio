@@ -62,7 +62,7 @@ export const StackingSections = memo(
 						<div className="md:pr-12 flex justify-center">
 							<div className="rounded-2xl shadow-lg max-w-sm w-full overflow-hidden">
 								<ImageWithFallback
-									src="assets/images/aboutme-image.png"
+									src="assets/images/aboutme_image.png"
 									alt="An illustration of a career journey from chef to IT to developer."
 									className="w-full h-full object-cover"
 									loading="lazy"
