@@ -60,7 +60,7 @@ export const HeroSection = memo(
 					<div className="hidden md:flex justify-center items-center p-4">
 						<div className="rounded-2xl max-w-md w-full overflow-hidden">
 							<ImageWithFallback
-								src="assets/images/hero_image.png"
+								src="/assets/images/hero_image.png"
 								alt="An illustration of a career journey from chef to IT to developer."
 								className="w-full h-full object-cover"
 								loading="lazy"
@@ -68,11 +68,11 @@ export const HeroSection = memo(
 							>
 								<source
 									media="(min-width: 768px)"
-									srcSet="assets/images/hero-image-large.webp"
+									srcSet="/assets/images/hero-image-large.webp"
 									type="image/webp"
 								/>
 								<source
-									srcSet="assets/images/hero-image-small.webp"
+									srcSet="/assets/images/hero-image-small.webp"
 									type="image/webp"
 								/>
 							</ImageWithFallback>
