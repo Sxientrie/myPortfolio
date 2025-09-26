@@ -1,23 +1,21 @@
 import type React from "react";
 import { memo, useContext } from "react";
+import { useNavigation } from "../../app/contexts/NavigationContext.tsx";
 import { ChatContext } from "../features/chat/ChatContext.tsx";
 import { SECTIONS } from "../shared/lib/constants/sections.ts";
 import { AuroraButton } from "../shared/ui/AuroraButton.tsx";
 import { ImageWithFallback } from "../shared/ui/ImageWithFallback.tsx";
 import { TechCarousel } from "./TechCarousel.tsx";
-interface HeroSectionProps {
-	registerRef: (name: string, el: HTMLElement | null) => void;
-	sectionRefs: React.MutableRefObject<{ [key: string]: HTMLElement | null }>;
-}
-export const HeroSection = memo(
-	({ registerRef, sectionRefs }: HeroSectionProps): React.ReactElement => {
-		const chatContext = useContext(ChatContext);
-		const handleScrollToContact = (): void => {
-			const contactSection = sectionRefs.current["contact"];
-			if (contactSection) {
-				contactSection.scrollIntoView({ behavior: "smooth" });
-			}
-		};
+
+export const HeroSection = memo((): React.ReactElement => {
+	const { registerRef, sectionRefs } = useNavigation();
+	const chatContext = useContext(ChatContext);
+	const handleScrollToContact = (): void => {
+		const contactSection = sectionRefs.current["contact"];
+		if (contactSection) {
+			contactSection.scrollIntoView({ behavior: "smooth" });
+		}
+	};
 		return (
 			<section
 				id={SECTIONS.HERO}

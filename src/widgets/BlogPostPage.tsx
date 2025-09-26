@@ -2,7 +2,9 @@ import type React from "react";
 import { memo } from "react";
 import ReactMarkdown from "react-markdown";
 import remarkGfm from "remark-gfm";
+import { useNavigation } from "../../app/contexts/NavigationContext";
 import { ImageWithFallback } from "../shared/ui/ImageWithFallback.tsx";
+
 interface BlogPostPageProps {
 	post: {
 		title: string;
@@ -11,10 +13,10 @@ interface BlogPostPageProps {
 		content: string;
 		tags: string[];
 	};
-	navigateTo: (destination: string) => void;
 }
 export const BlogPostPage = memo(
-	({ post, navigateTo }: BlogPostPageProps): React.ReactElement => {
+	({ post }: BlogPostPageProps): React.ReactElement => {
+		const { handleNavigate } = useNavigation();
 		return (
 			<main
 				id="blog-post-content"
@@ -22,7 +24,7 @@ export const BlogPostPage = memo(
 			>
 				<div className="mb-8">
 					<button
-						onClick={() => navigateTo("blog")}
+						onClick={() => handleNavigate("blog")}
 						className="flex items-center gap-2 text-[oklch(95%_0_0_/_0.7)] hover:text-white transition-colors"
 					>
 						<svg

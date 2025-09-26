@@ -1,5 +1,6 @@
 import type React from "react";
 import { memo, useRef } from "react";
+import { useNavigation } from "../../app/contexts/NavigationContext.tsx";
 import { AnimatedTimelineLine } from "../entities/experience/ui/AnimatedTimelineLine.tsx";
 import { TimelineItem } from "../entities/experience/ui/TimelineItem.tsx";
 import { ProjectCard } from "../entities/project/ui/ProjectCard.tsx";
@@ -7,9 +8,7 @@ import { SECTIONS } from "../shared/lib/constants/sections.ts";
 import { experienceData } from "../shared/lib/data/experience.ts";
 import { projectsData } from "../shared/lib/data/projects.ts";
 import { ImageWithFallback } from "../shared/ui/ImageWithFallback.tsx";
-interface StackingSectionsProps {
-	registerRef: (name: string, el: HTMLElement | null) => void;
-}
+
 const BrushStrokeFilter = memo(() => (
 	<svg
 		style={{
@@ -39,10 +38,10 @@ const BrushStrokeFilter = memo(() => (
 		</defs>
 	</svg>
 ));
-export const StackingSections = memo(
-	({ registerRef }: StackingSectionsProps): React.ReactElement => {
-		const aboutContainerRef = useRef<HTMLDivElement>(null);
-		const experienceContainerRef = useRef<HTMLDivElement>(null);
+export const StackingSections = memo((): React.ReactElement => {
+	const { registerRef } = useNavigation();
+	const aboutContainerRef = useRef<HTMLDivElement>(null);
+	const experienceContainerRef = useRef<HTMLDivElement>(null);
 		return (
 			<>
 				<BrushStrokeFilter />

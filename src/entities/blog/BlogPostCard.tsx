@@ -1,7 +1,9 @@
 import type React from "react";
 import { memo } from "react";
+import { useNavigation } from "../../../app/contexts/NavigationContext";
 import { Card } from "../../shared/ui/Card.tsx";
 import { ImageWithFallback } from "../../shared/ui/ImageWithFallback.tsx";
+
 interface BlogPostCardProps {
 	post: {
 		imagePlaceholder: string;
@@ -11,19 +13,19 @@ interface BlogPostCardProps {
 		date: string;
 		slug: string;
 	};
-	navigateTo: (destination: string) => void;
 }
 export const BlogPostCard = memo(
-	({ post, navigateTo }: BlogPostCardProps): React.ReactElement => {
+	({ post }: BlogPostCardProps): React.ReactElement => {
+		const { handleNavigate } = useNavigation();
 		return (
 			<Card
 				as="div"
 				role="button"
 				tabIndex={0}
-				onClick={() => navigateTo(post.slug)}
+				onClick={() => handleNavigate(post.slug)}
 				onKeyDown={(e) => {
 					if (e.key === "Enter" || e.key === " ") {
-						navigateTo(post.slug);
+						handleNavigate(post.slug);
 					}
 				}}
 				className="cursor-pointer group"
