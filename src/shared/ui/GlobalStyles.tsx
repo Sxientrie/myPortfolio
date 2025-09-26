@@ -96,8 +96,9 @@ export const GlobalStyles = memo((): React.ReactElement => {
             50% { width: min(90vw, 800px); height: 50px; }
             100% { width: 180px; height: 50px; }
         }
-        @keyframes fade-in { from { opacity: 0; } to { opacity: 1; } }
+        @keyframes fade-in { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
         @keyframes fade-out { from { opacity: 1; } to { opacity: 0; } }
+        .animate-fade-in { animation: fade-in 0.5s ease-out forwards; }
         .is-entering { animation: fade-in 0.3s forwards; }
         .is-exiting { animation: fade-out 0.3s forwards; }
         @keyframes pulse-3d {

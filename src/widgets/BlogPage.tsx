@@ -12,7 +12,6 @@ export const BlogPage = memo(
 			<main
 				id="blog-content"
 				className="w-full max-w-6xl mx-auto relative px-4 py-32 animate-fade-in"
-				style={{ animation: "fade-in 0.5s ease-out forwards" }}
 			>
 				<div className="text-center mb-16">
 					<h1 className="text-4xl md:text-5xl font-bold tracking-tighter mb-4 text-transparent bg-clip-text bg-gradient-to-br from-[oklch(95%_0_0)] to-[oklch(75%_0_0)]">
