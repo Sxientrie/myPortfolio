@@ -19,7 +19,6 @@ export const BlogPostPage = memo(
 			<main
 				id="blog-post-content"
 				className="w-full max-w-4xl mx-auto relative px-4 py-32 animate-fade-in"
-				style={{ animation: "fade-in 0.5s ease-out forwards" }}
 			>
 				<div className="mb-8">
 					<button
