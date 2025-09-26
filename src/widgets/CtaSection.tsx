@@ -1,14 +1,13 @@
 import type React from "react";
 import { memo, useState } from "react";
 import type { FormEvent } from "react";
+import { useNavigation } from "../../app/contexts/NavigationContext.tsx";
 import { AuroraButton } from "../shared/ui/AuroraButton.tsx";
 type FormStatus = "idle" | "submitting" | "success" | "error";
-interface CtaSectionProps {
-	registerRef: (name: string, el: HTMLElement | null) => void;
-}
-export const CtaSection = memo(
-	({ registerRef }: CtaSectionProps): React.ReactElement => {
-		const [name, setName] = useState("");
+
+export const CtaSection = memo((): React.ReactElement => {
+	const { registerRef } = useNavigation();
+	const [name, setName] = useState("");
 		const [email, setEmail] = useState("");
 		const [message, setMessage] = useState("");
 		const [status, setStatus] = useState<FormStatus>("idle");

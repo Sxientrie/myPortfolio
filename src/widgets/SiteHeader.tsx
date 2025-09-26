@@ -1,40 +1,32 @@
 import type React from "react";
 import { memo, useEffect, useState } from "react";
+import { useNavigation } from "../../app/contexts/NavigationContext";
 import { SECTIONS } from "../shared/lib/constants/sections.ts";
 import { AnimatedLogo } from "../shared/ui/AnimatedLogo.tsx";
 import { AuroraButton } from "../shared/ui/AuroraButton.tsx";
-interface SiteHeaderProps {
-	activeSection: string;
-	sectionRefs: React.MutableRefObject<{ [key: string]: HTMLElement | null }>;
-	currentPage: "portfolio" | "blog" | "blogPost";
-	navigateTo: (destination: string) => void;
-}
+
 const portfolioNavLinks = [
 	{ id: SECTIONS.ABOUT, label: "About" },
 	{ id: SECTIONS.EXPERIENCE, label: "Experience" },
 	{ id: SECTIONS.PROJECTS, label: "Work" },
 ];
-export const SiteHeader = memo(
-	({
-		activeSection,
-		navigateTo,
-		currentPage,
-	}: SiteHeaderProps): React.ReactElement => {
-		const [isScrolled, setIsScrolled] = useState(false);
-		const [isMenuOpen, setIsMenuOpen] = useState(false);
-		useEffect(() => {
-			const handleScroll = (): void => {
-				setIsScrolled(window.scrollY > 50);
-			};
-			window.addEventListener("scroll", handleScroll);
-			return () => {
-				window.removeEventListener("scroll", handleScroll);
-			};
-		}, []);
-		const handleNavClick = (destination: string): void => {
-			navigateTo(destination);
-			setIsMenuOpen(false);
+export const SiteHeader = memo((): React.ReactElement => {
+	const { activeSection, currentPage, handleNavigate } = useNavigation();
+	const [isScrolled, setIsScrolled] = useState(false);
+	const [isMenuOpen, setIsMenuOpen] = useState(false);
+	useEffect(() => {
+		const handleScroll = (): void => {
+			setIsScrolled(window.scrollY > 50);
 		};
+		window.addEventListener("scroll", handleScroll);
+		return () => {
+			window.removeEventListener("scroll", handleScroll);
+		};
+	}, []);
+	const handleNavClick = (destination: string): void => {
+		handleNavigate(destination);
+		setIsMenuOpen(false);
+	};
 		const currentSection = activeSection === SECTIONS.HERO ? "" : activeSection;
 		const isBlogView = currentPage === "blog" || currentPage === "blogPost";
 		const mainNavLinks =
