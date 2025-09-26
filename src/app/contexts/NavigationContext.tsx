@@ -7,16 +7,13 @@ import React, {
 	useRef,
 	ReactNode,
 } from "react";
-import { SECTIONS } from "../../shared/lib/constants/sections";
 import { getBlogPosts } from "../../shared/lib/data/blog";
+import { BlogPost } from "../../shared/types/blog";
 
 // Define the shape of the context data
 interface NavigationContextType {
-	currentPage: "portfolio" | "blog" | "blogPost";
-	currentPostSlug: string | null;
-	blogPosts: any[]; // In a real app, this would be a BlogPost[] type
+	blogPosts: BlogPost[];
 	isLoadingPosts: boolean;
-	handleNavigate: (destination: string) => void;
 	activeSection: string;
 	sectionRefs: React.MutableRefObject<{ [key: string]: HTMLElement | null }>;
 	registerRef: (name: string, el: HTMLElement | null) => void;
@@ -29,12 +26,7 @@ const NavigationContext = createContext<NavigationContextType | null>(null);
 export const NavigationProvider = ({ children }: { children: ReactNode }) => {
 	const [activeSection, setActiveSection] = useState<string>("");
 	const sectionRefs = useRef<{ [key: string]: HTMLElement | null }>({});
-	const [currentPage, setCurrentPage] = useState<
-		"portfolio" | "blog" | "blogPost"
-	>("portfolio");
-	const [currentPostSlug, setCurrentPostSlug] = useState<string | null>(null);
-	const [navigationTarget, setNavigationTarget] = useState<string | null>(null);
-	const [blogPosts, setBlogPosts] = useState<any[]>([]);
+	const [blogPosts, setBlogPosts] = useState<BlogPost[]>([]);
 	const [isLoadingPosts, setIsLoadingPosts] = useState(true);
 
 	const registerRef = useCallback((name: string, el: HTMLElement | null) => {
@@ -57,55 +49,6 @@ export const NavigationProvider = ({ children }: { children: ReactNode }) => {
 		};
 		fetchPosts();
 	}, []);
-
-	// Handle navigation logic
-	const handleNavigate = (destination: string): void => {
-		const portfolioSections = [...Object.values(SECTIONS), "contact"];
-		const isSection = portfolioSections.includes(destination);
-		if (isSection) {
-			if (currentPage !== "portfolio") {
-				setCurrentPage("portfolio");
-				setNavigationTarget(destination);
-			} else {
-				sectionRefs.current[destination]?.scrollIntoView({
-					behavior: "smooth",
-				});
-			}
-		} else if (destination === "blog") {
-			if (currentPage !== "blog") {
-				setCurrentPage("blog");
-				setCurrentPostSlug(null);
-				window.scrollTo({ top: 0, behavior: "smooth" });
-			}
-		} else if (destination === "portfolio") {
-			if (currentPage !== "portfolio") {
-				setCurrentPage("portfolio");
-				setCurrentPostSlug(null);
-				window.scrollTo({ top: 0, behavior: "smooth" });
-			}
-		} else {
-			const postExists = blogPosts.some((post) => post.slug === destination);
-			if (postExists) {
-				setCurrentPage("blogPost");
-				setCurrentPostSlug(destination);
-				window.scrollTo({ top: 0, behavior: "smooth" });
-			}
-		}
-	};
-
-	// Effect to handle scrolling to a section after navigating back to the portfolio page
-	useEffect(() => {
-		if (currentPage === "portfolio" && navigationTarget) {
-			const section = sectionRefs.current[navigationTarget];
-			if (section) {
-				// Timeout to ensure the section is rendered before scrolling
-				setTimeout(() => {
-					section.scrollIntoView({ behavior: "smooth" });
-				}, 100);
-			}
-			setNavigationTarget(null);
-		}
-	}, [currentPage, navigationTarget]);
 
 	// Effect for intersection observer to set the active section
 	useEffect(() => {
@@ -138,11 +81,8 @@ export const NavigationProvider = ({ children }: { children: ReactNode }) => {
 
 
 	const value = {
-		currentPage,
-		currentPostSlug,
 		blogPosts,
 		isLoadingPosts,
-		handleNavigate,
 		activeSection,
 		sectionRefs,
 		registerRef,
