@@ -1,16 +1,4 @@
 import { Experience, Education, Skill, ContactInfo, Project } from './types';
-import { 
-  Monitor, 
-  Server, 
-  ChefHat, 
-  Figma, 
-  Github, 
-  LayoutTemplate, 
-  Headphones,
-  Settings,
-  MessageSquare,
-  PenTool
-} from 'lucide-react';
 
 export const CONTACT: ContactInfo = {
   email: "jasonrico.career@gmail.com",
@@ -66,14 +54,14 @@ export const EDUCATION: Education = {
 };
 
 export const SKILLS: Skill[] = [
-  { name: "Workspace", category: "tool", icon: <Monitor size={14} /> },
-  { name: "AnyDesk", category: "tool", icon: <Settings size={14} /> },
-  { name: "TeamViewer", category: "tool", icon: <Monitor size={14} /> },
-  { name: "ClickUp", category: "platform", icon: <LayoutTemplate size={14} /> },
-  { name: "Canva", category: "design", icon: <PenTool size={14} /> },
-  { name: "Zendesk", category: "platform", icon: <Headphones size={14} /> },
-  { name: "Figma", category: "design", icon: <Figma size={14} /> },
-  { name: "Git & GitHub", category: "version-control", icon: <Github size={14} /> },
+  { name: "Workspace", category: "tool", icon: "monitor" },
+  { name: "AnyDesk", category: "tool", icon: "settings" },
+  { name: "TeamViewer", category: "tool", icon: "monitor" },
+  { name: "ClickUp", category: "platform", icon: "layout-template" },
+  { name: "Canva", category: "design", icon: "pen-tool" },
+  { name: "Zendesk", category: "platform", icon: "headphones" },
+  { name: "Figma", category: "design", icon: "figma" },
+  { name: "Git & GitHub", category: "version-control", icon: "github" },
 ];
 
 export const LANGUAGES = [

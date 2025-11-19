@@ -25,7 +25,7 @@ export const ProjectDrawer: React.FC<ProjectDrawerProps> = ({ project, isOpen, o
   return (
     <div className={`fixed inset-0 z-[60] flex justify-end ${isOpen ? 'pointer-events-auto' : 'pointer-events-none'}`}>
       {/* Backdrop */}
-      <div 
+      <div
         className={`
           absolute inset-0 bg-black/60 backdrop-blur-sm transition-opacity duration-300 ease-in-out
           ${isOpen ? 'opacity-100' : 'opacity-0'}
@@ -34,7 +34,7 @@ export const ProjectDrawer: React.FC<ProjectDrawerProps> = ({ project, isOpen, o
       />
 
       {/* Drawer Panel */}
-      <div 
+      <div
         className={`
           relative w-full max-w-2xl h-full bg-obsidian/95 dark:bg-charcoal/95 
           border-l border-white/10 shadow-2xl overflow-y-auto
@@ -42,9 +42,9 @@ export const ProjectDrawer: React.FC<ProjectDrawerProps> = ({ project, isOpen, o
           ${isOpen ? 'translate-x-0' : 'translate-x-full'}
         `}
       >
-        
+
         {/* Close Button */}
-        <button 
+        <button
           onClick={onClose}
           className="absolute top-6 right-6 p-2 text-gray-400 hover:text-white hover:bg-white/10 rounded-full transition-colors z-50"
         >
@@ -52,19 +52,19 @@ export const ProjectDrawer: React.FC<ProjectDrawerProps> = ({ project, isOpen, o
         </button>
 
         <div className="p-8 lg:p-12 space-y-10">
-          
+
           {/* Header */}
           <div className="space-y-4">
-            <div className="flex items-center gap-3 text-accent font-mono text-sm tracking-wider uppercase">
-              <Server size={16} />
+            <div className="flex items-center gap-3 text-accent font-mono text-xs tracking-wider uppercase">
+              <Server size={14} />
               <span>{project.type === 'dev' ? 'Development' : 'System Architecture'}</span>
             </div>
-            <h2 className="text-4xl font-bold text-white leading-tight">
+            <h2 className="text-2xl font-bold text-white leading-tight">
               {project.title}
             </h2>
             <div className="flex flex-wrap gap-2 pt-2">
               {project.tags.map((tag, i) => (
-                <span key={i} className="px-3 py-1 bg-white/5 border border-white/10 rounded text-xs font-mono text-gray-300">
+                <span key={i} className="px-2 py-1 bg-white/5 border border-white/10 rounded text-[10px] font-mono text-gray-300">
                   {tag}
                 </span>
               ))}
@@ -73,7 +73,7 @@ export const ProjectDrawer: React.FC<ProjectDrawerProps> = ({ project, isOpen, o
 
           {/* Long Description */}
           <div className="prose prose-invert max-w-none">
-            <p className="text-lg text-gray-300 leading-relaxed">
+            <p className="text-sm text-gray-300 leading-relaxed">
               {project.longDescription}
             </p>
           </div>
@@ -81,14 +81,14 @@ export const ProjectDrawer: React.FC<ProjectDrawerProps> = ({ project, isOpen, o
           {/* Architecture Grid */}
           {project.architecture && (
             <div>
-              <h3 className="text-sm font-mono text-gray-500 uppercase tracking-widest mb-6 flex items-center gap-3">
-                <Cpu size={16} /> Technical Architecture
+              <h3 className="text-xs font-mono text-gray-500 uppercase tracking-widest mb-4 flex items-center gap-2">
+                <Cpu size={14} /> Technical Architecture
               </h3>
-              <div className="grid grid-cols-1 gap-4">
+              <div className="grid grid-cols-1 gap-3">
                 {project.architecture.map((item, i) => (
-                  <div key={i} className="flex flex-col sm:flex-row sm:items-baseline gap-2 sm:gap-6 border-b border-white/5 pb-3">
-                    <span className="text-sm font-bold text-white min-w-[100px]">{item.label}</span>
-                    <span className="text-sm text-gray-400 font-mono">{item.value}</span>
+                  <div key={i} className="flex flex-col sm:flex-row sm:items-baseline gap-2 sm:gap-6 border-b border-white/5 pb-2">
+                    <span className="text-xs font-bold text-white min-w-[100px]">{item.label}</span>
+                    <span className="text-xs text-gray-400 font-mono">{item.value}</span>
                   </div>
                 ))}
               </div>
@@ -98,13 +98,13 @@ export const ProjectDrawer: React.FC<ProjectDrawerProps> = ({ project, isOpen, o
           {/* Features List */}
           {project.features && (
             <div>
-              <h3 className="text-sm font-mono text-gray-500 uppercase tracking-widest mb-6 flex items-center gap-3">
-                <Layers size={16} /> Core Functionality
+              <h3 className="text-xs font-mono text-gray-500 uppercase tracking-widest mb-4 flex items-center gap-2">
+                <Layers size={14} /> Core Functionality
               </h3>
-              <ul className="space-y-4">
+              <ul className="space-y-3">
                 {project.features.map((feature, i) => (
-                  <li key={i} className="flex items-start gap-4 text-sm text-gray-300 leading-relaxed">
-                    <span className="mt-1.5 w-1.5 h-1.5 bg-accent rounded-full flex-shrink-0" />
+                  <li key={i} className="flex items-start gap-3 text-xs text-gray-300 leading-relaxed">
+                    <span className="mt-1.5 w-1 h-1 bg-accent rounded-full flex-shrink-0" />
                     {feature}
                   </li>
                 ))}

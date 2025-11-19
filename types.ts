@@ -18,7 +18,7 @@ export interface Education {
 export interface Skill {
   name: string;
   category: 'tool' | 'platform' | 'design' | 'version-control';
-  icon?: React.ReactNode;
+  icon?: string;
 }
 
 export interface Project {
