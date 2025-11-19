@@ -1,32 +1,86 @@
 <!DOCTYPE html>
-<html lang="en">
-<head>
+<html lang="en" class="scroll-smooth">
+  <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Portfolio - Jayson Jamora</title>
-    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-    <script src="https://cdn.tailwindcss.com?plugins=typography"></script>
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;700&display=swap" />
+    <title>Jayson Jamora | Technical Support Specialist</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;800&family=JetBrains+Mono:wght@400;700&display=swap" rel="stylesheet">
+    <script>
+      tailwind.config = {
+        darkMode: 'class',
+        theme: {
+          extend: {
+            fontFamily: {
+              sans: ['Inter', 'sans-serif'],
+              mono: ['JetBrains Mono', 'monospace'],
+            },
+            colors: {
+              obsidian: '#050505',
+              charcoal: '#0a0a0a',
+              accent: '#14b8a6', // Teal-500
+              'accent-dim': 'rgba(20, 184, 166, 0.1)',
+            },
+            backgroundImage: {
+              'noise': "url('data:image/svg+xml,%3Csvg viewBox=%220 0 200 200%22 xmlns=%22http://www.w3.org/2000/svg%22%3E%3Cfilter id=%22noiseFilter%22%3E%3CfeTurbulence type=%22fractalNoise%22 baseFrequency=%220.65%22 numOctaves=%223%22 stitchTiles=%22stitch%22/%3E%3C/filter%3E%3Crect width=%22100%25%22 height=%22100%25%22 filter=%22url(%23noiseFilter)%22 opacity=%220.05%22/%3E%3C/svg%3E')",
+            }
+          }
+        }
+      }
+    </script>
     <style>
-      body, body * {
-        font-family: 'Space Grotesk', sans-serif !important;
+      body {
+        background-color: #050505;
+        color: #e5e5e5;
+        transition: background-color 0.5s ease, color 0.5s ease;
+      }
+      /* Override body bg for light mode via class if needed, but we handle in React root usually */
+      .dark body {
+        background-color: #050505;
+      }
+      
+      /* Custom Scrollbar */
+      ::-webkit-scrollbar {
+        width: 8px;
+      }
+      ::-webkit-scrollbar-track {
+        background: #0a0a0a;
+      }
+      .dark ::-webkit-scrollbar-track {
+        background: #0a0a0a;
+      }
+      html:not(.dark) ::-webkit-scrollbar-track {
+        background: #f5f5f5;
+      }
+      
+      ::-webkit-scrollbar-thumb {
+        background: #333;
+        border-radius: 4px;
+      }
+      html:not(.dark) ::-webkit-scrollbar-thumb {
+        background: #cbd5e1;
+      }
+      
+      ::-webkit-scrollbar-thumb:hover {
+        background: #14b8a6;
       }
     </style>
-    <script>
-        // Configure Tailwind CSS
-        tailwind.config = {
-            theme: {
-                extend: {
-                    fontFamily: {
-                        sans: ['Space Grotesk', 'sans-serif'],
-                    },
-                },
-            },
-        };
-    </script>
+  <script type="importmap">
+{
+  "imports": {
+    "react": "https://aistudiocdn.com/react@^19.2.0",
+    "react-dom/": "https://aistudiocdn.com/react-dom@^19.2.0/",
+    "react/": "https://aistudiocdn.com/react@^19.2.0/",
+    "lucide-react": "https://aistudiocdn.com/lucide-react@^0.554.0"
+  }
+}
+</script>
+<link rel="stylesheet" href="/index.css">
 </head>
-<body class="bg-[oklch(3%_0.01_265)] m-0 font-sans">
+  <body>
     <div id="root"></div>
-    <script type="module" src="/index.tsx"></script>
+  <script type="module" src="/index.tsx"></script>
 </body>
 </html>
