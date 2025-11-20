@@ -47,6 +47,7 @@ export const ProjectDrawer: React.FC<ProjectDrawerProps> = ({ project, isOpen, o
         <button
           onClick={onClose}
           className="absolute top-6 right-6 p-2 text-gray-400 hover:text-white hover:bg-white/10 rounded-full transition-colors z-50"
+          aria-label="Close project details"
         >
           <X size={24} />
         </button>

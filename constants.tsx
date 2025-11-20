@@ -10,39 +10,39 @@ export const ABOUT_TEXT = `As a technical problem-solver with experience providi
 
 export const EXPERIENCE: Experience[] = [
   {
+    id: 'virtual-assistance',
+    company: 'Virtual Assistance',
+    role: 'Social Media Manager - Intern',
+    period: 'May 2025 - Aug 2025',
+    type: 'other',
+    description: [
+      "Curated and planned brand content for all Facebook and IG.",
+      "Monitored audience engagement and responded to potential Customers, fostering community growth and customer loyalty.",
+      "Analyzed performance metrics to find the best times to post and boost organic reach."
+    ]
+  },
+  {
     id: 'starlite',
     company: 'Starlite IT Solution',
     role: 'Owner',
-    period: 'May 2024 - Present',
+    period: 'May 2024 – Feb 2025',
     type: 'tech',
     description: [
       "Managed all aspects of sales for computer parts and accessories, ensuring product compatibility.",
-      "Provided expert technical support for hardware and software issues.",
-      "Effectively troubleshooting and resolving customer problems with clear communication."
+      "Offered professional technical assistance for software and hardware problems.",
+      "Clearly communicating while troubleshooting and resolving customer issues."
     ]
   },
   {
     id: 'lenin',
-    company: 'Lenin Computer Inc.',
-    role: 'Tech & Customer Support Specialist',
-    period: 'April 2021 - Feb 2024',
+    company: 'Lenin Computers, Inc.',
+    role: 'Technical and Customer Support',
+    period: 'April 2021 – February 2024',
     type: 'tech',
     description: [
-      "Acted as backup technical expert, translating client needs into specific hardware/software solutions.",
-      "Managed full end-to-end build process, from OS installation to QA testing.",
-      "Provided 1-on-1 consultations to diagnose issues and provide budget guidance."
-    ]
-  },
-  {
-    id: 'paresilog',
-    company: 'Paresilog',
-    role: 'Line Cook',
-    period: 'Feb 2018 - March 2021',
-    type: 'other',
-    description: [
-      "Thrived in a high-volume, fast-paced kitchen, executing precise food preparation.",
-      "Independently managed the entire food line during staff shortages (Pandemic).",
-      "Demonstrated resilience and operational excellence under pressure."
+      "Served as a secondary technical specialist, converting client requirements into particular software and hardware solutions.",
+      "Oversaw the entire build process, from QA testing to OS installation.",
+      "Offered one-on-one consultations to identify problems and offer financial advice."
     ]
   }
 ];
@@ -54,7 +54,7 @@ export const EDUCATION: Education = {
 };
 
 export const SKILLS: Skill[] = [
-  { name: "Workspace", category: "tool", icon: "monitor" },
+  { name: "Google Workspace", category: "tool", icon: "monitor" },
   { name: "AnyDesk", category: "tool", icon: "settings" },
   { name: "TeamViewer", category: "tool", icon: "monitor" },
   { name: "ClickUp", category: "platform", icon: "layout-template" },
@@ -90,7 +90,7 @@ export const PROJECTS: Project[] = [
     ]
   },
   {
-    title: "Minimalist Portfolio",
+    title: "myPortfolio",
     description: "The site you are viewing. A performance-optimized, accessible React application designed to showcase technical identity.",
     tags: ["React", "Tailwind", "Framer Motion"],
     type: "dev",
@@ -105,7 +105,6 @@ export const PROJECTS: Project[] = [
       "Responsive 12-Column Grid Layout",
       "Glassmorphism UI with Performance Optimizations",
       "Print-Friendly Stylesheet",
-      "Interactive Project Drawers"
     ]
   }
 ];

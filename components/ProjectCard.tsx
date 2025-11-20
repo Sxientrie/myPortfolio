@@ -10,7 +10,18 @@ interface ProjectCardProps {
 
 export const ProjectCard: React.FC<ProjectCardProps> = ({ project, onClick }) => {
   return (
-    <div onClick={onClick} className="cursor-pointer h-full">
+    <div
+      onClick={onClick}
+      className="cursor-pointer h-full outline-none focus:ring-2 focus:ring-accent rounded-xl"
+      role="button"
+      tabIndex={0}
+      onKeyDown={(e) => {
+        if (e.key === 'Enter' || e.key === ' ') {
+          e.preventDefault();
+          onClick?.();
+        }
+      }}
+    >
       <Card className="group h-full hover:border-accent/50 transition-colors duration-300">
         <div className="flex justify-between items-start mb-6">
           <div className="p-3 bg-gray-100 dark:bg-white/5 rounded-lg text-accent/80 group-hover:text-accent group-hover:bg-accent/10 transition-colors">
@@ -24,7 +35,7 @@ export const ProjectCard: React.FC<ProjectCardProps> = ({ project, onClick }) =>
         <h4 className="text-lg font-bold text-gray-900 dark:text-white mb-3 group-hover:text-accent transition-colors">
           {project.title}
         </h4>
-        
+
         <p className="text-sm text-gray-600 dark:text-gray-400 leading-relaxed mb-6">
           {project.description}
         </p>
