@@ -4,7 +4,7 @@ import { ABOUT_TEXT, CONTACT, EDUCATION, LANGUAGES } from '../../constants';
 import { Reveal } from '../Reveal';
 
 // Updated avatar to match "Jayson Rico" with new Ember color
-import profileImage from '../../assets/img/profile.svg';
+import profileImage from '../../assets/img/profile.png';
 
 interface SidebarProps {
     handlePrint: (e: React.MouseEvent) => void;
