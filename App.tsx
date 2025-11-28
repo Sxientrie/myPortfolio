@@ -4,61 +4,54 @@ import { Project } from './types';
 import { Sidebar } from './components/layout/Sidebar';
 import { MainContent } from './components/layout/MainContent';
 import { Navigation } from './components/layout/Navigation';
-import { ThemeToggle } from './components/ui/ThemeToggle';
 import { BackgroundEffects } from './components/ui/BackgroundEffects';
+import { Github } from 'lucide-react';
 
 const App = () => {
 
   const [activeSection, setActiveSection] = useState('experience');
-  const [isScrolled, setIsScrolled] = useState(false);
-
+  
   // Drawer State
   const [selectedProject, setSelectedProject] = useState<Project | null>(null);
   const [isDrawerOpen, setIsDrawerOpen] = useState(false);
 
-  // Initialize theme from localStorage or default to true (dark)
-  const [isDark, setIsDark] = useState(() => {
-    if (typeof window !== 'undefined') {
-      const saved = localStorage.getItem('theme');
-      return saved ? JSON.parse(saved) : true;
-    }
-    return true;
-  });
-
-  // Handle Theme Change
+  // Force Dark Mode for Void Protocol
   useEffect(() => {
-    if (isDark) {
-      document.documentElement.classList.add('dark');
-      localStorage.setItem('theme', 'true');
-    } else {
-      document.documentElement.classList.remove('dark');
-      localStorage.setItem('theme', 'false');
-    }
-  }, [isDark]);
+    document.documentElement.classList.add('dark');
+  }, []);
 
-  // Handle Body Scroll Lock when Drawer is open
+  // Handle Body Scroll Lock & Jitter Prevention when Drawer is open
   useEffect(() => {
     if (isDrawerOpen) {
+      // 1. Measure the width of the scrollbar before hiding it
+      const scrollbarWidth = window.innerWidth - document.documentElement.clientWidth;
+      
+      // 2. Add padding to replace the scrollbar so content doesn't shift (jitter)
+      document.body.style.paddingRight = `${scrollbarWidth}px`;
+      
+      // 3. Lock scroll
       document.body.style.overflow = 'hidden';
     } else {
-      // specific check to ensure we don't unlock if simply transitioning
-      document.body.style.overflow = 'unset';
+      // Reset styles
+      document.body.style.paddingRight = '';
+      document.body.style.overflow = '';
     }
+    
+    // Cleanup ensures state is reset if component unmounts unexpectedly
     return () => {
-      document.body.style.overflow = 'unset';
+      document.body.style.paddingRight = '';
+      document.body.style.overflow = '';
     };
   }, [isDrawerOpen]);
 
   // Drawer Handlers
   const openDrawer = (project: Project) => {
     setSelectedProject(project);
-    // Small delay to allow component to mount before triggering transition
     setTimeout(() => setIsDrawerOpen(true), 10);
   };
 
   const closeDrawer = () => {
     setIsDrawerOpen(false);
-    // Wait for transition (300ms) to finish before removing data/unmounting
     setTimeout(() => {
       setSelectedProject(null);
     }, 300);
@@ -70,7 +63,6 @@ const App = () => {
     const handleScroll = () => {
       if (!ticking) {
         window.requestAnimationFrame(() => {
-          // Handle Active Section Logic
           const sections = ['experience', 'projects', 'expertise'];
           const scrollPosition = window.scrollY + window.innerHeight * 0.3;
 
@@ -82,14 +74,6 @@ const App = () => {
             }
           }
           setActiveSection(current);
-
-          // Handle Theme Toggle Visibility
-          if (window.scrollY > 50) {
-            setIsScrolled(true);
-          } else {
-            setIsScrolled(false);
-          }
-
           ticking = false;
         });
 
@@ -113,10 +97,8 @@ const App = () => {
     window.print();
   };
 
-  const toggleTheme = () => setIsDark(!isDark);
-
   return (
-    <div className="min-h-screen w-full bg-gray-50 dark:bg-obsidian text-gray-900 dark:text-gray-300 font-sans selection:bg-accent selection:text-black overflow-x-hidden print:bg-white print:text-black transition-colors duration-500">
+    <div className="min-h-screen w-full bg-void text-primary font-sans selection:bg-accent selection:text-black overflow-x-hidden print:bg-white print:text-black">
 
       <ProjectDrawer
         project={selectedProject}
@@ -125,12 +107,6 @@ const App = () => {
       />
 
       <BackgroundEffects />
-
-      <ThemeToggle
-        isDark={isDark}
-        toggleTheme={toggleTheme}
-        isScrolled={isScrolled}
-      />
 
       <Navigation
         activeSection={activeSection}
@@ -150,11 +126,32 @@ const App = () => {
         </div>
 
         {/* FOOTER AREA */}
-        <footer className="pt-12 pb-6 border-t border-gray-200 dark:border-white/5 flex flex-col sm:flex-row justify-between items-center gap-4 print:hidden transition-colors duration-500">
-          <p className="text-xs text-gray-500 dark:text-gray-600">© {new Date().getFullYear()} Jayson Jamora</p>
-          <div className="flex items-center gap-6">
-            {/* Footer links could also be extracted if needed, but kept simple here */}
+        <footer className="pt-12 pb-8 border-t border-structure flex flex-col md:flex-row justify-between items-center gap-6 print:hidden opacity-90 hover:opacity-100 transition-opacity duration-300">
+          
+          {/* Left: Branding & Tech Stack */}
+          <div className="flex flex-col items-center md:items-start gap-1.5">
+            <span className="text-xs font-medium text-primary tracking-wide">
+              © {new Date().getFullYear()} Jayson Rico
+            </span>
+            <span className="text-[10px] font-mono text-muted">
+              Engineered with React, Tailwind & Precision.
+            </span>
           </div>
+
+          {/* Right: GitHub Profile */}
+          <a 
+            href="https://github.com/Sxientrie" 
+            target="_blank" 
+            rel="noopener noreferrer"
+            className="flex items-center gap-3 px-3 py-1.5 bg-zinc-900/50 border border-zinc-800/50 rounded-full hover:border-accent/50 hover:bg-zinc-800/50 transition-all group cursor-pointer"
+          >
+            <Github size={14} className="text-muted group-hover:text-white transition-colors" />
+            <span className="text-zinc-700 font-light">|</span>
+            <span className="text-[10px] font-mono text-secondary group-hover:text-accent uppercase tracking-widest">
+              Sxentrie
+            </span>
+          </a>
+          
         </footer>
 
       </div>

@@ -7,7 +7,8 @@ import {
     Headphones,
     Figma,
     Github,
-    Terminal
+    Terminal,
+    Video
 } from 'lucide-react';
 
 interface SkillIconProps {
@@ -25,6 +26,7 @@ export const SkillIcon: React.FC<SkillIconProps> = ({ name, size = 14, className
         case 'headphones': return <Headphones size={size} className={className} />;
         case 'figma': return <Figma size={size} className={className} />;
         case 'github': return <Github size={size} className={className} />;
+        case 'video': return <Video size={size} className={className} />;
         default: return <Terminal size={size} className={className} />;
     }
 };

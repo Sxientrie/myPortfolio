@@ -17,7 +17,7 @@ export interface Education {
 
 export interface Skill {
   name: string;
-  category: 'tool' | 'platform' | 'design' | 'version-control';
+  category: 'tool' | 'platform' | 'design' | 'version-control' | 'framework';
   icon?: string;
 }
 
@@ -26,7 +26,9 @@ export interface Project {
   description: string;
   tags: string[];
   link?: string;
+  demoUrl?: string; // Added for live demo links
   type: 'dev' | 'system';
+  date?: string; // Added for timestamp display
   // Detailed fields for Slide-Over Drawer
   longDescription?: string;
   architecture?: { label: string; value: string }[];

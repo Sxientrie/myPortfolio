@@ -19,8 +19,9 @@ export const MainContent: React.FC<MainContentProps> = ({ openDrawer }) => {
             {/* WORK EXPERIENCE */}
             <section id="experience" className="scroll-mt-24">
                 <Reveal>
-                    <h3 className="text-xs font-mono text-gray-500 dark:text-gray-500 mb-8 tracking-[0.2em] uppercase flex items-center gap-4">
-                        <span className="w-8 h-px bg-gray-300 dark:bg-gray-700 transition-colors duration-500"></span>
+                    {/* Interface Font: Uppercase Labels - Medium + Wide tracking */}
+                    <h3 className="text-xs font-medium text-muted mb-8 tracking-wide uppercase flex items-center gap-4">
+                        <span className="w-8 h-px bg-structure"></span>
                         Work Experience
                     </h3>
                 </Reveal>
@@ -35,8 +36,8 @@ export const MainContent: React.FC<MainContentProps> = ({ openDrawer }) => {
             {/* PROJECTS SECTION */}
             <section id="projects" className="scroll-mt-24">
                 <Reveal>
-                    <h3 className="text-xs font-mono text-gray-500 dark:text-gray-500 mb-8 tracking-[0.2em] uppercase flex items-center gap-4">
-                        <span className="w-8 h-px bg-gray-300 dark:bg-gray-700 transition-colors duration-500"></span>
+                    <h3 className="text-xs font-medium text-muted mb-8 tracking-wide uppercase flex items-center gap-4">
+                        <span className="w-8 h-px bg-structure"></span>
                         Hobby Projects
                     </h3>
                 </Reveal>
@@ -46,6 +47,7 @@ export const MainContent: React.FC<MainContentProps> = ({ openDrawer }) => {
                         <Reveal key={idx}>
                             <ProjectCard
                                 project={project}
+                                index={idx}
                                 onClick={() => openDrawer(project)}
                             />
                         </Reveal>
@@ -53,18 +55,19 @@ export const MainContent: React.FC<MainContentProps> = ({ openDrawer }) => {
                 </div>
             </section>
 
-            {/* TECHNICAL EXPERTISE (Formerly Expertise & Edu) */}
+            {/* TECHNICAL EXPERTISE */}
             <section id="expertise" className="scroll-mt-24">
                 <Reveal>
-                    <h3 className="text-xs font-mono text-gray-500 dark:text-gray-500 mb-8 tracking-[0.2em] uppercase flex items-center gap-4">
-                        <span className="w-8 h-px bg-gray-300 dark:bg-gray-700 transition-colors duration-500"></span>
+                    <h3 className="text-xs font-medium text-muted mb-8 tracking-wide uppercase flex items-center gap-4">
+                        <span className="w-8 h-px bg-structure"></span>
                         Technical Proficiency
                     </h3>
                 </Reveal>
 
-                {/* SKILLS CARD - NOW FULL WIDTH */}
+                {/* SKILLS CARD */}
                 <Card className="w-full" glow>
-                    <h4 className="text-gray-900 dark:text-white font-bold mb-6 flex items-center gap-2 transition-colors duration-500">
+                    {/* Interface Font: Titles - Light (300) + Tight tracking */}
+                    <h4 className="text-primary font-light tracking-tight mb-6 flex items-center gap-2">
                         <Terminal size={18} className="text-accent" />
                         Tech Skills
                     </h4>
@@ -72,12 +75,13 @@ export const MainContent: React.FC<MainContentProps> = ({ openDrawer }) => {
                         {SKILLS.map((skill, idx) => (
                             <div
                                 key={idx}
-                                className="flex items-center gap-2 bg-gray-100 dark:bg-white/5 hover:bg-gray-200 dark:hover:bg-white/10 border border-gray-200 dark:border-white/5 hover:border-accent/30 px-3 py-2 rounded-md transition-all cursor-default group"
+                                className="flex items-center gap-2 bg-zinc-950/50 hover:bg-zinc-800/50 border border-structure hover:border-accent/30 px-3 py-2 rounded-md transition-all cursor-default group"
                             >
-                                <span className="text-gray-500 dark:text-gray-400 group-hover:text-accent transition-colors">
+                                <span className="text-muted group-hover:text-accent transition-colors">
                                     <SkillIcon name={skill.icon} />
                                 </span>
-                                <span className="text-sm font-medium text-gray-700 dark:text-gray-300">{skill.name}</span>
+                                {/* Interface Font: UI Elements - Medium (500) */}
+                                <span className="text-sm font-medium text-secondary">{skill.name}</span>
                             </div>
                         ))}
                     </div>

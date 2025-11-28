@@ -18,8 +18,6 @@ export const ProjectDrawer: React.FC<ProjectDrawerProps> = ({ project, isOpen, o
     return () => window.removeEventListener('keydown', handleEsc);
   }, [onClose]);
 
-  // Even if project is null, we render the container to allow exit animations 
-  // (although in App.tsx logic, project is null only after animation finishes)
   if (!project) return null;
 
   return (
@@ -27,7 +25,7 @@ export const ProjectDrawer: React.FC<ProjectDrawerProps> = ({ project, isOpen, o
       {/* Backdrop */}
       <div
         className={`
-          absolute inset-0 bg-black/60 backdrop-blur-sm transition-opacity duration-300 ease-in-out
+          absolute inset-0 bg-void/80 backdrop-blur-sm transition-opacity duration-300 ease-in-out
           ${isOpen ? 'opacity-100' : 'opacity-0'}
         `}
         onClick={onClose}
@@ -36,8 +34,8 @@ export const ProjectDrawer: React.FC<ProjectDrawerProps> = ({ project, isOpen, o
       {/* Drawer Panel */}
       <div
         className={`
-          relative w-full max-w-2xl h-full bg-obsidian/95 dark:bg-charcoal/95 
-          border-l border-white/10 shadow-2xl overflow-y-auto
+          relative w-full max-w-2xl h-full bg-void 
+          border-l border-structure shadow-2xl overflow-y-auto
           transition-transform duration-300 ease-in-out
           ${isOpen ? 'translate-x-0' : 'translate-x-full'}
         `}
@@ -46,7 +44,7 @@ export const ProjectDrawer: React.FC<ProjectDrawerProps> = ({ project, isOpen, o
         {/* Close Button */}
         <button
           onClick={onClose}
-          className="absolute top-6 right-6 p-2 text-gray-400 hover:text-white hover:bg-white/10 rounded-full transition-colors z-50"
+          className="absolute top-6 right-6 p-2 text-muted hover:text-primary hover:bg-zinc-800 rounded-full transition-colors z-50"
           aria-label="Close project details"
         >
           <X size={24} />
@@ -56,16 +54,19 @@ export const ProjectDrawer: React.FC<ProjectDrawerProps> = ({ project, isOpen, o
 
           {/* Header */}
           <div className="space-y-4">
-            <div className="flex items-center gap-3 text-accent font-mono text-xs tracking-wider uppercase">
+            {/* Interface Font: Uppercase Label - Medium, Wide tracking */}
+            <div className="flex items-center gap-3 text-accent font-medium text-xs tracking-wide uppercase">
               <Server size={14} />
               <span>{project.type === 'dev' ? 'Development' : 'System Architecture'}</span>
             </div>
-            <h2 className="text-2xl font-bold text-white leading-tight">
+            {/* Interface Font: Title - Light (300), Tight tracking */}
+            <h2 className="text-3xl font-light tracking-tight text-primary leading-tight">
               {project.title}
             </h2>
             <div className="flex flex-wrap gap-2 pt-2">
               {project.tags.map((tag, i) => (
-                <span key={i} className="px-2 py-1 bg-white/5 border border-white/10 rounded text-[10px] font-mono text-gray-300">
+                // Data Font: Tags - Mono XS
+                <span key={i} className="px-2 py-1 bg-zinc-900 border border-structure rounded text-[10px] font-mono text-secondary">
                   {tag}
                 </span>
               ))}
@@ -74,7 +75,7 @@ export const ProjectDrawer: React.FC<ProjectDrawerProps> = ({ project, isOpen, o
 
           {/* Long Description */}
           <div className="prose prose-invert max-w-none">
-            <p className="text-sm text-gray-300 leading-relaxed">
+            <p className="text-sm font-normal text-secondary leading-relaxed">
               {project.longDescription}
             </p>
           </div>
@@ -82,14 +83,17 @@ export const ProjectDrawer: React.FC<ProjectDrawerProps> = ({ project, isOpen, o
           {/* Architecture Grid */}
           {project.architecture && (
             <div>
-              <h3 className="text-xs font-mono text-gray-500 uppercase tracking-widest mb-4 flex items-center gap-2">
+              {/* Interface Font: Uppercase Label - Medium, Wide tracking */}
+              <h3 className="text-xs font-medium text-muted uppercase tracking-wide mb-4 flex items-center gap-2">
                 <Cpu size={14} /> Technical Architecture
               </h3>
               <div className="grid grid-cols-1 gap-3">
                 {project.architecture.map((item, i) => (
-                  <div key={i} className="flex flex-col sm:flex-row sm:items-baseline gap-2 sm:gap-6 border-b border-white/5 pb-2">
-                    <span className="text-xs font-bold text-white min-w-[100px]">{item.label}</span>
-                    <span className="text-xs text-gray-400 font-mono">{item.value}</span>
+                  <div key={i} className="flex flex-col sm:flex-row sm:items-baseline gap-2 sm:gap-6 border-b border-structure pb-2">
+                    {/* Interface Font: Label - Medium */}
+                    <span className="text-xs font-medium text-primary min-w-[100px]">{item.label}</span>
+                    {/* Data Font: Value - Mono */}
+                    <span className="text-xs text-secondary font-mono">{item.value}</span>
                   </div>
                 ))}
               </div>
@@ -99,12 +103,13 @@ export const ProjectDrawer: React.FC<ProjectDrawerProps> = ({ project, isOpen, o
           {/* Features List */}
           {project.features && (
             <div>
-              <h3 className="text-xs font-mono text-gray-500 uppercase tracking-widest mb-4 flex items-center gap-2">
+              {/* Interface Font: Uppercase Label - Medium, Wide tracking */}
+              <h3 className="text-xs font-medium text-muted uppercase tracking-wide mb-4 flex items-center gap-2">
                 <Layers size={14} /> Core Functionality
               </h3>
               <ul className="space-y-3">
                 {project.features.map((feature, i) => (
-                  <li key={i} className="flex items-start gap-3 text-xs text-gray-300 leading-relaxed">
+                  <li key={i} className="flex items-start gap-3 text-xs font-normal text-secondary leading-relaxed">
                     <span className="mt-1.5 w-1 h-1 bg-accent rounded-full flex-shrink-0" />
                     {feature}
                   </li>

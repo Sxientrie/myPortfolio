@@ -20,23 +20,24 @@ export const Navigation: React.FC<NavigationProps> = ({ activeSection, scrollToS
                     aria-label={`Scroll to ${item.label}`}
                     aria-current={activeSection === item.id ? 'true' : 'false'}
                 >
+                    {/* Interface Font: Uppercase Labels - Medium, Wide tracking */}
                     <span className={`
-            text-xs font-mono uppercase tracking-widest transition-all duration-300
+            text-xs font-medium uppercase tracking-wide transition-all duration-200
             ${activeSection === item.id
                             ? 'text-accent translate-x-0 opacity-100'
-                            : 'text-gray-400 dark:text-gray-600 translate-x-4 opacity-0 group-hover:opacity-100 group-hover:translate-x-0'
+                            : 'text-muted translate-x-4 opacity-0 group-hover:opacity-100 group-hover:translate-x-0'
                         }
           `}>
                         {item.label}
                     </span>
                     <div className={`
-            w-1.5 h-1.5 rounded-full transition-all duration-500 border border-accent
-            ${activeSection === item.id ? 'bg-accent scale-150 shadow-[0_0_10px_rgba(20,184,166,0.5)]' : 'bg-transparent scale-100 group-hover:bg-accent/50'}
+            w-1.5 h-1.5 rounded-full transition-all duration-300 border border-accent
+            ${activeSection === item.id ? 'bg-accent scale-150 shadow-[0_0_10px_rgba(249,115,22,0.5)]' : 'bg-transparent scale-100 group-hover:bg-accent/50'}
           `} />
                 </button>
             ))}
             {/* Vertical connecting line visual */}
-            <div className="absolute right-[2.5px] top-0 bottom-0 w-px bg-gray-300 dark:bg-white/5 -z-10 transition-colors duration-500" />
+            <div className="absolute right-[2.5px] top-0 bottom-0 w-px bg-zinc-800 -z-10" />
         </nav>
     );
 };
