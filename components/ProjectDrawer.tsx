@@ -8,8 +8,11 @@ interface ProjectDrawerProps {
   onClose: () => void;
 }
 
+/**
+ * Slide-out panel for detailed project information.
+ * Locks scroll and handles escape key for closure.
+ */
 export const ProjectDrawer: React.FC<ProjectDrawerProps> = ({ project, isOpen, onClose }) => {
-  // Handle Escape Key
   useEffect(() => {
     const handleEsc = (e: KeyboardEvent) => {
       if (e.key === 'Escape') onClose();
@@ -22,7 +25,6 @@ export const ProjectDrawer: React.FC<ProjectDrawerProps> = ({ project, isOpen, o
 
   return (
     <div className={`fixed inset-0 z-[60] flex justify-end ${isOpen ? 'pointer-events-auto' : 'pointer-events-none'}`}>
-      {/* Backdrop */}
       <div
         className={`
           absolute inset-0 bg-void/80 backdrop-blur-sm transition-opacity duration-300 ease-in-out
@@ -31,7 +33,6 @@ export const ProjectDrawer: React.FC<ProjectDrawerProps> = ({ project, isOpen, o
         onClick={onClose}
       />
 
-      {/* Drawer Panel */}
       <div
         className={`
           relative w-full max-w-2xl h-full bg-void 
@@ -41,7 +42,6 @@ export const ProjectDrawer: React.FC<ProjectDrawerProps> = ({ project, isOpen, o
         `}
       >
 
-        {/* Close Button */}
         <button
           onClick={onClose}
           className="absolute top-6 right-6 p-2 text-muted hover:text-primary hover:bg-zinc-800 rounded-full transition-colors z-50"
@@ -52,20 +52,16 @@ export const ProjectDrawer: React.FC<ProjectDrawerProps> = ({ project, isOpen, o
 
         <div className="p-8 lg:p-12 space-y-10">
 
-          {/* Header */}
           <div className="space-y-4">
-            {/* Interface Font: Uppercase Label - Medium, Wide tracking */}
             <div className="flex items-center gap-3 text-accent font-medium text-xs tracking-wide uppercase">
               <Server size={14} />
               <span>{project.type === 'dev' ? 'Development' : 'System Architecture'}</span>
             </div>
-            {/* Interface Font: Title - Light (300), Tight tracking */}
             <h2 className="text-3xl font-light tracking-tight text-primary leading-tight">
               {project.title}
             </h2>
             <div className="flex flex-wrap gap-2 pt-2">
               {project.tags.map((tag, i) => (
-                // Data Font: Tags - Mono XS
                 <span key={i} className="px-2 py-1 bg-zinc-900 border border-structure rounded text-[10px] font-mono text-secondary">
                   {tag}
                 </span>
@@ -73,26 +69,21 @@ export const ProjectDrawer: React.FC<ProjectDrawerProps> = ({ project, isOpen, o
             </div>
           </div>
 
-          {/* Long Description */}
           <div className="prose prose-invert max-w-none">
             <p className="text-sm font-normal text-secondary leading-relaxed">
               {project.longDescription}
             </p>
           </div>
 
-          {/* Architecture Grid */}
           {project.architecture && (
             <div>
-              {/* Interface Font: Uppercase Label - Medium, Wide tracking */}
               <h3 className="text-xs font-medium text-muted uppercase tracking-wide mb-4 flex items-center gap-2">
                 <Cpu size={14} /> Technical Architecture
               </h3>
               <div className="grid grid-cols-1 gap-3">
                 {project.architecture.map((item, i) => (
                   <div key={i} className="flex flex-col sm:flex-row sm:items-baseline gap-2 sm:gap-6 border-b border-structure pb-2">
-                    {/* Interface Font: Label - Medium */}
                     <span className="text-xs font-medium text-primary min-w-[100px]">{item.label}</span>
-                    {/* Data Font: Value - Mono */}
                     <span className="text-xs text-secondary font-mono">{item.value}</span>
                   </div>
                 ))}
@@ -100,10 +91,8 @@ export const ProjectDrawer: React.FC<ProjectDrawerProps> = ({ project, isOpen, o
             </div>
           )}
 
-          {/* Features List */}
           {project.features && (
             <div>
-              {/* Interface Font: Uppercase Label - Medium, Wide tracking */}
               <h3 className="text-xs font-medium text-muted uppercase tracking-wide mb-4 flex items-center gap-2">
                 <Layers size={14} /> Core Functionality
               </h3>

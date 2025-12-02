@@ -1,8 +1,9 @@
 import React from 'react';
 
-// Void Protocol is strictly dark-mode. 
-// This component is intentionally rendered as null or empty to respect the design system constraint.
-
+/**
+ * Placeholder for theme switching logic.
+ * Currently returns null as the design system enforces dark mode.
+ */
 export const ThemeToggle: React.FC<any> = () => {
     return null;
 };
