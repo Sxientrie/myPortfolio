@@ -5,6 +5,10 @@ interface NavigationProps {
     scrollToSection: (id: string) => void;
 }
 
+/**
+ * Floating side navigation for large screens.
+ * Tracks active section and smooth scrolls on click.
+ */
 export const Navigation: React.FC<NavigationProps> = ({ activeSection, scrollToSection }) => {
     return (
         <nav className="fixed right-8 top-1/2 -translate-y-1/2 hidden xl:flex flex-col items-end gap-6 z-40 print:hidden">
@@ -20,7 +24,6 @@ export const Navigation: React.FC<NavigationProps> = ({ activeSection, scrollToS
                     aria-label={`Scroll to ${item.label}`}
                     aria-current={activeSection === item.id ? 'true' : 'false'}
                 >
-                    {/* Interface Font: Uppercase Labels - Medium, Wide tracking */}
                     <span className={`
             text-xs font-medium uppercase tracking-wide transition-all duration-200
             ${activeSection === item.id
@@ -36,7 +39,6 @@ export const Navigation: React.FC<NavigationProps> = ({ activeSection, scrollToS
           `} />
                 </button>
             ))}
-            {/* Vertical connecting line visual */}
             <div className="absolute right-[2.5px] top-0 bottom-0 w-px bg-zinc-800 -z-10" />
         </nav>
     );

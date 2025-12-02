@@ -12,14 +12,15 @@ interface MainContentProps {
     openDrawer: (project: Project) => void;
 }
 
+/**
+ * Primary content area containing Experience, Projects, and Skills sections.
+ * Implements intersection observers for scroll tracking.
+ */
 export const MainContent: React.FC<MainContentProps> = ({ openDrawer }) => {
     return (
         <main className="lg:col-span-8 space-y-24">
-
-            {/* WORK EXPERIENCE */}
             <section id="experience" className="scroll-mt-24">
                 <Reveal>
-                    {/* Interface Font: Uppercase Labels - Medium + Wide tracking */}
                     <h3 className="text-xs font-medium text-muted mb-8 tracking-wide uppercase flex items-center gap-4">
                         <span className="w-8 h-px bg-structure"></span>
                         Work Experience
@@ -33,7 +34,6 @@ export const MainContent: React.FC<MainContentProps> = ({ openDrawer }) => {
                 </div>
             </section>
 
-            {/* PROJECTS SECTION */}
             <section id="projects" className="scroll-mt-24">
                 <Reveal>
                     <h3 className="text-xs font-medium text-muted mb-8 tracking-wide uppercase flex items-center gap-4">
@@ -55,7 +55,6 @@ export const MainContent: React.FC<MainContentProps> = ({ openDrawer }) => {
                 </div>
             </section>
 
-            {/* TECHNICAL EXPERTISE */}
             <section id="expertise" className="scroll-mt-24">
                 <Reveal>
                     <h3 className="text-xs font-medium text-muted mb-8 tracking-wide uppercase flex items-center gap-4">
@@ -64,9 +63,7 @@ export const MainContent: React.FC<MainContentProps> = ({ openDrawer }) => {
                     </h3>
                 </Reveal>
 
-                {/* SKILLS CARD */}
                 <Card className="w-full" glow>
-                    {/* Interface Font: Titles - Light (300) + Tight tracking */}
                     <h4 className="text-primary font-light tracking-tight mb-6 flex items-center gap-2">
                         <Terminal size={18} className="text-accent" />
                         Tech Skills
@@ -80,14 +77,12 @@ export const MainContent: React.FC<MainContentProps> = ({ openDrawer }) => {
                                 <span className="text-muted group-hover:text-accent transition-colors">
                                     <SkillIcon name={skill.icon} />
                                 </span>
-                                {/* Interface Font: UI Elements - Medium (500) */}
                                 <span className="text-sm font-medium text-secondary">{skill.name}</span>
                             </div>
                         ))}
                     </div>
                 </Card>
             </section>
-
         </main>
     );
 };

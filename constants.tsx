@@ -1,13 +1,25 @@
 import { Experience, Education, Skill, ContactInfo, Project } from './types';
 
+/**
+ * Static contact details for the sidebar.
+ * Used to populate email and social links.
+ */
 export const CONTACT: ContactInfo = {
   email: "jasonrico.career@gmail.com",
   linkedin: "linkedin.com/in/jaysonrico-career",
   portfolio: "sxientrie.github.io/myPortfolio"
 };
 
+/**
+ * Biographical text displayed in the sidebar.
+ * Sets the tone for the professional overview.
+ */
 export const ABOUT_TEXT = `I operate where deep technical logic meets human creativity. I don't just answer support tickets; I also turn complicated engineering problems into simple, understandable solutions. I don't just fix the bug right away; I also see the bigger picture because my work combines the accuracy of a developer with the flexibility of a creative. I connect the code on the backend to the person on the other side of the screen, whether I'm figuring out what went wrong with a system or improving a user's workflow.`;
 
+/**
+ * Employment history data.
+ * Renders the timeline of professional roles.
+ */
 export const EXPERIENCE: Experience[] = [
   {
     id: 'freelance',
@@ -47,37 +59,46 @@ export const EXPERIENCE: Experience[] = [
   }
 ];
 
+/**
+ * Educational background data.
+ * Displays formal training details.
+ */
 export const EDUCATION: Education = {
   institution: "Southern City Colleges",
   period: "Sept. 2015 - Oct. 2017",
   details: "Completed core coursework including: Data Structures & Algorithms, Database Management, Object-Oriented Programming, and Networking Fundamentals."
 };
 
+/**
+ * Technical skills inventory.
+ * Populates the skills grid with icons and categories.
+ */
 export const SKILLS: Skill[] = [
-  // Development
   { name: "React", category: "framework", icon: "code" },
   { name: "Git & GitHub", category: "version-control", icon: "github" },
-
-  // Design & Creative
   { name: "Figma", category: "design", icon: "figma" },
   { name: "Canva", category: "design", icon: "pen-tool" },
   { name: "DaVinci Resolve", category: "design", icon: "video" },
-
-  // Productivity & Platforms
   { name: "ClickUp", category: "platform", icon: "layout-template" },
   { name: "Zendesk", category: "platform", icon: "headphones" },
   { name: "Google Workspace", category: "tool", icon: "monitor" },
-
-  // Support Tools
   { name: "AnyDesk", category: "tool", icon: "settings" },
   { name: "TeamViewer", category: "tool", icon: "monitor" },
 ];
 
+/**
+ * Spoken languages proficiency.
+ * Listed in the sidebar for context.
+ */
 export const LANGUAGES = [
   { lang: "English", level: "B2" },
   { lang: "Spanish", level: "A1" }
 ];
 
+/**
+ * Portfolio projects showcase.
+ * Drives the project cards and detail drawers.
+ */
 export const PROJECTS: Project[] = [
   {
     title: "Sxentrie RAG System",

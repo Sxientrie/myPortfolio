@@ -17,6 +17,10 @@ interface SkillIconProps {
     className?: string;
 }
 
+/**
+ * Maps skill names to Lucide icons.
+ * Defaults to a Terminal icon if no match is found.
+ */
 export const SkillIcon: React.FC<SkillIconProps> = ({ name, size = 14, className }) => {
     switch (name) {
         case 'monitor': return <Monitor size={size} className={className} />;

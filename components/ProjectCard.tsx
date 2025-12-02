@@ -8,9 +8,12 @@ interface ProjectCardProps {
   onClick?: () => void;
 }
 
+/**
+ * Interactive card displaying project summary.
+ * Supports keyboard navigation and hover effects.
+ */
 export const ProjectCard: React.FC<ProjectCardProps> = ({ project, index, onClick }) => {
   const isDev = project.type === 'dev';
-  // Generate a technical ID (e.g., PRJ-01)
   const projectId = `PRJ-${(index + 1).toString().padStart(2, '0')}`;
 
   return (
@@ -26,18 +29,14 @@ export const ProjectCard: React.FC<ProjectCardProps> = ({ project, index, onClic
         }
       }}
     >
-      {/* Hover Gradient Overlay */}
       <div className="absolute inset-0 bg-gradient-to-b from-accent/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none" />
 
-      {/* Technical Header Bar */}
       <div className="flex items-center justify-between px-4 py-3 border-b border-zinc-800/50 bg-zinc-900/20 backdrop-blur-sm group-hover:bg-zinc-900/40 transition-colors">
         <div className="flex items-center gap-3">
-          {/* Status Icon */}
           <span className="text-muted group-hover:text-accent transition-colors duration-300">
             {isDev ? <Code size={14} /> : <Cpu size={14} />}
           </span>
           
-          {/* Data Font: ID */}
           <div className="flex items-center gap-2">
             <span className="font-mono text-[10px] text-muted group-hover:text-secondary transition-colors">
               {projectId}
@@ -45,7 +44,6 @@ export const ProjectCard: React.FC<ProjectCardProps> = ({ project, index, onClic
           </div>
         </div>
 
-        {/* Action Icon */}
         <div className="flex items-center gap-3">
             <ArrowUpRight 
               size={16} 
@@ -54,15 +52,12 @@ export const ProjectCard: React.FC<ProjectCardProps> = ({ project, index, onClic
         </div>
       </div>
 
-      {/* Content Body */}
       <div className="p-5 flex-1 flex flex-col gap-4 relative z-10">
         <div className="flex justify-between items-start gap-4">
-          {/* Interface Font: Title - Light (300), Tight tracking */}
           <h4 className="text-xl font-light tracking-tight text-primary mb-3 group-hover:text-white transition-colors">
             {project.title}
           </h4>
 
-          {/* Demo Button - Positioned Top Right of Title */}
           {project.demoUrl && (
             <a 
               href={project.demoUrl} 
@@ -77,15 +72,12 @@ export const ProjectCard: React.FC<ProjectCardProps> = ({ project, index, onClic
           )}
         </div>
 
-        {/* Interface Font: Description - Regular (400) */}
         <p className="text-sm font-normal text-secondary leading-relaxed line-clamp-3">
           {project.description}
         </p>
 
-        {/* Tech Stack / Footer */}
         <div className="mt-auto pt-4 border-t border-zinc-800/50">
           <div className="flex flex-wrap gap-2">
-            {/* Data Font: Tags - Mono XS */}
             {project.tags.map((tag, i) => (
               <span 
                 key={i} 
@@ -98,7 +90,6 @@ export const ProjectCard: React.FC<ProjectCardProps> = ({ project, index, onClic
         </div>
       </div>
 
-      {/* Corner Accent (Visual Flair) */}
       <div className="absolute top-0 right-0 p-2 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
         <div className="w-2 h-2 border-t border-r border-accent/50" />
       </div>

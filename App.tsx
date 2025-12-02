@@ -7,44 +7,35 @@ import { Navigation } from './components/layout/Navigation';
 import { BackgroundEffects } from './components/ui/BackgroundEffects';
 import { Github } from 'lucide-react';
 
+/**
+ * Root component that orchestrates the layout.
+ * Manages drawer state, scroll tracking, and global theme enforcement.
+ */
 const App = () => {
-
   const [activeSection, setActiveSection] = useState('experience');
-  
-  // Drawer State
   const [selectedProject, setSelectedProject] = useState<Project | null>(null);
   const [isDrawerOpen, setIsDrawerOpen] = useState(false);
 
-  // Force Dark Mode for Void Protocol
   useEffect(() => {
     document.documentElement.classList.add('dark');
   }, []);
 
-  // Handle Body Scroll Lock & Jitter Prevention when Drawer is open
   useEffect(() => {
     if (isDrawerOpen) {
-      // 1. Measure the width of the scrollbar before hiding it
       const scrollbarWidth = window.innerWidth - document.documentElement.clientWidth;
-      
-      // 2. Add padding to replace the scrollbar so content doesn't shift (jitter)
       document.body.style.paddingRight = `${scrollbarWidth}px`;
-      
-      // 3. Lock scroll
       document.body.style.overflow = 'hidden';
     } else {
-      // Reset styles
       document.body.style.paddingRight = '';
       document.body.style.overflow = '';
     }
     
-    // Cleanup ensures state is reset if component unmounts unexpectedly
     return () => {
       document.body.style.paddingRight = '';
       document.body.style.overflow = '';
     };
   }, [isDrawerOpen]);
 
-  // Drawer Handlers
   const openDrawer = (project: Project) => {
     setSelectedProject(project);
     setTimeout(() => setIsDrawerOpen(true), 10);
@@ -99,7 +90,6 @@ const App = () => {
 
   return (
     <div className="min-h-screen w-full bg-void text-primary font-sans selection:bg-accent selection:text-black overflow-x-hidden print:bg-white print:text-black">
-
       <ProjectDrawer
         project={selectedProject}
         isOpen={isDrawerOpen}
@@ -114,21 +104,12 @@ const App = () => {
       />
 
       <div className="relative z-10 max-w-6xl mx-auto px-6 py-12 lg:py-24">
-
-        {/* SPLIT LAYOUT GRID */}
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 mb-24">
-
-          {/* LEFT COLUMN: Sticky Info */}
           <Sidebar handlePrint={handlePrint} />
-
-          {/* RIGHT COLUMN: Scrollable Content */}
           <MainContent openDrawer={openDrawer} />
         </div>
 
-        {/* FOOTER AREA */}
         <footer className="pt-12 pb-8 border-t border-structure flex flex-col md:flex-row justify-between items-center gap-6 print:hidden opacity-90 hover:opacity-100 transition-opacity duration-300">
-          
-          {/* Left: Branding & Tech Stack */}
           <div className="flex flex-col items-center md:items-start gap-1.5">
             <span className="text-xs font-medium text-primary tracking-wide">
               © {new Date().getFullYear()} Jayson Rico
@@ -138,7 +119,6 @@ const App = () => {
             </span>
           </div>
 
-          {/* Right: GitHub Profile */}
           <a 
             href="https://github.com/Sxientrie" 
             target="_blank" 
@@ -151,9 +131,7 @@ const App = () => {
               Sxentrie
             </span>
           </a>
-          
         </footer>
-
       </div>
     </div>
   );
