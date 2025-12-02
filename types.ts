@@ -1,5 +1,3 @@
-import React from 'react';
-
 export interface Experience {
   id: string;
   company: string;
@@ -26,10 +24,9 @@ export interface Project {
   description: string;
   tags: string[];
   link?: string;
-  demoUrl?: string; // Added for live demo links
+  demoUrl?: string;
   type: 'dev' | 'system';
-  date?: string; // Added for timestamp display
-  // Detailed fields for Slide-Over Drawer
+  date?: string;
   longDescription?: string;
   architecture?: { label: string; value: string }[];
   features?: string[];

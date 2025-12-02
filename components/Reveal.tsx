@@ -6,6 +6,10 @@ interface RevealProps {
   delay?: number;
 }
 
+/**
+ * Wrapper component for future scroll animations.
+ * Currently serves as a structural container.
+ */
 export const Reveal: React.FC<RevealProps> = ({ children, width = "fit-content" }) => {
   return (
     <div style={{ position: 'relative', width }}>

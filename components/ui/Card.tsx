@@ -6,6 +6,10 @@ interface CardProps {
   glow?: boolean;
 }
 
+/**
+ * A container with glassmorphism effects, borders, and hover states.
+ * Wraps content in a styled box with optional glow effects.
+ */
 export const Card: React.FC<CardProps> = ({ children, className = '', glow = false }) => {
   return (
     <div 
