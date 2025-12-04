@@ -2,7 +2,6 @@ import React from 'react';
 import { Mail, Linkedin, Globe, GraduationCap, Terminal, Download, Languages as LangIcon } from 'lucide-react';
 import { ABOUT_TEXT, CONTACT, EDUCATION, LANGUAGES } from '../../constants';
 import { Reveal } from '../Reveal';
-import profileImage from '../../assets/img/profile.png';
 
 interface SidebarProps {
     handlePrint: (e: React.MouseEvent) => void;
@@ -16,18 +15,6 @@ export const Sidebar: React.FC<SidebarProps> = ({ handlePrint }) => {
     return (
         <aside className="lg:col-span-4 lg:sticky lg:top-24 h-fit flex flex-col gap-10">
             <div className="flex flex-col items-start text-left">
-                <Reveal width="100%">
-                    <div className="relative w-80 h-auto mb-8 mx-auto print:hidden">
-                        <div className="relative w-full">
-                            <img
-                                src={profileImage}
-                                alt="Jayson Rico"
-                                className="w-full h-auto object-contain"
-                            />
-                        </div>
-                    </div>
-                </Reveal>
-
                 <Reveal>
                     <h1 className="text-4xl lg:text-5xl font-bold font-display text-primary tracking-tight mb-4 print:text-black whitespace-nowrap leading-none flex items-baseline">
                         JAYSON RICO<span className="text-accent ml-1 animate-blink text-4xl lg:text-5xl translate-y-[-2px]">|</span>
