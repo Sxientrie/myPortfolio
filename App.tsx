@@ -6,75 +6,28 @@ import { MainContent } from './components/layout/MainContent';
 import { Navigation } from './components/layout/Navigation';
 import { BackgroundEffects } from './components/ui/BackgroundEffects';
 import { Github } from 'lucide-react';
+import { useScrollSpy } from './hooks/useScrollSpy';
+import { AnimatePresence } from 'framer-motion';
 
 /**
  * Root component that orchestrates the layout.
  * Manages drawer state, scroll tracking, and global theme enforcement.
  */
 const App = () => {
-  const [activeSection, setActiveSection] = useState('experience');
+  const activeSection = useScrollSpy(['experience', 'projects', 'expertise']);
   const [selectedProject, setSelectedProject] = useState<Project | null>(null);
-  const [isDrawerOpen, setIsDrawerOpen] = useState(false);
 
   useEffect(() => {
     document.documentElement.classList.add('dark');
   }, []);
 
-  useEffect(() => {
-    if (isDrawerOpen) {
-      const scrollbarWidth = window.innerWidth - document.documentElement.clientWidth;
-      document.body.style.paddingRight = `${scrollbarWidth}px`;
-      document.body.style.overflow = 'hidden';
-    } else {
-      document.body.style.paddingRight = '';
-      document.body.style.overflow = '';
-    }
-    
-    return () => {
-      document.body.style.paddingRight = '';
-      document.body.style.overflow = '';
-    };
-  }, [isDrawerOpen]);
-
   const openDrawer = (project: Project) => {
     setSelectedProject(project);
-    setTimeout(() => setIsDrawerOpen(true), 10);
   };
 
   const closeDrawer = () => {
-    setIsDrawerOpen(false);
-    setTimeout(() => {
-      setSelectedProject(null);
-    }, 300);
+    setSelectedProject(null);
   };
-
-  useEffect(() => {
-    let ticking = false;
-
-    const handleScroll = () => {
-      if (!ticking) {
-        window.requestAnimationFrame(() => {
-          const sections = ['experience', 'projects', 'expertise'];
-          const scrollPosition = window.scrollY + window.innerHeight * 0.3;
-
-          let current = sections[0];
-          for (const section of sections) {
-            const el = document.getElementById(section);
-            if (el && el.offsetTop <= scrollPosition) {
-              current = section;
-            }
-          }
-          setActiveSection(current);
-          ticking = false;
-        });
-
-        ticking = true;
-      }
-    };
-
-    window.addEventListener('scroll', handleScroll);
-    return () => window.removeEventListener('scroll', handleScroll);
-  }, []);
 
   const scrollToSection = (id: string) => {
     const el = document.getElementById(id);
@@ -90,11 +43,15 @@ const App = () => {
 
   return (
     <div className="min-h-screen w-full bg-void text-primary font-sans selection:bg-accent selection:text-black overflow-x-hidden print:bg-white print:text-black">
-      <ProjectDrawer
-        project={selectedProject}
-        isOpen={isDrawerOpen}
-        onClose={closeDrawer}
-      />
+      <AnimatePresence>
+        {selectedProject && (
+          <ProjectDrawer
+            key="project-drawer"
+            project={selectedProject}
+            onClose={closeDrawer}
+          />
+        )}
+      </AnimatePresence>
 
       <BackgroundEffects />
 
@@ -114,14 +71,14 @@ const App = () => {
             <span className="text-xs font-medium text-primary tracking-wide">
               © {new Date().getFullYear()} Jayson Rico
             </span>
-            <span className="text-[10px] font-mono text-muted">
+            <span className="text-xs font-mono text-muted">
               Engineered with React, Tailwind & Precision.
             </span>
           </div>
 
-          <a 
-            href="https://github.com/Sxientrie" 
-            target="_blank" 
+          <a
+            href="https://github.com/Sxientrie"
+            target="_blank"
             rel="noopener noreferrer"
             className="flex items-center gap-3 px-3 py-1.5 bg-zinc-900/50 border border-zinc-800/50 rounded-full hover:border-accent/50 hover:bg-zinc-800/50 transition-all group cursor-pointer"
           >

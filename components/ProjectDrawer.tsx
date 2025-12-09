@@ -1,47 +1,66 @@
 import React, { useEffect } from 'react';
 import { Project } from '../types';
 import { X, Server, Cpu, Layers } from 'lucide-react';
+import { motion } from 'framer-motion';
 
 interface ProjectDrawerProps {
-  project: Project | null;
-  isOpen: boolean;
+  project: Project;
   onClose: () => void;
 }
 
 /**
  * Slide-out panel for detailed project information.
- * Locks scroll and handles escape key for closure.
+ * Uses Framer Motion for stable enter/exit animations.
  */
-export const ProjectDrawer: React.FC<ProjectDrawerProps> = ({ project, isOpen, onClose }) => {
+export const ProjectDrawer: React.FC<ProjectDrawerProps> = ({ project, onClose }) => {
   useEffect(() => {
     const handleEsc = (e: KeyboardEvent) => {
       if (e.key === 'Escape') onClose();
     };
     window.addEventListener('keydown', handleEsc);
-    return () => window.removeEventListener('keydown', handleEsc);
+    // Lock body scroll
+    const scrollbarWidth = window.innerWidth - document.documentElement.clientWidth;
+    document.body.style.paddingRight = `${scrollbarWidth}px`;
+    document.body.style.overflow = 'hidden';
+
+    return () => {
+      window.removeEventListener('keydown', handleEsc);
+      // Restore body scroll
+      document.body.style.paddingRight = '';
+      document.body.style.overflow = '';
+    };
   }, [onClose]);
 
-  if (!project) return null;
+  // Animation variants
+  const backdropVariants = {
+    open: { opacity: 1 },
+    closed: { opacity: 0 }
+  };
+
+  const drawerVariants = {
+    open: { x: 0 },
+    closed: { x: '100%' }
+  };
 
   return (
-    <div className={`fixed inset-0 z-[60] flex justify-end ${isOpen ? 'pointer-events-auto' : 'pointer-events-none'}`}>
-      <div
-        className={`
-          absolute inset-0 bg-void/80 backdrop-blur-sm transition-opacity duration-300 ease-in-out
-          ${isOpen ? 'opacity-100' : 'opacity-0'}
-        `}
+    <motion.div
+      className="fixed inset-0 z-[60] flex justify-end"
+      initial="closed"
+      animate="open"
+      exit="closed"
+    >
+      <motion.div
+        variants={backdropVariants}
+        transition={{ duration: 0.3 }}
+        className="absolute inset-0 bg-void/80 backdrop-blur-sm"
         onClick={onClose}
       />
 
-      <div
-        className={`
-          relative w-full max-w-2xl h-full bg-void 
-          border-l border-structure shadow-2xl overflow-y-auto
-          transition-transform duration-300 ease-in-out
-          ${isOpen ? 'translate-x-0' : 'translate-x-full'}
-        `}
+      <motion.div
+        variants={drawerVariants}
+        transition={{ type: "spring", damping: 30, stiffness: 300 }}
+        className="relative w-full max-w-2xl h-full bg-void border-l border-structure shadow-2xl overflow-y-auto"
       >
-
         <button
           onClick={onClose}
           className="absolute top-6 right-6 p-2 text-muted hover:text-primary hover:bg-zinc-800 rounded-full transition-colors z-50"
@@ -108,7 +127,7 @@ export const ProjectDrawer: React.FC<ProjectDrawerProps> = ({ project, isOpen, o
           )}
 
         </div>
-      </div>
-    </div>
+      </motion.div>
+    </motion.div>
   );
 };
