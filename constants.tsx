@@ -147,7 +147,7 @@ export const PROJECTS: Project[] = [
     tags: ["Chrome Extension", "React", "GenAI", "MV3"],
     type: "system",
     date: "2025.12",
-    demoUrl: "https://github.com/Sxientrie/reddit-hawk",
+    demoUrl: "https://sxentrie.pages.dev/",
     longDescription: "I got tired of missing freelance gigs on Reddit because I checked r/forhire three hours too late. So I built a Chrome extension that does the checking for me. It polls subreddits every 15 seconds, flags posts that match my keywords, and pipes them into a side panel. The AI draft feature uses Generative model, but here's the thing. It's fast, it works, and it doesn't get rate-limited because it piggybacks your existing Reddit session instead of using OAuth.",
     architecture: [
       { label: "Runtime", value: "Chrome Manifest V3" },
